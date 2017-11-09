@@ -1,10 +1,12 @@
 <template lang="html">
-        <p>我的</p> 
+    <div>
+      <p>我的</p>   
+    </div> 
 </template>
 
 <script>
   export default {
-
+    props: ['show']
   }
 </script>
 
