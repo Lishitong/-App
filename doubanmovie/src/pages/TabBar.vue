@@ -57,12 +57,6 @@
           inputTag.style.width = '5.6rem';
           inputTag.style.backgroundPositionX = '.8rem';
          }
-        }else{
-          setTimeout(function() {
-            var inputTag = document.querySelector('.tabtop-search');
-            inputTag.style.width = '7rem';
-            inputTag.style.backgroundPositionX = '1.8rem';
-          }, 1);
         }
       }
     },
