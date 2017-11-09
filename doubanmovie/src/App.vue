@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <remen></remen>
+    <top250></top250>
   </div>
 </template>
 
 <script>
+import remen from './pages/remen'
+import top250 from './pages/top250'
 export default {
-  name: 'app'
+  name: 'app',
+  components:{
+    remen,
+    top250
+  }
 }
 </script>
 
 <style>
+body{
+  margin: 0 auto;
+  width: 7.2rem;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
