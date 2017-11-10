@@ -41,8 +41,7 @@ export default {
   name: 'Nowing',
   data() {
     return {
-      msg: {},
-      five:[0,1,2,3,4]
+      msg: {}
     }
   },
   methods: {
@@ -76,7 +75,11 @@ export default {
     createImg(el, score) {
       for (var i = 0; i < 5; i++) {
         var p = document.createElement('p');
+        p.style.position = "absolute";
         p.style.left = i * 0.3 + 'rem';
+        p.style.width = '0.3rem';
+        p.style.height = '0.3rem';
+        p.style.background = 'url(../../static/img/star2.png) no-repeat top/cover';
         el.appendChild(p);
       }
       el.style.width = score / 2 * 0.3 + 'rem';
@@ -94,6 +97,10 @@ export default {
       if (!isNaN(this.msg[i].rating.average)) {
         for (var j = 0;j < 5;j ++) {
           var p = document.createElement('p');
+          p.style.display = 'inline-block';
+          p.style.width = '0.3rem';
+          p.style.height = '0.3rem';
+          p.style.background = 'url(../../static/img/star1.png) no-repeat top/cover';
           starsG[i].appendChild(p);
         }
       }
@@ -103,7 +110,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .each-movie {
   position: relative;
   width:100%;
@@ -118,11 +125,12 @@ export default {
   height: 3rem;
   margin-top: .4rem;
   margin-left: .4rem;
+  margin-bottom: .4rem;
 }
 .movie-text {
   width: 60%;
   height: 3.4rem;
-  margin-top: .4rem;
+  margin-top: .2rem;
   text-align: left;
   color: gray;
   font-size: .25rem;
@@ -130,6 +138,7 @@ export default {
 .movie-text>h1 {
   color: #000;
   font-size: .35rem;
+  line-height: .5rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -171,6 +180,7 @@ export default {
   border: 0.02rem solid #ffaeb1;
   border-radius: .04rem;
   margin-left: .4rem;
+  text-align: center;
 }
 /*星星等级*/
 .starbox{
@@ -189,18 +199,5 @@ export default {
   z-index: -2;
   position: absolute;
   left: 0;
-}
-.stars p {
-  width: .3rem;
-  height: .3rem;
-  background: url(../../static/img/star2.png) no-repeat top/cover;
-  position: absolute;
-  top: 0;
-}
-.stars-gray p {
-  display: inline-block;
-  width: .3rem;
-  height: .3rem;
-  background: url(../../static/img/star1.png) no-repeat top/cover;
 }
 </style>

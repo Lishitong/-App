@@ -1,31 +1,21 @@
 <template>
   <div id="app">
-    <router-view/>
+   <TabBar />
   </div>
 </template>
 
 <script>
 import rem from '../static/js/rem'
+
+import TabBar from './pages/TabBar'
+
 export default {
   name: 'app',
   components:{
-    rem
+    rem, TabBar
   }
 }
 </script>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
+<style lang="css" scoped>
 
 </style>

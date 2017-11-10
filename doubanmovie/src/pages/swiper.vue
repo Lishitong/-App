@@ -23,7 +23,7 @@ require('swiper/dist/css/swiper.css')
   }
 }
 </script>
-<style media="screen">
+<style media="screen" scoped>
 .swiper-container{
   height:2rem;
 }
@@ -38,11 +38,6 @@ require('swiper/dist/css/swiper.css')
 .swiper-pagination-bullet{
   width: .1rem;
   height: .1rem;
-  background: gray;
-  opacity: 1;
-}
-.swiper-pagination-bullet-active{
-  background-color: #fff;
 }
 /*轮播图片*/
 .slide0{
