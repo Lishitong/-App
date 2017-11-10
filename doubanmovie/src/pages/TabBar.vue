@@ -9,15 +9,15 @@
         <input v-if="showOn" class="tabtop-search tabtop-search-inputX"  type="text" placeholder="电影 / 电视剧 / 影人">
         <input v-else class="tabtop-search tabtop-search-inputY"  type="text" placeholder="电影 / 电视剧 / 影人">
       </div>
-    </div>    
-    
+    </div>
+
     <div class="tabbar">
       <router-link to="/HotPlay"  @click.native="click(true, true)" :class="{'router-link-active' : ok }">
         <p class="icon-i_pishafahuli" ></p>
         热映
       </router-link>
       <router-link to="/FindMovie" @click.native="click(true, false)">
-        <p class="icon-eye"></p>     
+        <p class="icon-eye"></p>
         找片
       </router-link>
       <router-link to="/Mine"  @click.native="click(false, false)">
@@ -95,13 +95,14 @@
   bottom: 0;
   left : 0;
   background-color: #fff;
-  
+  z-index:2;
 }
 .fixed-top(){
   position: @fixed;
   top: 0;
   left: 0;
   background-color: #fff;
+  z-index:2;
 }
 
 .flex-config(){
@@ -110,7 +111,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  
+
 }
 
 .show {
@@ -179,7 +180,6 @@
   }
 }
 .router-link-active {
-    color : #494949 !important;   
+    color : #494949 !important;
 }
 </style>
-

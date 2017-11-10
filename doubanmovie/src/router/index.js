@@ -1,15 +1,35 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+// swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 import HotPlay from '../pages/HotPlay'
 import FindMovie from '../pages/FindMovie'
 import Mine from '../pages/Mine'
 
+// 正在热映
+import Nowing from '../pages/nowing'
+import Loading from '../pages/loading'
+
+
+Vue.use(VueAwesomeSwiper)
 
 Vue.use(Router)
 
 const routes = [
-    { path: '/', component: HotPlay },
-    { path: '/HotPlay', component: HotPlay },
+    { path: '/', component: HotPlay ,children:[
+      {path:'/',component:Nowing},
+      {path:'/HotPlay',component:Nowing},
+      {path:'/HotPlay/nowing',component:Nowing},
+      {path:'/HotPlay/loading',component:Loading}
+    ]},
+    { path: '/HotPlay', component: HotPlay ,children:[
+      {path:'/',component:Nowing},
+      {path:'/HotPlay/nowing',component:Nowing},
+      {path:'/HotPlay/nowing',component:Nowing},
+      {path:'/HotPlay/loading',component:Loading}
+    ]},
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
 ]
