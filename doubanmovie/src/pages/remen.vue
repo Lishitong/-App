@@ -10,10 +10,9 @@
           <img class="smallImg" :src="getImage(x.images.small)" alt="">
           <p class="title">{{x.title}}</p>
           <p>
-            <star :index1="index1"></star>
-            <!-- <span class="star" v-for="(y,index2) in 5">
+            <span class="star" v-for="(y,index2) in 5">
               <img :src="reStar(index1,index2)" alt="">
-            </span> -->
+            </span>
             {{x.rating.average}}
           </p>
         </div>
@@ -23,7 +22,6 @@
 </template>
 
 <script>
-import star from './../components/star.vue'
 export default {
   name:'remen',
   data(){
@@ -32,7 +30,6 @@ export default {
     }
   },
   components:{
-    star
   },
   methods:{
     getImage(url){
@@ -40,7 +37,15 @@ export default {
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
     },
+    reStar(in1,in2){
+      if (in2*10<this.sub[in1].rating.stars-5) {
+        return "../../static/star1.png"
+      }else {
+        return "../../static/star2.png"
+      }
+    }
   },
+
   computed:{
     wrapwidth(){
       return (this.sub.length/2 * 311 + 34)/100 + 'rem';

@@ -68,7 +68,6 @@ export default {
       this.arr3 = this.data3.subjects;
       console.log(this.arr3);
     });
-
   },
   beforeUpdate(){
     var lis = document.querySelectorAll('li');
@@ -86,7 +85,7 @@ export default {
         }
         lis[i*4 + j].appendChild(img);
         lis[i*4 + j].appendChild(pp);
-        
+
       }
     }
   },
