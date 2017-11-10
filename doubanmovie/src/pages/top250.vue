@@ -1,30 +1,32 @@
 <template lang="html">
   <div id="top250">
+    <loading></loading>
     <h2>{{data1.title}}</h2>
     <div id="box">
       <div class="box">
         <div class="top250">
           <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
+            <li v-for="(x,index) in 4">
+              <span>{{index+1}}</span>
+              <img :src="url1[index]" alt="">
+              <p></p>
+            </li>
           </ul>
         </div>
         <div class="top250">
           <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
+            <li v-for="(x,index) in 4">
+              <span>{{index+1}}</span>
+              <img :src="url2[index]" alt="">
+            </li>
           </ul>
         </div>
         <div class="top250">
           <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
+            <li v-for="(x,index) in 4">
+              <span>{{index+1}}</span>
+              <img :src="url3[index]" alt="">
+            </li>
           </ul>
         </div>
       </div>
@@ -33,6 +35,7 @@
 </template>
 
 <script>
+import loading from './../components/loading.vue'
 export default {
   name:'top250',
   data(){
@@ -43,6 +46,12 @@ export default {
       arr1: [],
       arr2: [],
       arr3: [],
+      url1:[],
+      url2:[],
+      url3:[],
+      title1:[],
+      title2:[],
+      title3:[],
     }
   },
   methods:{
@@ -52,42 +61,33 @@ export default {
       }
     },
   },
+  components:{
+    loading
+  },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data1 = data;
       this.arr1 = this.data1.subjects;
-      console.log(this.arr1);
+      for (let x in this.arr1) {
+          this.url1[x] = this.getImage(this.arr1[x].images.small)
+        }
     });
     this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data2 = data;
       this.arr2 = this.data2.subjects;
       console.log(this.arr2);
+      for (let x in this.arr2) {
+          this.url2[x] = this.getImage(this.arr2[x].subject.images.small)
+        }
     });
     this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data3 = data;
       this.arr3 = this.data3.subjects;
       console.log(this.arr3);
-    });
-  },
-  beforeUpdate(){
-    var lis = document.querySelectorAll('li');
-    var arr = [this.arr1,this.arr2,this.arr3]
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 4; j++) {
-        var img = document.createElement('img');
-        var pp = document.createElement('p');
-        if (i === 0) {
-          img.src = this.getImage(arr[i][j].images.small);
-          pp.innerHTML = arr[i][j].title;
-        }else {
-          img.src = this.getImage(arr[i][j].subject.images.small);
-          pp.innerHTML = arr[i][j].subject.title;
+      for (let x in this.arr3) {
+          this.url3[x] = this.getImage(this.arr3[x].subject.images.small)
         }
-        lis[i*4 + j].appendChild(img);
-        lis[i*4 + j].appendChild(pp);
-
-      }
-    }
+    });
   },
 }
 </script>

@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <TabBar></TabBar>
+   <TabBar />
   </div>
 </template>
 
 <script>
+import rem from '../static/js/rem'
 
 import TabBar from './pages/TabBar'
+
 export default {
   name: 'app',
   components:{
-    TabBar
+    rem, TabBar
   }
 }
 </script>
-
-<style lang="less" scoped>
+<style lang="css" scoped>
 
 </style>
-

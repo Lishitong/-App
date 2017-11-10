@@ -3,20 +3,21 @@
     <div v-if="show" class="show">
       <div class="tabtop">
         <div class="city" v-if="showIn">
-          <p>北京</p>
+          <p @click="local(Local)">北京</p>
           <span></span>
         </div>
-        <input class="tabtop-search" type="text" placeholder="电影 / 电视剧 / 影人">
+        <div v-if="showOn" class="tabtop-search tabtop-search-inputX">电影 / 电视剧 / 影人</div>
+        <div v-else class="tabtop-search tabtop-search-inputY">电影 / 电视剧 / 影人</div>
       </div>
-    </div>    
-    
+    </div>
+
     <div class="tabbar">
-      <router-link to="/HotPlay"  @click.native="click(true, true)">
+      <router-link to="/HotPlay"  @click.native="click(true, true)" :class="{'router-link-active' : ok }">
         <p class="icon-i_pishafahuli" ></p>
         热映
       </router-link>
       <router-link to="/FindMovie" @click.native="click(true, false)">
-        <p class="icon-eye"></p>     
+        <p class="icon-eye"></p>
         找片
       </router-link>
       <router-link to="/Mine"  @click.native="click(false, false)">
@@ -29,32 +30,53 @@
 </template>
 
 <script>
+
   export default {
     name : "tabbar",
     data () {
       return {
         show : true,
-        showIn : true
+        showIn : true,
+        showOn : false,
+        ok : false,
+        Local : 'Local'
       }
     },
     methods : {
       click(show, showIn){
         this.show = show;
         this.showIn = showIn;
-        if (document.querySelector('.tabtop-search')) {
-          if (show == true && showIn == false) {
-          var inputTag = document.querySelector('.tabtop-search');
-          inputTag.style.width = '7rem';
-          inputTag.style.backgroundPositionX = '1.8rem';
-         }else{
-          var inputTag = document.querySelector('.tabtop-search');
-          inputTag.style.width = '5.6rem';
-          inputTag.style.backgroundPositionX = '.8rem';
-         }
-        }
+      },
+      local(tag){
+        this.$router.push({
+          path : '/' + tag
+        })
       }
     },
-    
+    watch : {
+      '$route'(newValue, oldValue){
+        if(newValue.path == '/HotPlay'){
+          this.showOn = false;
+        }else if(newValue.path == '/FindMovie'){
+          this.showOn = true;
+        }
+        if (newValue.path != '/'){
+          this.ok = false;
+        }
+        console.log(newValue);
+      }
+    },
+    components : {
+    },
+    created () {
+      if (this.$route.path == '/Mine') {
+        this.show = false;
+        this.showIn = false;
+      }
+      if (this.$route.path == '/') {
+        this.ok = true;
+      }
+    }
   }
 </script>
 
@@ -73,13 +95,14 @@
   bottom: 0;
   left : 0;
   background-color: #fff;
-  
+  z-index:2;
 }
 .fixed-top(){
   position: @fixed;
   top: 0;
   left: 0;
   background-color: #fff;
+  z-index:2;
 }
 
 .flex-config(){
@@ -88,7 +111,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  
+
 }
 
 .show {
@@ -132,7 +155,19 @@
     font-size: .3rem;
     border-radius: .2rem;
     text-align: center;
+    line-height: @h08;
+    color:#ccc;
   }
+}
+
+.tabtop-search-inputX {
+  width: 7rem !important;
+  background-position-x: 1.8rem !important;
+}
+
+.tabtop-search-inputY {
+  width: 5.6rem !important;
+  background-position-x: .8rem !important;
 }
 
 .tabbar {
@@ -147,7 +182,6 @@
   }
 }
 .router-link-active {
-    color : #494949 !important;   
+    color : #494949 !important;
 }
 </style>
-
