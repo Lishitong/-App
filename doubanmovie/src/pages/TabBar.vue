@@ -6,8 +6,8 @@
           <p @click="local(Local)">北京</p>
           <span></span>
         </div>
-        <input v-if="showOn" class="tabtop-search tabtop-search-inputX"  type="text" placeholder="电影 / 电视剧 / 影人">
-        <input v-else class="tabtop-search tabtop-search-inputY"  type="text" placeholder="电影 / 电视剧 / 影人">
+        <div v-if="showOn" class="tabtop-search tabtop-search-inputX">电影 / 电视剧 / 影人</div>
+        <div v-else class="tabtop-search tabtop-search-inputY">电影 / 电视剧 / 影人</div>
       </div>
     </div>
 
@@ -155,6 +155,8 @@
     font-size: .3rem;
     border-radius: .2rem;
     text-align: center;
+    line-height: @h08;
+    color:#ccc;
   }
 }
 
