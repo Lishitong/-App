@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="remen">
-    <div id="top">
+    <loading v-if="bol"></loading>
+    <div id="top" v-else>
       <h2>豆瓣热门</h2>
       <span>全部99+ ></span>
     </div>
@@ -22,14 +23,17 @@
 </template>
 
 <script>
+import loading from './../components/loading.vue'
 export default {
   name:'remen',
   data(){
     return {
-      sub:[]
+      sub:[],
+      bol : true
     }
   },
   components:{
+    loading
   },
   methods:{
     getImage(url){
@@ -53,7 +57,8 @@ export default {
   },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
-      this.sub = data.subjects
+      this.sub = data.subjects;
+      this.bol = false
     })
   }
 }
@@ -61,7 +66,7 @@ export default {
 
 <style lang="less">
   #remen{
-    width: 7.2rem;
+    width: 100%;
     font-size: .36rem;
     p{
       width: 100%;
@@ -69,13 +74,13 @@ export default {
       height: .50rem;
     }
     #top{
-      width: 7.2rem;
+      width: 100%;
       height: 1.5rem;
       text-align:right;
       line-height:1.5rem;
     }
     #bottom{
-      width: 7.2rem;
+      width: 100%;
       overflow:auto;
     }
     .wrap{

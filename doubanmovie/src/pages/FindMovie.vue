@@ -1,9 +1,7 @@
 <template lang="html">
   <div class="">
-    <TabBar></TabBar>
     <remen></remen>
     <top250></top250>
-    <TabBar></TabBar>
   </div>
 </template>
 
@@ -15,7 +13,7 @@ import TabBar from './TabBar'
   export default {
     components:{
       remen,
-      top250,TabBar
+      top250
     }
   }
 </script>

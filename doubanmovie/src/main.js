@@ -9,7 +9,7 @@ import JSONP from 'jsonp'
 import axios from 'axios'
 import router from './router'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 // 把两个方法放入原型
 Vue.prototype.JSONP = JSONP
 Vue.prototype.axios = axios
