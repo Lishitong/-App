@@ -34,12 +34,15 @@
   },
   methods:{
 
-
   },
   watch:{
     '$route'(newValue,oldValue){
-    this.ok=false;
-     
+          this.ok=false;
+    }
+  },
+  created () {
+    if (this.$route.path != '/Mine/wantSee') {
+      this.ok = false;
     }
   }
 

@@ -75,7 +75,6 @@ export default {
     this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data2 = data;
       this.arr2 = this.data2.subjects;
-      console.log(this.arr2);
       for (let x in this.arr2) {
           this.url2[x] = this.getImage(this.arr2[x].subject.images.small)
         }
@@ -83,7 +82,6 @@ export default {
     this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data3 = data;
       this.arr3 = this.data3.subjects;
-      console.log(this.arr3);
       for (let x in this.arr3) {
           this.url3[x] = this.getImage(this.arr3[x].subject.images.small)
         }

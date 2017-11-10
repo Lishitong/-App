@@ -69,10 +69,17 @@
     components : {
     },
     created () {
-      if (this.$route.path == '/Mine') {
+      let rex = /\/Mine/;
+      if (rex.test(this.$route.path)) {
         this.show = false;
         this.showIn = false;
       }
+
+      if(this.$route.path == '/FindMovie') {
+        this.showOn = true;
+        this.showIn = false;
+      }
+
       if (this.$route.path == '/') {
         this.ok = true;
       }
