@@ -6,7 +6,8 @@
           <p>北京</p>
           <span></span>
         </div>
-        <input class="tabtop-search" type="text" placeholder="电影 / 电视剧 / 影人">
+        <input v-if="showOn" class="tabtop-search tabtop-search-inputX"  type="text" placeholder="电影 / 电视剧 / 影人">
+        <input v-else class="tabtop-search tabtop-search-inputY"  type="text" placeholder="电影 / 电视剧 / 影人">
       </div>
     </div>    
     
@@ -34,27 +35,31 @@
     data () {
       return {
         show : true,
-        showIn : true
+        showIn : true,
+        showOn : false
       }
     },
     methods : {
       click(show, showIn){
         this.show = show;
         this.showIn = showIn;
-        if (document.querySelector('.tabtop-search')) {
-          if (show == true && showIn == false) {
-          var inputTag = document.querySelector('.tabtop-search');
-          inputTag.style.width = '7rem';
-          inputTag.style.backgroundPositionX = '1.8rem';
-         }else{
-          var inputTag = document.querySelector('.tabtop-search');
-          inputTag.style.width = '5.6rem';
-          inputTag.style.backgroundPositionX = '.8rem';
-         }
+      }
+    },
+    watch : {
+      '$route'(newValue, oldValue){
+        if(newValue.path == '/HotPlay'){
+          this.showOn = false;
+        }else if(newValue.path == '/FindMovie'){
+          this.showOn = true;
         }
       }
     },
-    
+    created () {
+      if (this.$route.path == '/Mine') {
+        this.show = false;
+        this.showIn = false;
+      }
+    }
   }
 </script>
 
@@ -133,6 +138,16 @@
     border-radius: .2rem;
     text-align: center;
   }
+}
+
+.tabtop-search-inputX {
+  width: 7rem !important;
+  background-position-x: 1.8rem !important;
+}
+
+.tabtop-search-inputY {
+  width: 5.6rem !important;
+  background-position-x: .8rem !important;
 }
 
 .tabbar {
