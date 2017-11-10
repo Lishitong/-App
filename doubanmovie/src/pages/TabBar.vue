@@ -6,20 +6,21 @@
           <p>北京</p>
           <span></span>
         </div>
-        <input class="tabtop-search" type="text" placeholder="电影 / 电视剧 / 影人">
+        <input v-if="showOn" class="tabtop-search tabtop-search-inputX"  type="text" placeholder="电影 / 电视剧 / 影人">
+        <input v-else class="tabtop-search tabtop-search-inputY"  type="text" placeholder="电影 / 电视剧 / 影人">
       </div>
     </div>    
     
     <div class="tabbar">
-      <router-link to="/HotPlay" :class="{'click' : hot}" @click.native="click(true, false, false,true, true)">
+      <router-link to="/HotPlay"  @click.native="click(true, true)">
         <p class="icon-i_pishafahuli" ></p>
         热映
       </router-link>
-      <router-link to="/FindMovie" :class="{'click' : find}" @click.native="click(false, true, false, true, false)">
+      <router-link to="/FindMovie" @click.native="click(true, false)">
         <p class="icon-eye"></p>     
         找片
       </router-link>
-      <router-link to="/Mine" :class="{'click' : my}" @click.native="click(false, false, true, false, false)">
+      <router-link to="/Mine"  @click.native="click(false, false)">
         <p class="icon-wode"></p>
         我的
       </router-link>
@@ -33,34 +34,32 @@
     name : "tabbar",
     data () {
       return {
-        hot : true,
-        find : false,
-        my : false,
         show : true,
-        showIn : true
+        showIn : true,
+        showOn : false
       }
     },
     methods : {
-      click(tag1, tag2, tag3, tag4, tag5){
-        this.hot = tag1;
-        this.find = tag2;
-        this.my = tag3;
-        this.show = tag4;
-        this.showIn = tag5;
-        if (document.querySelector('.tabtop-search')) {
-          if (tag4 == true && tag5 == false) {
-          var inputTag = document.querySelector('.tabtop-search');
-          inputTag.style.width = '7rem';
-          inputTag.style.backgroundPositionX = '1.8rem';
-         }else{
-          var inputTag = document.querySelector('.tabtop-search');
-          inputTag.style.width = '5.6rem';
-          inputTag.style.backgroundPositionX = '.8rem';
-         }
+      click(show, showIn){
+        this.show = show;
+        this.showIn = showIn;
+      }
+    },
+    watch : {
+      '$route'(newValue, oldValue){
+        if(newValue.path == '/HotPlay'){
+          this.showOn = false;
+        }else if(newValue.path == '/FindMovie'){
+          this.showOn = true;
         }
       }
     },
-    
+    created () {
+      if (this.$route.path == '/Mine') {
+        this.show = false;
+        this.showIn = false;
+      }
+    }
   }
 </script>
 
@@ -78,11 +77,14 @@
   position : @fixed;
   bottom: 0;
   left : 0;
+  background-color: #fff;
+  
 }
 .fixed-top(){
   position: @fixed;
   top: 0;
   left: 0;
+  background-color: #fff;
 }
 
 .flex-config(){
@@ -92,6 +94,10 @@
   align-items: center;
   justify-content: space-around;
   
+}
+
+.show {
+  margin-bottom: 1rem;
 }
 
 .tabtop {
@@ -131,23 +137,32 @@
     font-size: .3rem;
     border-radius: .2rem;
     text-align: center;
+  }
 }
-  
+
+.tabtop-search-inputX {
+  width: 7rem !important;
+  background-position-x: 1.8rem !important;
+}
+
+.tabtop-search-inputY {
+  width: 5.6rem !important;
+  background-position-x: .8rem !important;
 }
 
 .tabbar {
   .fixed-bottom();
   .flex-config();
   border-top: 1px solid #f0f0f0;
-  a  {
+  a {
     width:2rem;
     font-size: .2rem;
     text-align: center;
     color: @ab;
-    }
   }
-.click {
+}
+.router-link-active {
     color : #494949 !important;   
-  }
+}
 </style>
 

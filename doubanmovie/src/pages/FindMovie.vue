@@ -8,7 +8,6 @@
 <script>
 import remen from './remen'
 import top250 from './top250'
-import TabBar from './TabBar'
 
   export default {
     components:{
