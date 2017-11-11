@@ -19,9 +19,11 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
+
 export default {
   name:'remen',
   data(){
@@ -30,6 +32,7 @@ export default {
     }
   },
   components:{
+
   },
   methods:{
     getImage(url){

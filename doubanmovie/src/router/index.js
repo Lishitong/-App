@@ -10,7 +10,7 @@ Vue.use(Router)
 const routes = [
     { path: '/', component: HotPlay },
     { path: '/HotPlay', component: HotPlay },
-    { path: '/FindMovie', component: FindMovie },
+    { path: '/FindMovie', component: FindMovie},
     { path: '/Mine', component: Mine },
 ]
 
