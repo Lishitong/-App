@@ -1,31 +1,13 @@
 <template lang="html">
   <div id="top250">
-    <h2>{{data1.title}}</h2>
-    <div id="box">
-      <div class="box">
-        <div class="top250">
-          <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
-          </ul>
-        </div>
-        <div class="top250">
-          <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
-          </ul>
-        </div>
-        <div class="top250">
-          <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
-          </ul>
+    <loading v-if="bol"></loading>
+    <div v-else>
+      <h2>{{data1.title}}</h2>
+      <div id="box">
+        <div @touchstart="toustart($event)" @touchmove="toumove($event)" @touchend="touend()" :style="{marginLeft:boxleft[a]}" class="box">
+          <toppage :data="dat1"></toppage>
+          <toppage :data="dat2"></toppage>
+          <toppage :data="dat3"></toppage>
         </div>
       </div>
     </div>
@@ -33,16 +15,41 @@
 </template>
 
 <script>
+import loading from './../components/loading.vue'
+import toppage from './../components/toppage.vue'
 export default {
   name:'top250',
   data(){
     return {
+      bol : true,
+      fingerstart:'',
+      fingerend:'',
+      boxleft:['0','-6.5rem','-13rem'],
+      a:0,
       data1 : {},
       data2 : {},
       data3 : {},
-      arr1: [],
-      arr2: [],
-      arr3: [],
+      dat1:{
+        url:[],
+        title:[],
+        stars:[],
+        fen:[],
+        ping:[]
+      },
+      dat2:{
+        url:[],
+        title:[],
+        stars:[],
+        fen:[],
+        ping:[]
+      },
+      dat3:{
+        url:[],
+        title:[],
+        stars:[],
+        fen:[],
+        ping:[]
+      },
     }
   },
   methods:{
@@ -51,85 +58,85 @@ export default {
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
     },
+    toustart(e){
+      this.fingerstart = e.touches[0].clientX;
+    },
+    toumove(e){
+      this.fingerend = e.touches[0].clientX;
+    },
+    touend(){
+      let xx = this.fingerend-this.fingerstart
+      if (xx>0) {
+        if (xx>100) {
+          console.log('asd');
+          if (this.a == 2) {
+            this.a = 1
+          }else if (this.a == 2) {
+            this.a = 0
+          }else {
+            this.a = 0
+          }
+        }else {
+          this.a = this.a
+        }
+      }
+    }
+  },
+  components:{
+    loading,
+    toppage
   },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+      this.bol = false;
       this.data1 = data;
-      this.arr1 = this.data1.subjects;
-      console.log(this.arr1);
+      for (let x in this.data1.subjects) {
+          this.dat1.url[x] = this.getImage(this.data1.subjects[x].images.small)
+          this.dat1.title[x] = this.data1.subjects[x].title
+          this.dat1.stars[x] = this.data1.subjects[x].rating.stars
+          this.dat1.fen[x] = this.data1.subjects[x].rating.average
+          this.dat1.ping[x] = this.data1.subjects[x].collect_count
+        }
     });
     this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data2 = data;
-      this.arr2 = this.data2.subjects;
-      console.log(this.arr2);
+      for (let x in this.data2.subjects) {
+          this.dat2.url[x] = this.getImage(this.data2.subjects[x].subject.images.small)
+          this.dat2.title[x] = this.data2.subjects[x].subject.title
+          this.dat2.stars[x] = this.data2.subjects[x].subject.rating.stars
+          this.dat2.fen[x] = this.data2.subjects[x].subject.rating.average
+          this.dat2.ping[x] = this.data2.subjects[x].subject.collect_count
+        }
     });
     this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data3 = data;
-      this.arr3 = this.data3.subjects;
-      console.log(this.arr3);
-    });
-  },
-  beforeUpdate(){
-    var lis = document.querySelectorAll('li');
-    var arr = [this.arr1,this.arr2,this.arr3]
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 4; j++) {
-        var img = document.createElement('img');
-        var pp = document.createElement('p');
-        if (i === 0) {
-          img.src = this.getImage(arr[i][j].images.small);
-          pp.innerHTML = arr[i][j].title;
-        }else {
-          img.src = this.getImage(arr[i][j].subject.images.small);
-          pp.innerHTML = arr[i][j].subject.title;
+      for (let x in this.data3.subjects) {
+          this.dat3.url[x] = this.getImage(this.data3.subjects[x].subject.images.small)
+          this.dat3.title[x] = this.data3.subjects[x].subject.title
+          this.dat3.stars[x] = this.data3.subjects[x].subject.rating.stars
+          this.dat3.fen[x] = this.data3.subjects[x].subject.rating.average
+          this.dat3.ping[x] = this.data3.subjects[x].subject.collect_count
         }
-        lis[i*4 + j].appendChild(img);
-        lis[i*4 + j].appendChild(pp);
-
-      }
-    }
+    });
   },
 }
 </script>
 
 <style lang="less">
   #top250{
+    padding-bottom:1rem;
     h2{
-      font-size:.43rem;
-      text-align:left;
+      font-size:.36rem;
+      float: left;
+      margin:0 0 .2rem .2rem;
     }
-    width: 7.2rem;
+    width: 100%;
   }
   #box{
-    width: 7.2rem;
+    width: 100%;
     overflow-x:auto;
   }
   .box{
-    width: 18rem;
-  }
-  .top250{
-    width: 6rem;
-    height: 6rem;
-    font-size: .32rem;
-    float: left;
-    li{
-      margin-top:.26rem;
-      text-align: center;
-      width: 100%;
-      overflow:hidden;
-      span{
-        float: left;
-        margin:.1rem .35rem auto .45rem;
-      }
-      p{
-        float: left;
-        margin: .05rem 0 0 .3rem;
-      }
-    }
-    img{
-      width: .85rem;
-      float: left;
-      height: 1.15rem;
-    }
+    width:19.5rem;
   }
 </style>
