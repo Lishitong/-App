@@ -34,7 +34,6 @@ export default {
 
 <style lang="less">
 .top250{
-  width: 6.5rem;
   font-size: .32rem;
   float: left;
   li{

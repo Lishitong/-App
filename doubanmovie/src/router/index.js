@@ -14,7 +14,8 @@ import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'
 import seeSpeak from'../pages/seeSpeak'
 import movieMen from'../pages/movieMen'
-
+import shezhi from '../pages/shezhi'
+import login from '../pages/login'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
 
@@ -41,7 +42,13 @@ const routes = [
       {path:'/Mine/seeSpeak',component:seeSpeak},
       {path:'/Mine/movieMen',component:movieMen}
     ]
-     }
+
+  },
+  {path:'/shezhi',component:shezhi},
+  {path:'/login',component:login},
+
+
+
 
 ]
 
