@@ -16,6 +16,8 @@ import seeSpeak from'../pages/seeSpeak'
 import movieMen from'../pages/movieMen'
 import shezhi from '../pages/shezhi'
 import login from '../pages/login'
+import suggest from '../pages/suggest'
+import howSee from '../pages/howSee'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
 
@@ -46,6 +48,8 @@ const routes = [
   },
   {path:'/shezhi',component:shezhi},
   {path:'/login',component:login},
+  {path:'/suggest',component:suggest},
+  {path:'/howSee',component:howSee},
 
 
 

@@ -1,0 +1,66 @@
+<template lang="html">
+  <div class="">
+    <div class="bgTop">
+      <img src="../../static/howSeeback.png" @click="shezhiback()" alt="">
+      <span>如何查看电影榜单？</span>
+      <img src="../../static/share.png" alt="">
+    </div>
+    <p>如何查看电影榜单？</p>
+    <p>『书影音』- 『电影』,下滑页面至『精选榜单』,即可查看到豆瓣Top250、本周口碑榜、新片榜、票房榜。</p>
+    <p>精选榜单</p>
+    <img class="howSee" src="../../static/howSee.png" alt="">
+  </div>
+</template>
+
+<script>
+export default {
+  // data(){
+  //   return(){
+  //
+  //   }
+  // },
+  methods:{
+    shezhiback(){
+      history.back();
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped="scoped">
+.bgTop{
+  background-color:white;
+  /*width: 100%;*/
+  height:.8rem;
+  line-height: .8rem;
+  /*text-align: center;*/
+  font-size: .3rem;
+  font-weight:700;
+  border-bottom: .01rem solid #C6C7C7;
+  margin-bottom: .2rem;
+  display: flex;
+  justify-content: space-around;
+}
+.bgTop img{
+  width: .3rem;
+  height: .3rem;
+  margin-top: .25rem;
+}
+p{
+    font-size: .3rem;
+    margin-left: 5%;
+    line-height: .6rem;
+    margin-bottom: .2rem;
+}
+p:nth-of-type(1){
+  font-weight:800;
+}
+p:nth-of-type(3){
+  font-weight:800;
+  font-size: .26rem;
+}
+.howSee{
+  width: 90%;
+  margin: 5%
+}
+</style>

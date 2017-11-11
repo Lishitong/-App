@@ -2,30 +2,31 @@
   <div class="bg">
     <div class="bgTop">
       <img src="../../static/shezhiback.png" @click="shezhiback()" alt="">
-      <span>设置</span>
+      <span>帮助与反馈</span>
+    </div>
+    <div class="question">
+      <p>常见问题</p>
     </div>
     <main>
 
 
-    <div class="bgconter first"  @click="suggest('suggest')">
-      <span class="suggest" >意见反馈</span>
+    <div class="bgconter first"  >
+      <span class="suggest" @click="howSee('howSee')">如何查看电影榜单？</span>
       <img src="../../static/shezhigo.png" alt="">
     </div>
     <div class="bgconter">
-      <span>给应用评分</span>
+      <span>影评/短评为什么会被折叠？</span>
         <img src="../../static/shezhigo.png" alt="">
     </div>
-    <div class="bgconter">
-      <span>清除缓存</span>
-        <img src="../../static/shezhigo.png" alt="">
-    </div>
+
     <div class="bgconter last">
-      <span>关于</span>
+      <span>如何在线观看电视/电影</span>
         <img src="../../static/shezhigo.png" alt="">
     </div>
     </main>
     <div class="footer" v-if="footer" >
-      <p>退出登录</p>
+      <img src="../../static/pen.png" alt="">
+      <span>我要反馈</span>
     </div>
   </div>
 
@@ -35,7 +36,7 @@
 export default {
   data(){
     return {
-        footer:false
+        footer:true
     }
 
   },
@@ -43,8 +44,8 @@ export default {
     shezhiback() {
       history.back()
   },
-  suggest(suggest){
-    this.$router.push({path:'/'+suggest})
+  howSee(howSee){
+    this.$router.push({path:'/'+howSee})
   }
   }
 }
@@ -64,7 +65,7 @@ export default {
   text-align: center;
   font-size: .3rem;
   border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .8rem;
+  margin-bottom: .2rem;
 }
 .bgTop img{
   width: .4rem;
@@ -72,6 +73,14 @@ export default {
   float: left;
   margin-top: .2rem;
   margin-left: .2rem;
+}
+.question{
+  height:.6rem;
+  line-height: .6rem;
+  text-align: left;
+  font-size: .16rem;
+  color:#70706D;
+
 }
 main{
   overflow: hidden;
@@ -120,5 +129,9 @@ main{
   background-color:white;
   border-bottom: .01rem solid #C6C7C7;
   border-top: .003rem solid #C6C7C7;
+}
+.footer img{
+  width: .4rem;
+  height: .4rem;
 }
 </style>
