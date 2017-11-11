@@ -15,7 +15,7 @@ import top250 from './top250'
     components:{
       movieTV,
       remen,
-      top250
+      top250,
     }
   }
 </script>
