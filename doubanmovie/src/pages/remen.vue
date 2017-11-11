@@ -20,6 +20,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -34,6 +35,7 @@ export default {
   },
   components:{
     loading
+
   },
   methods:{
     getImage(url){
