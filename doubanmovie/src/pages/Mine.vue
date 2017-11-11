@@ -2,10 +2,10 @@
 
   <div class="">
     <div class="top">
-      <img class="shezhi" src="../../static/shezhi.png" alt="">
+      <img class="shezhi" @click="shezhi('shezhi')" src="../../static/shezhi.png" alt="">
       <div class="login">
-        <img class="loginImg" src="../../static/login.png" alt="">
-        <span id="loginSpan">未登录</span>
+        <img class="loginImg" @click="login('login')" src="../../static/login.png" alt="">
+        <span id="loginSpan"  @click="login('login')">未登录</span>
       </div>
     </div>
 
@@ -33,18 +33,23 @@
       }
   },
   methods:{
-
+    shezhi(shezhi){
+      this.$router.push({path:'/'+shezhi})
+    },
+    login(login){
+      this.$router.push({path:'/'+login})
+    }
   },
   watch:{
     '$route'(newValue,oldValue){
           this.ok=false;
     }
   },
-  created () {
-    if (this.$route.path != '/Mine/wantSee') {
-      this.ok = false;
-    }
-  }
+  // created () {
+  //   if (this.$route.path != '/Mine/wantSee'&&  this.ok==true ) {
+  //     this.ok = false;
+  //   }
+  // }
 
   // props: ['show']
   }
