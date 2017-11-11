@@ -16,7 +16,7 @@
           <p>漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影</p>
           <h6>雪 评论《雷神3》</h6>
         </div>
-        <img src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p925123037.jpg" alt="">
+        <img :src="pp" alt="">
 
       </div>
     </ul>
@@ -31,6 +31,7 @@ export default {
     return {      
       articles: {} ,
       msg:'最近值得看的热门电影',
+      pp:'../../static/judgebg.jpg',
       pointUrl:'../../static/point.png',
       arr:[],
       arrbox:[],
