@@ -11,7 +11,8 @@ import Mine from '../pages/Mine'
 // 正在热映
 import Nowing from '../pages/nowing'
 import Loading from '../pages/loading'
-
+// 正在热映详情
+import movxiangqing from '../components/movxiangqing'
 
 Vue.use(VueAwesomeSwiper)
 
@@ -27,11 +28,11 @@ const routes = [
     { path: '/HotPlay', component: HotPlay ,children:[
       {path:'/',component:Nowing},
       {path:'/HotPlay/nowing',component:Nowing},
-      {path:'/HotPlay/nowing',component:Nowing},
       {path:'/HotPlay/loading',component:Loading}
     ]},
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
+    { path: '/movxiangqing:id', component:movxiangqing}
 ]
 
 const router = new Router({

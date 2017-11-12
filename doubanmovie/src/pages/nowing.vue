@@ -2,9 +2,9 @@
   <div class="nowing">
     <div class="each-movie" v-for="item of msg">
       <div class="movie-img">
-        <img :src="getImage(item.images.large)" alt="">
+        <img :src="getImage(item.images.large)" alt=""  @click="push(item.id)">
       </div>
-      <div class="movie-text">
+      <div class="movie-text"  @click="push(item.id)">
         <!-- 标题 -->
          <h1>{{ item.title }}</h1>
         <!-- 星级评分 -->
@@ -51,7 +51,7 @@ export default {
           console.error(err);
         } else {
           this.msg = data.subjects;
-          console.log(this.msg);
+          // console.log(this.msg);
           for (let i = 0;i <this.msg.length;i ++) {
             if (this.msg[i].rating.average == 0) {
               this.msg[i].rating.average = "尚未上映"
@@ -83,15 +83,15 @@ export default {
         el.appendChild(p);
       }
       el.style.width = score / 2 * 0.3 + 'rem';
-    }
-  },
-  created() {
-    this.getHero();
-  },
-  updated() {
+    },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing' + item
+      })
+    },
+  gray () {
     var stars = document.querySelectorAll('.stars');
     var starsG = document.querySelectorAll('.stars-gray');
-    var scoreP=document.querySelectorAll('.score>p');
     for (var i = 0; i < stars.length; i++) {
       this.createImg(stars[i], this.msg[i].rating.average);
       if (!isNaN(this.msg[i].rating.average)) {
@@ -105,7 +105,13 @@ export default {
         }
       }
     }
-
+  }
+},
+  created() {
+    this.getHero();
+  },
+  updated() {
+    this.gray();
   }
 }
 </script>
@@ -144,10 +150,10 @@ export default {
   text-overflow: ellipsis;
 }
 .score{
-  width: 60%;
-}
-.score>p{
-  display: inline-block;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .zhuyan {
   width: 50%;
@@ -184,16 +190,15 @@ export default {
 }
 /*星星等级*/
 .starbox{
-  display: inline-block;
   position: relative;
 }
-.stars {
+.score .starbox .stars {
   overflow: hidden;
   height: .3rem;
   position: relative;
   z-index: -1;
 }
-.stars-gray{
+.score .starbox .stars-gray{
   width: 1.5rem;
   height: .3rem;
   z-index: -2;
