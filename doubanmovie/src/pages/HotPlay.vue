@@ -23,6 +23,9 @@ export default {
 .wrap {
   width: 100%;
   height: 1rem;
+  /*position:fixed;
+  background: white;
+  z-index:2;*/
 }
 .wrap a{
   float: left;

@@ -3,16 +3,16 @@
     <div v-if="show" class="show">
       <div class="tabtop">
         <div class="city" v-if="showIn">
-          <p>北京</p>
+          <p @click="local(Local)">北京</p>
           <span></span>
         </div>
-        <input v-if="showOn" class="tabtop-search tabtop-search-inputX"  type="text" placeholder="电影 / 电视剧 / 影人">
-        <input v-else class="tabtop-search tabtop-search-inputY"  type="text" placeholder="电影 / 电视剧 / 影人">
+        <div v-if="showOn" class="tabtop-search tabtop-search-inputX">电影 / 电视剧 / 影人</div>
+        <div v-else class="tabtop-search tabtop-search-inputY">电影 / 电视剧 / 影人</div>
       </div>
     </div>
 
     <div class="tabbar">
-      <router-link to="/HotPlay"  @click.native="click(true, true)">
+      <router-link to="/HotPlay"  @click.native="click(true, true)" :class="{'router-link-active' : ok }">
         <p class="icon-i_pishafahuli" ></p>
         热映
       </router-link>
@@ -30,19 +30,27 @@
 </template>
 
 <script>
+
   export default {
     name : "tabbar",
     data () {
       return {
         show : true,
         showIn : true,
-        showOn : false
+        showOn : false,
+        ok : false,
+        Local : 'Local'
       }
     },
     methods : {
       click(show, showIn){
         this.show = show;
         this.showIn = showIn;
+      },
+      local(tag){
+        this.$router.push({
+          path : '/' + tag
+        })
       }
     },
     watch : {
@@ -52,12 +60,28 @@
         }else if(newValue.path == '/FindMovie'){
           this.showOn = true;
         }
+        if (newValue.path != '/'){
+          this.ok = false;
+        }
+        console.log(newValue);
       }
     },
+    components : {
+    },
     created () {
-      if (this.$route.path == '/Mine') {
+      let rex = /\/Mine/;
+      if (rex.test(this.$route.path)) {
         this.show = false;
         this.showIn = false;
+      }
+
+      if(this.$route.path == '/FindMovie') {
+        this.showOn = true;
+        this.showIn = false;
+      }
+
+      if (this.$route.path == '/') {
+        this.ok = true;
       }
     }
   }
@@ -138,6 +162,8 @@
     font-size: .3rem;
     border-radius: .2rem;
     text-align: center;
+    line-height: @h08;
+    color:#ccc;
   }
 }
 

@@ -51,12 +51,10 @@ export default {
           console.error(err);
         } else {
           this.msg = data.subjects;
-          // console.log(this.msg);
           for (let i = 0;i <this.msg.length;i ++) {
             if (this.msg[i].rating.average == 0) {
               this.msg[i].rating.average = "尚未上映"
               this.msg[i].shop = "预售"
-
             }else {
               this.msg[i].shop = "购票"
               if (this.msg[i].collect_count >= 10000) {

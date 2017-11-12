@@ -1,91 +1,124 @@
 <template lang="html">
   <div id="top250">
-    <loading></loading>
-    <h2>{{data1.title}}</h2>
-    <div id="box">
-      <div class="box">
-        <div class="top250">
-          <ul>
-            <li v-for="(x,index) in 4">
-              <span>{{index+1}}</span>
-              <img :src="url1[index]" alt="">
-              <p></p>
-            </li>
-          </ul>
-        </div>
-        <div class="top250">
-          <ul>
-            <li v-for="(x,index) in 4">
-              <span>{{index+1}}</span>
-              <img :src="url2[index]" alt="">
-            </li>
-          </ul>
-        </div>
-        <div class="top250">
-          <ul>
-            <li v-for="(x,index) in 4">
-              <span>{{index+1}}</span>
-              <img :src="url3[index]" alt="">
-            </li>
-          </ul>
-        </div>
+    <loading v-if="bol"></loading>
+    <div v-else>
+      <h2>{{title}}</h2>
+      <div id="box">
+        <swiper :options="swiperOption" ref="mySwiper">
+          <swiper-slide>
+            <toppage :data="dat1"></toppage>
+          </swiper-slide>
+          <swiper-slide>
+            <toppage :data="dat2"></toppage>
+          </swiper-slide>
+          <swiper-slide>
+            <toppage :data="dat3"></toppage>
+          </swiper-slide>
+        </swiper>
       </div>
+      <p>全部{{dat1.bu}}部</p>
     </div>
   </div>
 </template>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import loading from './../components/loading.vue'
+import toppage from './../components/toppage.vue'
+require('swiper/dist/css/swiper.css')
 export default {
   name:'top250',
   data(){
     return {
+      swiperOption: {
+          notNextTick: true,
+          autoplay: false,
+          watchSlidesProgress:true,
+        },
+      bol : true,
+      title:'',
       data1 : {},
       data2 : {},
       data3 : {},
-      arr1: [],
-      arr2: [],
-      arr3: [],
-      url1:[],
-      url2:[],
-      url3:[],
-      title1:[],
-      title2:[],
-      title3:[],
+      dat1:{
+        url:[],
+        title:[],
+        stars:[],
+        fen:[],
+        ping:[],
+        bu:'',
+        tit:''
+      },
+      dat2:{
+        url:[],
+        title:[],
+        stars:[],
+        fen:[],
+        ping:[],
+        bu:'',
+        tit:''
+      },
+      dat3:{
+        url:[],
+        title:[],
+        stars:[],
+        fen:[],
+        ping:[],
+        bu:'',
+        tit:''
+      },
     }
+  },
+  components:{
+    loading,
+    toppage,
+    swiper,
+    swiperSlide
   },
   methods:{
     getImage(url){
       if(url !== undefined){
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
-    },
-  },
-  components:{
-    loading
+    }
   },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+      this.bol = false;
       this.data1 = data;
-      this.arr1 = this.data1.subjects;
-      for (let x in this.arr1) {
-          this.url1[x] = this.getImage(this.arr1[x].images.small)
+      this.title = this.data1.title;
+      this.dat1.tit = this.data1.title;
+      this.dat1.bu = this.data1.total;
+      for (let x = 0;x < 4;x++) {
+          this.dat1.url[x] = this.getImage(this.data1.subjects[x].images.small)
+          this.dat1.title[x] = this.data1.subjects[x].title
+          this.dat1.stars[x] = this.data1.subjects[x].rating.stars
+          this.dat1.fen[x] = this.data1.subjects[x].rating.average
+          this.dat1.ping[x] = this.data1.subjects[x].collect_count
         }
     });
     this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data2 = data;
-      this.arr2 = this.data2.subjects;
-      console.log(this.arr2);
-      for (let x in this.arr2) {
-          this.url2[x] = this.getImage(this.arr2[x].subject.images.small)
+      this.dat2.tit = this.data2.title;
+      this.dat2.bu = this.data2.total;
+      for (let x = 0;x < 4;x++) {
+          this.dat2.url[x] = this.getImage(this.data2.subjects[x].subject.images.small)
+          this.dat2.title[x] = this.data2.subjects[x].subject.title
+          this.dat2.stars[x] = this.data2.subjects[x].subject.rating.stars
+          this.dat2.fen[x] = this.data2.subjects[x].subject.rating.average
+          this.dat2.ping[x] = this.data2.subjects[x].subject.collect_count
         }
     });
     this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data3 = data;
-      this.arr3 = this.data3.subjects;
-      console.log(this.arr3);
-      for (let x in this.arr3) {
-          this.url3[x] = this.getImage(this.arr3[x].subject.images.small)
+      this.dat3.tit = this.data3.title;
+      this.dat3.bu = this.data3.total;
+      for (let x = 0;x < 4;x++) {
+          this.dat3.url[x] = this.getImage(this.data3.subjects[x].subject.images.small)
+          this.dat3.title[x] = this.data3.subjects[x].subject.title
+          this.dat3.stars[x] = this.data3.subjects[x].subject.rating.stars
+          this.dat3.fen[x] = this.data3.subjects[x].subject.rating.average
+          this.dat3.ping[x] = this.data3.subjects[x].subject.collect_count
         }
     });
   },
@@ -94,42 +127,23 @@ export default {
 
 <style lang="less">
   #top250{
-    h2{
-      font-size:.43rem;
-      text-align:left;
+    padding-bottom:1rem;
+    &>div>p{
+      text-align: center;
+      height: .6rem;
+      line-height: .6rem;
+      color:#bbb;
+      font-size: .25rem;
     }
-    width: 7.2rem;
+    h2{
+      font-size:.36rem;
+      float: left;
+      margin:0 0 .2rem .2rem;
+    }
+    width: 100%;
   }
   #box{
-    width: 7.2rem;
+    width: 100%;
     overflow-x:auto;
-  }
-  .box{
-    width: 18rem;
-  }
-  .top250{
-    width: 6rem;
-    height: 6rem;
-    font-size: .32rem;
-    float: left;
-    li{
-      margin-top:.26rem;
-      text-align: center;
-      width: 100%;
-      overflow:hidden;
-      span{
-        float: left;
-        margin:.1rem .35rem auto .45rem;
-      }
-      p{
-        float: left;
-        margin: .05rem 0 0 .3rem;
-      }
-    }
-    img{
-      width: .85rem;
-      float: left;
-      height: 1.15rem;
-    }
   }
 </style>
