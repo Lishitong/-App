@@ -132,6 +132,9 @@ export default {
   line-height: 1rem;
   border-bottom: .01rem solid lightgray;
 }
+.perping h2 h3 span {
+  font-weight: 900;
+}
 .stars {
   height: .2rem;
   line-height: .2rem;

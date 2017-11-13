@@ -448,7 +448,7 @@ export default {
 }
 .pinglun a {
   display: inline-block;
-  width: 49.5%;
+  width: 49%;
   line-height: 1rem;
   text-align: center;
   color: #949597;

@@ -35,6 +35,9 @@
         <div class="btn">{{ item.shop }}</div>
       </div>
     </div>
+    <div class="footer">
+        <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
+    </div>
   </div>
 </template>
 
@@ -178,5 +181,16 @@ export default {
   width: 1rem;
   position:absolute;
   height: .2rem;
+}
+.footer {
+  width: 100%;
+  height: 2rem;
+}
+.footer p {
+  width: 100%;
+  text-align: center;
+  line-height: 1rem;
+  font-size: .3rem;
+  font-weight: 900;
 }
 </style>

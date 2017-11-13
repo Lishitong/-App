@@ -135,7 +135,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #000;
+  font-weight: 900;
 }
+
 .stars {
   height: .2rem;
   line-height: .2rem;
@@ -159,7 +162,7 @@ export default {
 }
 .pingpage-text>p {
   width: 94%;
-   line-height: .7rem;
+  line-height: .7rem;
 }
 .footer {
   width: 100%;
