@@ -25,10 +25,12 @@
         <div class="stars-zong">
           <p>豆瓣评分</p>
             <h1>{{ rating.average }}</h1>
-          <div class="starbox">
-              <div class="stars-gray"></div>
-            <div class="stars"></div>
-          </div>
+            <div class="stars" >
+               <img src="../../static/img/gray.png" alt="">
+                <div class="starsbox" :style="{width:rating.average*0.1+'rem'}">
+                    <img src="../../static/img/huang.png" alt="" >
+                  </div>
+                </div>
           <p v-if="flag">暂无评分</p>
           <h4 v-if="flag1">{{msg.collect_count}}人</h4>
         </div>
@@ -52,12 +54,12 @@
         <h1>影人</h1>
         <div class="yingimg">
            <div class="yingbig">
-             <div class="yinbox" v-for="item of msg.directors">
+             <div class="yinbox" v-for="item of directors">
                <img  :src="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>导演</p>
              </div>
-             <div class="yinbox"  v-for="item of msg.casts">
+             <div class="yinbox"  v-for="item of casts">
                <img :src="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>英文名：{{item.name_en}}</p>
@@ -74,6 +76,23 @@
              </div>
            </div>
          </div>
+      </div>
+      <div class="pinglun">
+        <router-link :to="'/movxiangqing/ping/'+id">评论</router-link>
+        <router-link :to="'/movxiangqing/lun/'+id">讨论区</router-link>
+      </div>
+      <router-view></router-view>
+      <div class="yingping">
+        <h1><span>影评</span><label>写影评</label></h1>
+        <div class="reviews" v-for="item of reviews">
+          <h1>{{item.title}}</h1>
+          <h2>{{item.author.name}}</h2>
+          <p>{{item.summary}}</p>
+        </div>
+        <h2>全部影评{{msg.reviews_count}}条</h2>
+      </div>
+      <div class="footer">
+          <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
       </div>
     </div>
 </template>
@@ -93,7 +112,10 @@ export default {
       flag:false,
       flag1:true,
       flag2:true,
-      kai:'展开'
+      kai:'展开',
+      directors:{},
+      casts:{},
+      reviews:{}
     }
   },
   methods: {
@@ -115,11 +137,15 @@ export default {
           this.countries = data.countries;
           this.pubdates = data.pubdates;
           this.rating = data.rating;
+          this.directors = data.directors;
+          this.casts = data.casts;
+          this.reviews = data.popular_reviews;
           if (this.rating.average == 0) {
             this.rating.average = '';
             this.flag = true,
             this.flag1 = false;
           }
+          console.log('movexiangqingye打印');
           console.log(this.msg);
         }
       })
@@ -130,33 +156,6 @@ export default {
     colors() {
       let color = "0123456789abcdef";
       return '#' + color[this.rand(0, 15)] + color[this.rand(0, 15)] + color[this.rand(0, 15)]
-    },
-    createImg(el, score) {
-      for (var i = 0; i < 5; i++) {
-        var p = document.createElement('p');
-        p.style.position = "absolute";
-        p.style.left = i * 0.3 + 'rem';
-        p.style.width = '0.3rem';
-        p.style.height = '0.3rem';
-        p.style.background = 'url(../../static/img/star2.png) no-repeat top/cover';
-        el.appendChild(p);
-      }
-      el.style.width = score / 2 * 0.3 + 'rem';
-    },
-    gray () {
-      var stars = document.querySelector('.stars');
-      var starsG = document.querySelector('.stars-gray');
-        this.createImg(stars, this.msg.rating.average);
-        if (!isNaN(this.rating.average)) {
-          for (var j = 0;j < 5;j ++) {
-            var p = document.createElement('p');
-            p.style.display = 'inline-block';
-            p.style.width = '0.3rem';
-            p.style.height = '0.3rem';
-            p.style.background = 'url(../../static/img/star1.png) no-repeat top/cover';
-            starsG.appendChild(p);
-          }
-        }
     },
     zhankai() {
       if (this.flag2) {
@@ -172,11 +171,10 @@ export default {
     this.getData();
   },
   updated() {
-    var starsG = document.querySelector('.stars-gray');
-    starsG.innerHTML="";
     let xq = document.querySelector('.xq-box');
-    xq.style.background = this.colors();
-    this.gray();
+    if (xq) {
+      xq.style.background = this.colors();
+    }
   }
 }
 </script>
@@ -294,22 +292,25 @@ export default {
   color: #000;
   font-weight: 900;
 }
-.stars-zong .starbox{
+.stars {
+  height: .2rem;
+  line-height: .2rem;
+  width:1rem;
   position: relative;
-  width: 80%;
-  margin: 0 auto;
+  display: inline-block;
 }
 .stars-zong .stars {
-  overflow: hidden;
-  height: .3rem;
-  position: relative;
-  z-index: -1;
+  margin-left: .4rem;
 }
-.stars-zong .stars-gray{
-  width: 2rem;
-  height: .3rem;
-  z-index: -2;
-  position: absolute;
+.starsbox{
+  overflow: hidden;
+  position:absolute;
+  height: .35rem;
+}
+.stars img{
+  width: 1rem;
+  position:absolute;
+  height: .2rem;
 }
 .xiangkan {
   width: 100%;
@@ -411,11 +412,11 @@ export default {
   align-items: center;
 }
 .yingbig img ,.juzhaobox img {
-  width: 1.5rem;
-  height: 2rem;
+  width: 2rem;
+  height: 2.7rem;
 }
 .yinbox {
-  width: 1.7rem;
+  width: 2.2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -436,7 +437,81 @@ export default {
   margin-right: .2rem;
 }
 .juzhaobox img {
-  width: 2.7rem;
-  height: 1.8rem;
+  width: 4.5rem;
+  height: 3.5rem;
+}
+.pinglun {
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  background:#EEEFF1;
+}
+.pinglun a {
+  display: inline-block;
+  width: 49.5%;
+  line-height: 1rem;
+  text-align: center;
+  color: #949597;
+}
+.router-link-active {
+  border-bottom: 0.02rem solid #123;
+  color: #123 !important;
+}
+.yingping>h1 {
+  width: 90%;
+  height: .9rem;
+  line-height: .9rem;
+  color: #000;
+  margin: 0 auto;
+  font-size: .3rem;
+}
+.yingping>h1 label {
+  float: right;
+  margin-top: .2rem;
+  font-size: .15rem;
+  text-align: center;
+  color: green;
+  width: .8rem;
+  height: .4rem;
+  line-height: .4rem;
+  border: .01rem solid green;
+  border-radius: .04rem;
+}
+.reviews {
+  width: 90%;
+  margin: 0 auto;
+  color: gray;
+}
+.reviews h1,.reviews h2,.reviews p {
+  text-align: left;
+  line-height: .6rem;
+}
+.reviews h1 {
+  color: #000;
+  font-size: .3rem;
+  font-weight: 900;
+}
+.reviews h2 {
+  color: #000;
+}
+.yingping>h2 {
+  width: 100%;
+  text-align: center;
+  color: green;
+  font-size: .25rem;
+  font-weight: 900;
+  line-height: 1rem;
+  border-bottom: .01rem solid lightgray;
+}
+.footer {
+  width: 100%;
+  height: 2rem;
+}
+.footer p {
+  width: 100%;
+  text-align: center;
+  line-height: 1rem;
+  font-size: .3rem;
+  font-weight: 900;
 }
 </style>

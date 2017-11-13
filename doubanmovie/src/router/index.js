@@ -11,6 +11,9 @@ import Nowing from '../pages/nowing'
 import Loading from '../pages/loading'
 // 正在热映详情
 import movxiangqing from '../components/movxiangqing'
+import ping from '../components/ping'
+import lun from '../components/lun'
+import pingpage from '../components/pingpage'
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'
@@ -38,7 +41,12 @@ const routes = [
     ]},
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
-    { path: '/movxiangqing:id', component:movxiangqing},
+    { path: '/movxiangqing/:id', component:movxiangqing,children:[
+      {path: '/movxiangqing/:id', component:ping},
+      {path: '/movxiangqing/ping/:id',component:ping},
+      {path: '/movxiangqing/lun/:id',component:lun}
+    ]},
+    {path:'/pingpage/:id',component:pingpage},
     { path: '/Mine', component: Mine,children:[
       {path:'/',component:wantSee},
       {path:'/Mine/wantSee',component:wantSee},
