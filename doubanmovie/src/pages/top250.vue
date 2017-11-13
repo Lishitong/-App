@@ -2,7 +2,7 @@
   <div id="top250">
     <loading v-if="bol"></loading>
     <div v-else>
-      <h2>{{title}}</h2>
+      <h2>{{title.title}}</h2>
       <div id="box">
         <swiper :options="swiperOption" ref="mySwiper">
           <swiper-slide>
@@ -16,7 +16,7 @@
           </swiper-slide>
         </swiper>
       </div>
-      <p>全部{{dat1.bu}}部</p>
+      <p>全部{{title.bu}}部</p>
     </div>
   </div>
 </template>
@@ -33,10 +33,24 @@ export default {
       swiperOption: {
           notNextTick: true,
           autoplay: false,
-          watchSlidesProgress:true,
+          onSlideChangeEnd:(swiper) => {
+            if(swiper.activeIndex == 0){
+              this.title.title = this.dat1.tit;
+              this.title.bu = this.dat1.bu;
+            }else if (swiper.activeIndex == 1) {
+              this.title.title = this.dat2.tit;
+              this.title.bu = this.dat2.bu;
+            }else{
+              this.title.title = this.dat3.tit;
+              this.title.bu = this.dat3.bu;
+            }
+    }
         },
       bol : true,
-      title:'',
+      title:{
+        title:'',
+        bu:''
+      },
       data1 : {},
       data2 : {},
       data3 : {},
@@ -84,11 +98,13 @@ export default {
   },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+      console.log(data);
       this.bol = false;
       this.data1 = data;
-      this.title = this.data1.title;
       this.dat1.tit = this.data1.title;
+      this.title.title = this.data1.title;
       this.dat1.bu = this.data1.total;
+      this.title.bu = this.data1.total;
       for (let x = 0;x < 4;x++) {
           this.dat1.url[x] = this.getImage(this.data1.subjects[x].images.small)
           this.dat1.title[x] = this.data1.subjects[x].title
@@ -100,7 +116,8 @@ export default {
     this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data2 = data;
       this.dat2.tit = this.data2.title;
-      this.dat2.bu = this.data2.total;
+      this.dat2.bu = 87;
+      console.log(data);
       for (let x = 0;x < 4;x++) {
           this.dat2.url[x] = this.getImage(this.data2.subjects[x].subject.images.small)
           this.dat2.title[x] = this.data2.subjects[x].subject.title
@@ -112,7 +129,8 @@ export default {
     this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
       this.data3 = data;
       this.dat3.tit = this.data3.title;
-      this.dat3.bu = this.data3.total;
+      console.log(data);
+      this.dat3.bu = 43;
       for (let x = 0;x < 4;x++) {
           this.dat3.url[x] = this.getImage(this.data3.subjects[x].subject.images.small)
           this.dat3.title[x] = this.data3.subjects[x].subject.title
@@ -127,20 +145,24 @@ export default {
 
 <style lang="less">
   #top250{
+    width: 100%;
     padding-bottom:1rem;
     &>div>p{
       text-align: center;
-      height: .6rem;
-      line-height: .6rem;
+      height: 1rem;
+      line-height: 1rem;
       color:#bbb;
       font-size: .25rem;
+    }
+    ul{
+      width: 100%;
     }
     h2{
       font-size:.36rem;
       float: left;
       margin:0 0 .2rem .2rem;
+      overflow: hidden;
     }
-    width: 100%;
   }
   #box{
     width: 100%;
