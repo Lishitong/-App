@@ -9,7 +9,7 @@
       </div>
       <div class="succ login" v-else>
         <img class="loginImg" src="../../static/men.jpg" alt="">
-        <span id="loginSpan" @click="login('login')">{{user}}</span>
+        <span id="loginSpan">{{user}}</span>
       </div>
     </div>
 
