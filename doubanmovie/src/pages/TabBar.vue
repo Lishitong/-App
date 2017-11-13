@@ -6,8 +6,18 @@
           <p @click="local(Local)">北京</p>
           <span></span>
         </div>
-        <div v-if="showOn" class="tabtop-search tabtop-search-inputX">电影 / 电视剧 / 影人</div>
-        <div v-else class="tabtop-search tabtop-search-inputY">电影 / 电视剧 / 影人</div>
+        <div v-if="showOn" class="tabtop-search tabtop-search-inputX"  @click="push()">
+          电影 / 电视剧 / 影人
+          <router-link to="/Search" >
+
+          </router-link>
+        </div>
+        <div v-else class="tabtop-search tabtop-search-inputY" @click="push()">
+          电影 / 电视剧 / 影人
+          <router-link to="/Search" >
+
+          </router-link>
+        </div>
       </div>
     </div>
 
@@ -51,7 +61,13 @@
         this.$router.push({
           path : '/' + tag
         })
+      },
+      push() {
+        this.$router.push({
+          path:'Search'
+        })
       }
+
     },
     watch : {
       '$route'(newValue, oldValue){

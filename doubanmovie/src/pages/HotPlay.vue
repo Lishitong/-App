@@ -40,4 +40,5 @@ export default {
   border-bottom: 0.02rem solid #123;
   color: #123;
 }
+
 </style>

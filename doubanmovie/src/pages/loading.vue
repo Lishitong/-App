@@ -159,6 +159,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.loading{
+  margin-top: 0.02rem;
+}
 .active{
   color:black;
 }
