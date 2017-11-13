@@ -21,6 +21,7 @@ import login from '../pages/login'
 import zhuantiremen from '../pages/zhuantiremen'
 import suggest from '../pages/suggest'
 import howSee from '../pages/howSee'
+import Search from '../pages/Search'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
 
@@ -32,6 +33,7 @@ const routes = [
       {path:'/HotPlay/nowing',component:Nowing},
       {path:'/HotPlay/loading',component:Loading}
     ]},
+    {path:'/Search',component:Search},
     { path: '/HotPlay', component: HotPlay ,children:[
       {path:'/',component:Nowing},
       {path:'/HotPlay/nowing',component:Nowing},
