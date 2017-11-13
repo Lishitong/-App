@@ -20,7 +20,6 @@ Vue.config.productionTip = true
 // 把两个方法放入原型
 Vue.prototype.JSONP = JSONP
 Vue.prototype.axios = axios
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -11,7 +11,7 @@
       <img src="./../../static/heart.png" alt="">
       <div class="">
         <h2>我的影视</h2>
-        <p>未登录</p>
+        <p>{{user}}</p>
       </div>
     </div>
   </div>
@@ -19,9 +19,35 @@
 
 <script>
 export default {
+  data(){
+    return {
+      user:'未登录',
+    }
+  },
   methods:{
     login(login){
-      this.$router.push({path:'/'+login})
+      if (this.user == '未登录') {
+        this.$router.push({path:'/'+login})
+      }
+    },
+    getCookie(c_name){
+    if (document.cookie.length>0)
+      {
+      var c_start=document.cookie.indexOf(c_name + "=")
+      if (c_start!=-1)
+      {
+      c_start=c_start + c_name.length+1
+      var c_end=document.cookie.indexOf(";",c_start)
+      if (c_end==-1) c_end=document.cookie.length
+      return unescape(document.cookie.substring(c_start,c_end))
+      }
+      }
+    return ""
+    }
+  },
+  created(){
+    if (this.getCookie('user')) {
+      this.user = this.getCookie('user')
     }
   }
 }
