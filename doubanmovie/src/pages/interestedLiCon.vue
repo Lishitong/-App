@@ -6,12 +6,12 @@
       </div>
       <div class="div">
         <div class="img-box">
-          <img :src="getImage(item.images.large)" alt="">
+          <img v-lazy="getImage(item.images.large)" alt="">
         </div>
 
         <div class="interested-info">
           <div class="point">
-            <img  @click.stop="show()" id="point" :src="pointUrl" alt="" >
+            <img  @click.stop="show()" id="point" v-lazy="pointUrl" alt="" >
           </div>
           <h1>{{item.title}}</h1>
 

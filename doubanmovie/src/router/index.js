@@ -16,6 +16,7 @@ import seeSpeak from'../pages/seeSpeak'
 import movieMen from'../pages/movieMen'
 import shezhi from '../pages/shezhi'
 import login from '../pages/login'
+import zhuantiremen from '../pages/zhuantiremen'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
 
@@ -33,7 +34,9 @@ const routes = [
       {path:'/HotPlay/nowing',component:Nowing},
       {path:'/HotPlay/loading',component:Loading}
     ]},
-    { path: '/FindMovie', component: FindMovie },
+    { path: '/FindMovie', component: FindMovie,children:[
+
+    ] },
     { path: '/Mine', component: Mine,children:[
       {path:'/',component:wantSee},
       {path:'/Mine/wantSee',component:wantSee},
@@ -46,7 +49,7 @@ const routes = [
   },
   {path:'/shezhi',component:shezhi},
   {path:'/login',component:login},
-
+  {path:'/zhuantiremen',component:zhuantiremen}
 
 
 

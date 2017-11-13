@@ -33,7 +33,6 @@ export default {
       swiperOption: {
           notNextTick: true,
           autoplay: false,
-          watchSlidesProgress:true,
         },
       bol : true,
       title:'',
