@@ -7,7 +7,7 @@
         <p>剧情/韩国/动作</p>
       </div>
     </div>
-    <div class="right lis">
+    <div @click="login('login')" class="right lis">
       <img src="./../../static/heart.png" alt="">
       <div class="">
         <h2>我的影视</h2>
@@ -19,6 +19,11 @@
 
 <script>
 export default {
+  methods:{
+    login(login){
+      this.$router.push({path:'/'+login})
+    }
+  }
 }
 </script>
 

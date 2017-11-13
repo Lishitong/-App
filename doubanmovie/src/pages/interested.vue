@@ -2,7 +2,8 @@
 
   <div class="interested">
     <h5>你可能感兴趣的</h5>
-    <ul>
+    <h3 v-if="bol" class="load">(◕ᴗ◕✿)</h3>
+    <ul v-else>
       <li v-for="itemarr in arrbox">
         <interestedcon :message="itemarr"></interestedcon>
       </li>
@@ -16,6 +17,7 @@
 
 <script>
 import interestedcon from './interested-con'
+// import loading from './../components/loading'
 export default {
   data() {
     return {      
@@ -25,11 +27,13 @@ export default {
       arr:[],
       arrbox:[],
       // flag:true,
-      a:{}
+      a:{},
+      bol:true
     }      
   },
   components:{
-    interestedcon: resolve => {require(['./interested-con.vue'], resolve)}
+    interestedcon
+    // loading
   },
   methods: {
     getHero() {
@@ -51,6 +55,7 @@ export default {
                  this.arrbox.sort(function(){
                    return Math.random()-0.5
                  })
+                 this.bol=false
                 console.log(this.arrbox);
                     
             }      
@@ -108,5 +113,10 @@ export default {
   color:gray;
   font-size: 0.25rem;
   text-align: center;
+}
+.load{
+  font-size: .5rem;
+  text-align: center;
+  margin: 1rem 0 0.5rem 0;
 }
 </style>

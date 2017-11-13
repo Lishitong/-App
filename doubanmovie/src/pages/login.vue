@@ -6,10 +6,10 @@
   </nav>
 
   <main>
-    <p class='welcomedb'>欢迎来到豆瓣</p>
-    <input type="text" name="" value="" placeholder="手机 / 邮箱">
-    <input type="password" name="" value="" placeholder="密码">
-    <button type="button" class="loginin" name="button">登录</button>
+    <p class='welcomedb' v-show="welcome">欢迎来到豆瓣</p>
+    <input ref="loginUserName"  @click="anim()" id='loginUserName' type="text" name="" value="" placeholder="手机 / 邮箱">
+    <input ref="loginPassWord" @click="anim()"id ="loginPassWord" type="password" name="" value="" placeholder="密码">
+    <button type="button"  @click="loginOn()" class="loginin" name="button">登录</button>
     <div class="enroll">
       <span>注册豆瓣</span>
       <span>|</span>
@@ -37,12 +37,33 @@
 export default {
   data(){
     return {
-      logindb:false
+      logindb:false,
+      welcome:true
     }
   },
   methods:{
     back(){
       history.back();
+    },
+
+    loginOn(){
+        console.log(this.$refs.loginUserName.value)
+      if(this.$refs.loginUserName.value=="douer"&&this.$refs.loginPassWord.value=="go"){
+        // alert('fafafa')
+          this.$router.push({path:'/Mine'});
+          document.cookie="u=8";
+          // document.cookie="pas=1";
+
+
+
+      }
+    },
+    anim(){
+      // return(){
+      //   welcomedb:false
+      // }
+      this.welcome=false;
+      this.logindb=true;
     }
   }
 }
@@ -54,12 +75,24 @@ export default {
   }
   nav{
     width: 100%;
-    height: 5%;
+    height: 1rem;
+    text-align: center;
+    overflow: hidden;
+    font-weight: normal;
+    font-size: .26rem;
+    line-height: 1rem;
   }
   nav img{
     padding: .2rem;
     width: .4rem;
     height: .4rem;
+    float: left;
+    vertical-align: bottom;
+  }
+  nav span{
+    /*margin-top: 3%;*/
+    vertical-align: bottom;
+    display: inline-block;
   }
   main{
     width: 90%;
@@ -74,6 +107,7 @@ export default {
     height: .7rem;
     text-align: center;
     margin: .6rem 0;
+    transition:display 3s;
   }
   main input{
     border: .01rem solid #C2C2C2;

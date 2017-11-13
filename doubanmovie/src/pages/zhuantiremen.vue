@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="zh-top">
-    <img src="./../../static/arrow.png" alt="">
+    <img @click="back" src="./../../static/arrow.png" alt="">
     <h1>豆瓣热门</h1>
     <img src="./../../static/share.png" alt="">
   </div>
@@ -8,6 +8,11 @@
 
 <script>
 export default {
+  methods:{
+    back(){
+      history.back();
+    },
+  }
 }
 </script>
 

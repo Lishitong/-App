@@ -1,14 +1,208 @@
 <template lang="html">
   <div class="loading">
-    <h1>hhh</h1>
+    <div class="nav">
+      <p class="navleft">
+        <span @click.stop="all()" :class="{active:flagClass1}">全部</span>
+        <span @click.stop="one()" :class="{active:flagClass2}">11月</span>
+        <span @click.stop="two()" :class="{active:flagClass3}">12月</span>
+        <span @click.stop="three()" :class="{active:flagClass4}">1月</span>
+      </p>
+      <p class="navright">
+        <span>时间</span>
+        <span>热度</span>
+      </p>
+
+    </div>
+
+    <div class="load" v-if="flagLi">
+      (◕ᴗ◕✿)
+    </div>
+    <loadingli :objdate="obj" v-else></loadingli>
+
+
   </div>
 </template>
 
 <script>
+import loadingli from './loading-li'
 export default {
+  data() {
+    return {
+      obj: {},
+      obj1:{},
+      obj2:{},
+      obj3:{},
+      obj4:{},
+      objStr:[],
+      objDate:[],
+      flagLi: true,
+      flagAver: true,
+      director: [],
+      flagClass1:false,
+      flagClass2:false,
+      flagClass3:false,
+      flagClass4:false
 
+    }
+  },
+  components:{
+    loadingli
+  },
+  methods: {
+    getHero() {
+      this.JSONP('https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd', null, (err, data) => {      
+        if (err) {      
+          console.error(err.message);      
+        } else {
+          this.obj = data.subjects;
+          this.objDate=data.subjects;
+          console.log(this.obj);
+          this.flagLi=false;
+
+        }  
+        console.log('??');    
+      })
+    },
+
+    all(){
+      this.flagClass1=true;
+      this.flagClass2=false;
+      this.flagClass3=false;
+      this.flagClass4=false;
+      this.obj='';
+      setTimeout(()=>{
+        this.flagLi=false;
+        this.obj=this.objDate;
+      },600);
+      this.flagLi=true;
+
+
+    },
+    one(){
+      this.flagClass1=false;
+      this.flagClass2=true;
+      this.flagClass3=false;
+      this.flagClass4=false;
+      let one=this.objDate;
+      this.objStr=[];
+      this.obj='';
+      setTimeout(()=>{
+        this.flagLi=false;
+        for (let i = 0; i < one.length; i++) {
+          console.log(one[i].pubdates[0]);
+          let pubdates=one[i].pubdates[0];
+          if (pubdates.substring(5,7)=='11') {
+            this.objStr.push(one[i]);
+          }
+        }
+        console.log(this.objStr);
+        this.obj=this.objStr;
+      },600);
+      this.flagLi=true;
+
+
+    },
+    two(){
+      this.flagClass1=false;
+      this.flagClass2=false;
+      this.flagClass3=true;
+      this.flagClass4=false;
+      let one=this.objDate;
+      this.objStr=[];
+      this.obj='';
+      setTimeout(()=>{
+        this.flagLi=false;
+        for (let i = 0; i < one.length; i++) {
+          console.log(one[i].pubdates[0]);
+          let pubdates=one[i].pubdates[0];
+          if (pubdates.substring(5,7)=='12') {
+            this.objStr.push(one[i]);
+          }
+        }
+        console.log(this.objStr);
+        this.obj=this.objStr;
+      },600);
+      this.flagLi=true;
+
+
+    },
+    three(){
+      this.flagClass1=false;
+      this.flagClass2=false;
+      this.flagClass3=false;
+      this.flagClass4=true;
+      let one=this.objDate;
+      this.objStr=[];
+      this.obj='';
+      setTimeout(()=>{
+        this.flagLi=false;
+        for (let i = 0; i < one.length; i++) {
+          console.log(one[i].pubdates[0]);
+          let pubdates=one[i].pubdates[0];
+          if (pubdates.substring(5,7)=='01') {
+            this.objStr.push(one[i]);
+          }
+        }
+        console.log(this.objStr);
+        this.obj=this.objStr;
+      },600);
+      this.flagLi=true;
+
+
+    }
+
+  },
+  created() {
+    this.getHero()
+  }
 }
 </script>
 
 <style lang="css" scoped>
+.active{
+  color:black;
+}
+.nav{
+  position:relative;
+  height:0.6rem;
+  line-height:0.6rem;
+  border:0.001rem lightgray solid;
+  border-left: none;
+  border-right: none;
+  color:gray;
+  background:white;
+  padding:0 0.4rem;
+  font-size: 0.2rem;
+
+}
+.nav p{
+  display: inline-block;
+}
+.navleft{
+  width:75%;
+}
+.navright{
+  width:20%;
+  height:0.4rem;
+  line-height:0.4rem;
+  text-align: right;
+  border-left:0.005rem lightgray solid;
+}
+.nav span{
+  display: inline-block;
+  margin-left:0.2rem;
+}
+.nav span:nth-of-type(1){
+  margin:0;
+}
+
+.load{
+  font-size: .5rem;
+  text-align: center;
+  margin: 1rem 0 0rem 0;
+  color:gray;
+}
+
+
+
 </style>

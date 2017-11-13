@@ -36,9 +36,7 @@
 
         </div>
       </div>
-      <div class="">
-        <img src="" alt="">
-      </div>
+      
     </div>
   </div>
 </template>
@@ -148,7 +146,7 @@ ul{
 .interested-info .director{
   margin-right: 0.3rem;
   padding:0 0.4rem 0.5rem 0;
-  font-size: 0.15rem;
+  font-size: 0.2rem;
   color:gray;
 
   border-bottom: 1px solid #f2f2f2;
@@ -158,7 +156,7 @@ ul{
 }
 .interested-info h6{
   padding-top: 0.3rem;
-  font-size: 0.1rem;
+  font-size: 0.25rem;
   color:gray;
   font-weight: 100;
 }

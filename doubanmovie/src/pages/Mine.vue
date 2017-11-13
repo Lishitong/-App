@@ -50,6 +50,11 @@
   //     this.ok = false;
   //   }
   // }
+    created(){
+      if(  document.cookie.u==8){
+        console.log('aa')
+      }
+    }
 
   // props: ['show']
   }
