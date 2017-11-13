@@ -6,7 +6,6 @@
 
 <script>
 import rem from '../static/js/rem'
-
 import TabBar from './pages/TabBar'
 
 export default {

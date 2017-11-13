@@ -1,36 +1,37 @@
 <template lang="html">
-<div class=" all">
-  <nav>
-      <img src="../../static/loginback.png" @click="back" alt="">
-      <span v-if="logindb">登录豆瓣</span>
-  </nav>
+    <div class=" all">
+      <nav>
+          <img src="../../static/loginback.png" @click="back" alt="">
+          <span v-if="logindb">登录豆瓣</span>
+      </nav>
 
-  <main>
-    <p class='welcomedb' v-show="welcome">欢迎来到豆瓣</p>
-    <input ref="loginUserName"  @click="anim()" id='loginUserName' type="text" name="" value="" placeholder="手机 / 邮箱">
-    <input ref="loginPassWord" @click="anim()"id ="loginPassWord" type="password" name="" value="" placeholder="密码">
-    <button type="button"  @click="loginOn()" class="loginin" name="button">登录</button>
-    <div class="enroll">
-      <span>注册豆瓣</span>
-      <span>|</span>
-      <span>忘记密码</span>
+      <main>
+        <p class='welcomedb' v-show="welcome">欢迎来到豆瓣</p>
+        <input ref="loginUserName"  @click="anim()" @blur="show()" id='loginUserName' type="text" name="user" value="" placeholder="手机 / 邮箱">
+        <input ref="loginPassWord" @click="anim()" @blur="show()" id ="loginPassWord" type="password" name="pwd" value="" placeholder="密码">
+        <button type="button"  @click="loginOn()" class="loginin" name="button">登录</button>
+        <div class="enroll">
+          <span @click="ll()">注册豆瓣</span>
+          <span>|</span>
+          <span>忘记密码</span>
+        </div>
+
+      </main>
+      <footer>
+
+          <img src="../../static/weibo.png" alt="">
+          <span>微博登录</span>
+
+
+        <span>|</span>
+
+          <img src="../../static/weixin.png" alt="">
+          <span>微信登录</span>
+
+
+      </footer>
     </div>
-
-  </main>
-  <footer>
-
-      <img src="../../static/weibo.png" alt="">
-      <span>微博登录</span>
-
-
-    <span>|</span>
-
-      <img src="../../static/weixin.png" alt="">
-      <span>微信登录</span>
-
-
-  </footer>
-</div>
+  </div>
 </template>
 
 <script>
@@ -45,25 +46,47 @@ export default {
     back(){
       history.back();
     },
-
+    setCookie(c_name,value,expiredays){
+      var exdate=new Date()
+      exdate.setDate(exdate.getDate()+expiredays)
+      document.cookie=c_name+ "=" +escape(value)+
+      ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    },
+    getCookie(c_name){
+      if (document.cookie.length>0)
+        {
+        var c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+        c_start=c_start + c_name.length+1
+        var c_end=document.cookie.indexOf(";",c_start)
+        if (c_end==-1) c_end=document.cookie.length
+        return unescape(document.cookie.substring(c_start,c_end))
+        }
+        }
+      return ""
+    },
     loginOn(){
-        console.log(this.$refs.loginUserName.value)
-      if(this.$refs.loginUserName.value=="douer"&&this.$refs.loginPassWord.value=="go"){
-        // alert('fafafa')
-          this.$router.push({path:'/Mine'});
-          document.cookie="u=8";
-          // document.cookie="pas=1";
-
-
-
-      }
+      //   console.log(this.$refs.loginUserName.value)
+      // if(this.$refs.loginUserName.value=="douer"&&this.$refs.loginPassWord.value=="go"){
+      //   // alert('fafafa')
+      //     this.$router.push({path:'/Mine'});
+      //     document.cookie="u=8";
+      //     // document.cookie="pas=1";
+      // }
+      this.setCookie('user',this.$refs.loginUserName.value,30)
+      this.setCookie('pwd',this.$refs.loginPassWord.value,30)
+    },
+    ll(){
+      console.log(this.getCookie('user'));
     },
     anim(){
-      // return(){
-      //   welcomedb:false
-      // }
       this.welcome=false;
       this.logindb=true;
+    },
+    show(){
+      this.welcome=true;
+      this.logindb=false;
     }
   }
 }
