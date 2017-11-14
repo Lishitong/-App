@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="interestedLiCon">
+  <div class="interestedLiCon" @click="push(item.id)">
     <div  v-if="flagLi" class="li">
-      <div class="delete" v-show="flag" @click.stop="deleteFn(item,$event)" >
+      <div class="delete" v-show="flag" @click="deleteFn()" >
         不感兴趣
       </div>
       <div class="div">
@@ -17,8 +17,12 @@
 
           <div class="director">
             <p>
-              <div class="stars">
+              <div class="stars" >
+                <img src="../../static/stargray5.png" alt="">
+                <div class="starsbox" :style="{width:item.rating.average*0.2+'rem'}">
 
+                  <img  src="../../static/star5.png" alt="" >
+                </div>
               </div>
               <span>{{item.rating.average}}</span>
             </p>
@@ -36,7 +40,7 @@
 
         </div>
       </div>
-      
+
     </div>
   </div>
 </template>
@@ -58,11 +62,14 @@ export default {
   created() {},
   methods: {
     getImage(url) {
-      // console.log(url);
-      // 把现在的图片连接传进来，返回一个不受限制的路径
       if (url !== undefined) {
         return url.replace('https://', 'https://images.weserv.nl/?url=');
       }      
+    },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
     },
     show() {
       var that;
@@ -82,10 +89,8 @@ export default {
       }
 
     },
-    deleteFn(el, e) {
-      console.log(this);
-      console.log(e);
-      e.path[1].innerHTML = ''
+    deleteFn() {
+      this.flagLi=false;
     }
 
 
@@ -131,8 +136,6 @@ ul{
 .img-box img{
   width:2.8rem;
   height:3.9rem;
-
-
 }
 .interested-info{
   width:55%;
@@ -167,17 +170,21 @@ ul{
   margin-right: 0.15rem;
 }
 .director .stars {
-  overflow: hidden;
   height: .3rem;
+  width:2rem;
   position: relative;
   display: inline-block;
 }
-.director .stars>p{
-  width: .3rem;
-  height: .6rem;
-  background: url(../../static/star.gif) no-repeat top/cover;
-  position: absolute;
-  top: -.3rem;
+.starsbox{
+  overflow: hidden;
+  position:absolute;
+  height: .35rem;
 }
+.stars img{
+  position:absolute;
+  height: .35rem;
+  width:2rem;
+}
+
 
 </style>

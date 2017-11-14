@@ -1,33 +1,54 @@
 <template lang="html">
-  <div class="">
+  <div class="bg">
     <div class="bgTop">
       <img src="../../static/howSeeback.png" @click="shezhiback()" alt="">
       <span>如何查看电影榜单？</span>
-      <img src="../../static/share.png" alt="">
+      <img src="../../static/share.png"  @click="s()" alt="">
     </div>
     <p>如何查看电影榜单？</p>
     <p>『书影音』- 『电影』,下滑页面至『精选榜单』,即可查看到豆瓣Top250、本周口碑榜、新片榜、票房榜。</p>
     <p>精选榜单</p>
     <img class="howSee" src="../../static/howSee.png" alt="">
-  </div>
+
+    <div id="sharesAL" v-if="Share">
+      <shareAL :share="Shares"></shareAL>
+    </div>
+
+    </div>
 </template>
 
 <script>
+import shareAL from '../components/shareALL'
 export default {
-  // data(){
-  //   return(){
-  //
-  //   }
-  // },
+  name:"sharesAL",
+  components:{
+    shareAL
+  },
+  data(){
+    return{
+      Share:false
+    }
+  },
   methods:{
     shezhiback(){
       history.back();
+    },
+    s(){
+      this.Share=true;
+    },
+    Shares(a){
+      console.log(a);
+      this.Share = a;
     }
   }
 }
 </script>
 
 <style lang="css" scoped="scoped">
+.bg{
+  height: 13rem;
+  background-color: #F9F9F9;
+}
 .bgTop{
   background-color:white;
   /*width: 100%;*/
@@ -63,4 +84,5 @@ p:nth-of-type(3){
   width: 90%;
   margin: 5%
 }
+
 </style>

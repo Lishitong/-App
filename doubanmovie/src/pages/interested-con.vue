@@ -6,7 +6,7 @@
       <interestedLiCon :item="aa"></interestedLiCon>
       </li>
       <div v-if="flagJudge" class="judge">
-        <div class="delete" v-show="flag" @click.stop="deleteFn(item,$event)" >
+        <div class="delete" v-show="flag" @click.stop="deleteFn()" >
           不感兴趣
         </div>
         <img id="point" @click.stop="show()" :src="pointUrl" alt="" >

@@ -1,17 +1,27 @@
 <template lang="html">
-  <div>
+  <div class="tabBar">
     <div v-if="show" class="show">
       <div class="tabtop">
-        <div class="city" v-if="showIn">
-          <p @click="local(Local)">北京</p>
+        <div class="city" v-if="showIn" :class="{'a' : a}">
+          <p @click="local('Local')">{{ city }}</p>
           <span></span>
         </div>
-        <div v-if="showOn" class="tabtop-search tabtop-search-inputX">电影 / 电视剧 / 影人</div>
-        <div v-else class="tabtop-search tabtop-search-inputY">电影 / 电视剧 / 影人</div>
+        <div v-if="showOn" class="tabtop-search tabtop-search-inputX"  @click="push()">
+          电影 / 电视剧 / 影人
+          <router-link to="/Search" >
+
+          </router-link>
+        </div>
+        <div v-else class="tabtop-search tabtop-search-inputY" :class="{'b': a}" @click="push()">
+          电影 / 电视剧 / 影人
+          <router-link to="/Search" >
+
+          </router-link>
+        </div>
       </div>
     </div>
 
-    <div class="tabbar">
+    <div class="tabbar" v-if="tabbarShow">
       <router-link to="/HotPlay"  @click.native="click(true, true)" :class="{'router-link-active' : ok }">
         <p class="icon-i_pishafahuli" ></p>
         热映
@@ -39,7 +49,9 @@
         showIn : true,
         showOn : false,
         ok : false,
-        Local : 'Local'
+        tabbarShow : true,
+        city : '北京',
+        a:false
       }
     },
     methods : {
@@ -51,7 +63,13 @@
         this.$router.push({
           path : '/' + tag
         })
+      },
+      push() {
+        this.$router.push({
+          path:'Search'
+        })
       }
+
     },
     watch : {
       '$route'(newValue, oldValue){
@@ -63,7 +81,30 @@
         if (newValue.path != '/'){
           this.ok = false;
         }
-        // console.log(newValue);
+        if (newValue.path == '/Local') {
+          this.tabbarShow = false;
+          this.show = false;
+        }else {
+          this.tabbarShow = true;
+          this.show = true;
+        }
+        let rex = /\/Mine/;
+        if (rex.test(this.$route.path)) {
+          this.show = false;
+          this.showIn = false;
+        }
+        let city = /\/Citys/;
+        let local = /\/Local/;
+        if (city.test(oldValue.path) || local.test(oldValue.path)) {
+          if (newValue.query.city) {
+            this.city = newValue.query.city;
+            if (this.city.length > 2) {
+              this.a = true;
+            }else{
+              this.a = false;
+            }
+          }
+        }
       }
     },
     components : {
@@ -167,6 +208,12 @@
   }
 }
 
+.a {
+  width: 1.7rem !important;
+}
+
+
+
 .tabtop-search-inputX {
   width: 7rem !important;
   background-position-x: 1.8rem !important;
@@ -175,6 +222,10 @@
 .tabtop-search-inputY {
   width: 5.6rem !important;
   background-position-x: .8rem !important;
+}
+
+.b {
+  width: 5.2rem !important;
 }
 
 .tabbar {

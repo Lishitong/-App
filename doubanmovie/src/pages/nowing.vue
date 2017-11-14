@@ -9,10 +9,13 @@
          <h1>{{ item.title }}</h1>
         <!-- 星级评分 -->
         <div class="score">
-          <p>{{ item.rating.average }}</p>
-          <div class="starbox">
-              <div class="stars-gray"></div>
-            <div class="stars"></div>
+          <p v-if="flag">{{ item.rating.average }}</p>
+          <p v-else>暂无评分</p>
+          <div class="stars" >
+             <img src="../../static//img/gray.png" alt="">
+              <div class="starsbox" :style="{width:item.rating.average*0.1+'rem'}">
+                <img  src="../../static/img/huang.png" alt="" >
+              </div>
           </div>
         </div>
         <ul>
@@ -32,6 +35,9 @@
         <div class="btn">{{ item.shop }}</div>
       </div>
     </div>
+    <div class="foo">
+        <p>(｡◕ˇ∀ˇ◕)</p >
+    </div>
   </div>
 </template>
 
@@ -41,7 +47,8 @@ export default {
   name: 'Nowing',
   data() {
     return {
-      msg: {}
+      msg: {},
+      flag:true
     }
   },
   methods: {
@@ -53,9 +60,12 @@ export default {
           this.msg = data.subjects;
           for (let i = 0;i <this.msg.length;i ++) {
             if (this.msg[i].rating.average == 0) {
-              this.msg[i].rating.average = "尚未上映"
+              this.flag = false;
+              console.log(this.flag);
+              this.msg[i].rating.average = "未评";
               this.msg[i].shop = "预售"
             }else {
+              this.flag = true;
               this.msg[i].shop = "购票"
               if (this.msg[i].collect_count >= 10000) {
                 this.msg[i].collect_count =(this.msg[i].collect_count / 10000).toFixed(1) +'万'
@@ -70,51 +80,19 @@ export default {
         return url.replace('https://', 'https://images.weserv.nl/?url=');
       }
     },
-    createImg(el, score) {
-      for (var i = 0; i < 5; i++) {
-        var p = document.createElement('p');
-        p.style.position = "absolute";
-        p.style.left = i * 0.3 + 'rem';
-        p.style.width = '0.3rem';
-        p.style.height = '0.3rem';
-        p.style.background = 'url(../../static/img/star2.png) no-repeat top/cover';
-        el.appendChild(p);
-      }
-      el.style.width = score / 2 * 0.3 + 'rem';
-    },
     push(item) {
       this.$router.push({
-        path:'/movxiangqing' + item
+        path:'/movxiangqing/' + item
       })
     },
-  gray () {
-    var stars = document.querySelectorAll('.stars');
-    var starsG = document.querySelectorAll('.stars-gray');
-    for (var i = 0; i < stars.length; i++) {
-      this.createImg(stars[i], this.msg[i].rating.average);
-      if (!isNaN(this.msg[i].rating.average)) {
-        for (var j = 0;j < 5;j ++) {
-          var p = document.createElement('p');
-          p.style.display = 'inline-block';
-          p.style.width = '0.3rem';
-          p.style.height = '0.3rem';
-          p.style.background = 'url(../../static/img/star1.png) no-repeat top/cover';
-          starsG[i].appendChild(p);
-        }
-      }
-    }
-  }
 },
   created() {
     this.getHero();
-  },
-  updated() {
-    this.gray();
   }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .each-movie {
   position: relative;
   width:100%;
@@ -187,20 +165,32 @@ export default {
   text-align: center;
 }
 /*星星等级*/
-.starbox{
+.stars {
+  height: .2rem;
+  line-height: .2rem;
+  width:1rem;
   position: relative;
+  display: inline-block;
 }
-.score .starbox .stars {
+.starsbox{
   overflow: hidden;
-  height: .3rem;
-  position: relative;
-  z-index: -1;
+  position:absolute;
+  height: .35rem;
 }
-.score .starbox .stars-gray{
-  width: 1.5rem;
-  height: .3rem;
-  z-index: -2;
-  position: absolute;
-  left: 0;
+.stars img{
+  width: 1rem;
+  position:absolute;
+  height: .2rem;
+}
+.nowing .foo {
+  width: 100%;
+  height: 2rem;
+}
+.nowing .foo p {
+  width: 100%;
+  text-align: center;
+  line-height: 1rem;
+  font-size: .3rem;
+  font-weight: 900;
 }
 </style>
