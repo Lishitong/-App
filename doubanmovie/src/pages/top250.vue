@@ -16,7 +16,7 @@
           </swiper-slide>
         </swiper>
       </div>
-      <p>全部{{title.bu}}部</p>
+      <p @click="zhuanti250()" :dataurl="list[nowpage]">全部{{title.bu}}部</p>
     </div>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
   name:'top250',
   data(){
     return {
+      nowpage:0,
       swiperOption: {
           notNextTick: true,
           autoplay: false,
@@ -37,24 +38,29 @@ export default {
             if(swiper.activeIndex == 0){
               this.title.title = this.dat1.tit;
               this.title.bu = this.dat1.bu;
+              this.nowpage = 0;
             }else if (swiper.activeIndex == 1) {
               this.title.title = this.dat2.tit;
               this.title.bu = this.dat2.bu;
+              this.nowpage = 1;
             }else{
               this.title.title = this.dat3.tit;
               this.title.bu = this.dat3.bu;
+              this.nowpage = 2;
             }
-    }
+          }
         },
       bol : true,
       title:{
         title:'',
         bu:''
       },
+      list:[],
       data1 : {},
       data2 : {},
       data3 : {},
       dat1:{
+        link:'https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b',
         url:[],
         title:[],
         stars:[],
@@ -64,6 +70,7 @@ export default {
         tit:''
       },
       dat2:{
+        link:'https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',
         url:[],
         title:[],
         stars:[],
@@ -73,6 +80,7 @@ export default {
         tit:''
       },
       dat3:{
+        link:'https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',
         url:[],
         title:[],
         stars:[],
@@ -94,11 +102,14 @@ export default {
       if(url !== undefined){
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
+    },
+    zhuanti250(){
+      this.list = ['top250','weekly','us_box'],
+      this.$router.push('/zhuanti250/'+this.list[this.nowpage])
     }
   },
   created(){
-    this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
-      console.log(data);
+    this.JSONP(this.dat1.link,null,(err,data) => {
       this.bol = false;
       this.data1 = data;
       this.dat1.tit = this.data1.title;
@@ -113,11 +124,10 @@ export default {
           this.dat1.ping[x] = this.data1.subjects[x].collect_count
         }
     });
-    this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+    this.JSONP(this.dat2.link,null,(err,data) => {
       this.data2 = data;
       this.dat2.tit = this.data2.title;
-      this.dat2.bu = 87;
-      console.log(data);
+      this.dat2.bu = data.subjects.length;
       for (let x = 0;x < 4;x++) {
           this.dat2.url[x] = this.getImage(this.data2.subjects[x].subject.images.small)
           this.dat2.title[x] = this.data2.subjects[x].subject.title
@@ -126,11 +136,10 @@ export default {
           this.dat2.ping[x] = this.data2.subjects[x].subject.collect_count
         }
     });
-    this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+    this.JSONP(this.dat3.link,null,(err,data) => {
       this.data3 = data;
       this.dat3.tit = this.data3.title;
-      console.log(data);
-      this.dat3.bu = 43;
+      this.dat3.bu = data.subjects.length;
       for (let x = 0;x < 4;x++) {
           this.dat3.url[x] = this.getImage(this.data3.subjects[x].subject.images.small)
           this.dat3.title[x] = this.data3.subjects[x].subject.title

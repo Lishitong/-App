@@ -63,7 +63,7 @@
         if (newValue.path != '/'){
           this.ok = false;
         }
-        console.log(newValue);
+        // console.log(newValue);
       }
     },
     components : {

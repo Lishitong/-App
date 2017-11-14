@@ -9,7 +9,7 @@ import VueLazyload from 'vue-lazyload'
 import router from './router'
 import VueResource from 'vue-resource'
 
-
+window.yubus = new Vue()
 //安装
 Vue.use(VueResource)
 Vue.use(VueLazyload, {

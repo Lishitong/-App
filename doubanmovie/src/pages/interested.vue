@@ -39,7 +39,7 @@ export default {
     getHero() {
           this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd', null, (err, data)=>{      
             if (err) {      
-              console.error(err.message);      
+              // console.error(err.message);      
             } else {
               // console.log(data);
               var a=data.subjects;
@@ -56,7 +56,7 @@ export default {
                    return Math.random()-0.5
                  })
                  this.bol=false
-                console.log(this.arrbox);
+                // console.log(this.arrbox);
                     
             }      
           })

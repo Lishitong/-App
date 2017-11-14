@@ -11,6 +11,7 @@ import Nowing from '../pages/nowing'
 import Loading from '../pages/loading'
 // 正在热映详情
 import movxiangqing from '../components/movxiangqing'
+import zhuanti250 from '../components/zhuanti250'
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'
@@ -52,7 +53,8 @@ const routes = [
   {path:'/login',component:login},
   {path:'/zhuantiremen',component:zhuantiremen},
   {path:'/suggest',component:suggest},
-  {path:'/howSee',component:howSee}
+  {path:'/howSee',component:howSee},
+  {path:'/zhuanti250/:id',component:zhuanti250}
 ]
 
 const router = new Router({
