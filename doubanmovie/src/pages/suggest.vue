@@ -14,17 +14,17 @@
       <span class="suggest" @click="howSee('howSee')">如何查看电影榜单？</span>
       <img src="../../static/shezhigo.png" alt="">
     </div>
-    <div class="bgconter">
-      <span>影评/短评为什么会被折叠？</span>
+    <div @click="why('why')" class="bgconter" >
+      <span >影评/短评为什么会被折叠？</span>
         <img src="../../static/shezhigo.png" alt="">
     </div>
 
-    <div class="bgconter last">
+    <div class="bgconter last" @click="howWatch('howWatch')">
       <span>如何在线观看电视/电影</span>
         <img src="../../static/shezhigo.png" alt="">
     </div>
     </main>
-    <div class="footer" v-if="footer" >
+    <div class="footer" v-if="footer" @click ="feedBack('feedBack')" >
       <img src="../../static/pen.png" alt="">
       <span>我要反馈</span>
     </div>
@@ -46,8 +46,17 @@ export default {
   },
   howSee(howSee){
     this.$router.push({path:'/'+howSee})
+  },
+  why(why){
+    this.$router.push({path:'/'+why})
+  },
+  howWatch(howWatch){
+    this.$router.push({path:'/'+howWatch})
+  },
+  feedBack(feedBack){
+    this.$router.push({path:'/'+feedBack})
   }
-  }
+}
 }
 </script>
 
@@ -66,6 +75,13 @@ export default {
   font-size: .3rem;
   border-bottom: .01rem solid #C6C7C7;
   margin-bottom: .2rem;
+    font-weight:700;
+
+
+
+}
+.bgTop p{
+
 }
 .bgTop img{
   width: .4rem;
@@ -90,7 +106,7 @@ main{
   margin-bottom: .5rem;
 }
 .bgconter {
-  background-color:white;
+  /*background-color:white;*/
   width: 95%;
   margin-left:5%;
   height:.6rem;
@@ -103,10 +119,10 @@ main{
 }
 /*.first {
     border-top:.01rem solid #C6C7C7;
-}
-.last{
-  border-bottom: .003rem solid #C6C7C7;
 }*/
+.last{
+  border-bottom: .0003rem solid #C6C7C7;
+}
 .bgconter img{
   width: .3rem;
   height: .3rem;

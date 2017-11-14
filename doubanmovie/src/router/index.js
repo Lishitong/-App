@@ -20,11 +20,14 @@ import shezhi from '../pages/shezhi'
 import login from '../pages/login'
 import suggest from '../pages/suggest'
 import howSee from '../pages/howSee'
+import why from '../pages/why'
+import howWatch from '../pages/howWatch'
+import feedBack from '../pages/feedBack'
+import aboutdb from '../pages/aboutdb'
+import whyOpendb from '../pages/whyOpendb'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
-
 const routes = [
-
     { path: '/', component: HotPlay ,children:[
       {path:'/',component:Nowing},
       {path:'/HotPlay',component:Nowing},
@@ -50,7 +53,12 @@ const routes = [
   {path:'/shezhi',component:shezhi},
   {path:'/login',component:login},
   {path:'/suggest',component:suggest},
-  {path:'/howSee',component:howSee}
+  {path:'/howSee',component:howSee},
+  {path:'/why',component:why},
+  {path:'/howWatch',component:howWatch},
+  {path:'/feedBack',component:feedBack},
+  {path:'/aboutdb',component:aboutdb},
+  {path:'/whyOpendb',component:whyOpendb},
 ]
 
 const router = new Router({

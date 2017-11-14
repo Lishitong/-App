@@ -17,7 +17,7 @@
     </div>
 
   </main>
-  <footer>
+  <footer v-if ="footer">
 
       <img src="../../static/weibo.png" alt="">
       <span>微博登录</span>
@@ -38,7 +38,8 @@ export default {
   data(){
     return {
       logindb:false,
-      welcome:true
+      welcome:true,
+      footer:true
     }
   },
   methods:{
@@ -49,10 +50,10 @@ export default {
     loginOn(){
         console.log(this.$refs.loginUserName.value)
       if(this.$refs.loginUserName.value=="douer"&&this.$refs.loginPassWord.value=="go"){
-        // alert('fafafa')
+
           this.$router.push({path:'/Mine'});
-          document.cookie="u=8";
-          // document.cookie="pas=1";
+          // document.cookie="u=8";
+
 
 
 
@@ -64,6 +65,7 @@ export default {
       // }
       this.welcome=false;
       this.logindb=true;
+      this.footer=false;
     }
   }
 }
@@ -98,7 +100,7 @@ export default {
     width: 90%;
     margin-left: 5%;
     text-align: center;
-    height: 7rem;
+    height: 8rem;
 
   }
   main .welcomedb{

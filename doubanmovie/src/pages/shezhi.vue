@@ -19,7 +19,7 @@
       <span>清除缓存</span>
         <img src="../../static/shezhigo.png" alt="">
     </div>
-    <div class="bgconter last">
+    <div class="bgconter last" @click="aboutdb('aboutdb')" >
       <span>关于</span>
         <img src="../../static/shezhigo.png" alt="">
     </div>
@@ -45,6 +45,9 @@ export default {
   },
   suggest(suggest){
     this.$router.push({path:'/'+suggest})
+  },
+  aboutdb(aboutdb){
+    this.$router.push({path:'/'+aboutdb})
   }
   }
 }
@@ -81,7 +84,7 @@ main{
   margin-bottom: .5rem;
 }
 .bgconter {
-  background-color:white;
+  /*background-color:white;*/
   width: 95%;
   margin-left:5%;
   height:.6rem;
@@ -94,10 +97,10 @@ main{
 }
 /*.first {
     border-top:.01rem solid #C6C7C7;
-}
-.last{
-  border-bottom: .003rem solid #C6C7C7;
 }*/
+.last{
+  border-bottom: .00000003rem solid #C6C7C7;
+}
 .bgconter img{
   width: .3rem;
   height: .3rem;
