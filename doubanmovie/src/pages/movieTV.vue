@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .movieTV{
   width: 100%;
   overflow:hidden;

@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .top250{
   font-size: .32rem;
   float: left;

@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   #remen{
     padding-bottom:1rem;
     width: 100%;

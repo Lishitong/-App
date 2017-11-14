@@ -22,7 +22,7 @@ export default {
   name: 'ping'
 }
 </script>
-<style lang="css">
+<style lang="css" scoped>
 .lun ul {
   list-style: none;
 }

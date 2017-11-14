@@ -151,7 +151,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   #top250{
     width: 100%;
     padding-bottom:1rem;

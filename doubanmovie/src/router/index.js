@@ -18,31 +18,41 @@ import pingpage from '../components/pingpage'
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'
-import seeSpeak from'../pages/seeSpeak'
-import movieMen from'../pages/movieMen'
+import seeSpeak from '../pages/seeSpeak'
+import movieMen from '../pages/movieMen'
 import shezhi from '../pages/shezhi'
 import login from '../pages/login'
 import zhuantiremen from '../pages/zhuantiremen'
 import suggest from '../pages/suggest'
 import howSee from '../pages/howSee'
 import Search from '../pages/Search'
+import LocalCity from '../pages/LocalCity'
+import Citys from '../components/Citys'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
 
 const routes = [
 
-    { path: '/', component: HotPlay ,children:[
-      {path:'/',component:Nowing},
-      {path:'/HotPlay',component:Nowing},
-      {path:'/HotPlay/nowing',component:Nowing},
-      {path:'/HotPlay/loading',component:Loading}
-    ]},
-    {path:'/Search',component:Search},
-    { path: '/HotPlay', component: HotPlay ,children:[
-      {path:'/',component:Nowing},
-      {path:'/HotPlay/nowing',component:Nowing},
-      {path:'/HotPlay/loading',component:Loading}
-    ]},
+    {
+        path: '/',
+        component: HotPlay,
+        children: [
+            { path: '/', component: Nowing },
+            { path: '/HotPlay', component: Nowing },
+            { path: '/HotPlay/nowing', component: Nowing },
+            { path: '/HotPlay/loading', component: Loading }
+        ]
+    },
+    { path: '/Search', component: Search },
+    {
+        path: '/HotPlay',
+        component: HotPlay,
+        children: [
+            { path: '/', component: Nowing },
+            { path: '/HotPlay/nowing', component: Nowing },
+            { path: '/HotPlay/loading', component: Loading }
+        ]
+    },
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
     { path: '/movxiangqing/:id', component:movxiangqing,children:[
