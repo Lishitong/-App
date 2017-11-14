@@ -46,16 +46,13 @@ export default {
       }
     },
     getData() {
-      jsonp("http://api.douban.com/v2/movie/subject/" + this.id + "?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          this.msg = data;
-          this.popular = data.popular_comments;
-          this.counts = data.comments_count;
-          this.rating = data.rating;
-          console.log(this.popular);
-        }
+      databus.$on('alldata',(data)=>{
+        this.msg = data;
+        this.popular = data.popular_comments;
+        this.counts = data.comments_count;
+        this.rating = data.rating;
+        // console.log('热门短评，bus传值');
+        // console.log(this.msg);
       })
     },
     pushping(item) {
@@ -68,9 +65,6 @@ export default {
     if (this.id) {
       this.getData();
     }
-  },
-  updated() {
-
   },
   watch: {
     '$route'(newdata,olddata) {

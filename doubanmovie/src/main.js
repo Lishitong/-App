@@ -9,6 +9,8 @@ import VueLazyload from 'vue-lazyload'
 import router from './router'
 import VueResource from 'vue-resource'
 
+// databus
+window.databus = new Vue()
 
 //安装
 Vue.use(VueResource)
@@ -17,13 +19,14 @@ Vue.use(VueLazyload, {
   try: 2 // 这个是加载图片数量
 })
 Vue.config.productionTip = true
+
 // 把两个方法放入原型
 Vue.prototype.JSONP = JSONP
 Vue.prototype.axios = axios
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+const vm = new Vue({
+    el: '#app',
+    router,
+    template: '<App/>',
+    components: { App }
 })

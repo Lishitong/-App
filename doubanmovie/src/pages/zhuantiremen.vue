@@ -110,7 +110,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .zhuantiremen{
     .zh-top{
       background-color:#fff;

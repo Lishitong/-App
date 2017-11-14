@@ -7,7 +7,7 @@
     </div>
     <div id="bottom">
       <div class="wrap" :style="{width:wrapwidth}">
-        <div v-for="(x,index1) in sub" class="movies">
+        <div v-for="(x,index1) in sub" class="movies" @click="push(x.id)">
           <img class="smallImg" v-lazy="getImage(x.images.small)"  alt="">
           <p class="title">{{x.title}}</p>
           <p class="fen">
@@ -44,6 +44,11 @@ export default {
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
     },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
+    },
     reStar(in1,in2){
       if (in2*10<this.sub[in1].rating.stars-5) {
         return "../../static/star1.png"
@@ -70,7 +75,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   #remen{
     padding-bottom:1rem;
     width: 100%;

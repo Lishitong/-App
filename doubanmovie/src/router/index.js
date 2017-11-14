@@ -13,35 +13,46 @@ import Loading from '../pages/loading'
 import movxiangqing from '../components/movxiangqing'
 import ping from '../components/ping'
 import lun from '../components/lun'
+import ying from '../components/ying'
 import pingpage from '../components/pingpage'
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'
-import seeSpeak from'../pages/seeSpeak'
-import movieMen from'../pages/movieMen'
+import seeSpeak from '../pages/seeSpeak'
+import movieMen from '../pages/movieMen'
 import shezhi from '../pages/shezhi'
 import login from '../pages/login'
 import zhuantiremen from '../pages/zhuantiremen'
 import suggest from '../pages/suggest'
 import howSee from '../pages/howSee'
 import Search from '../pages/Search'
+import LocalCity from '../pages/LocalCity'
+import Citys from '../components/Citys'
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
 
 const routes = [
 
-    { path: '/', component: HotPlay ,children:[
-      {path:'/',component:Nowing},
-      {path:'/HotPlay',component:Nowing},
-      {path:'/HotPlay/nowing',component:Nowing},
-      {path:'/HotPlay/loading',component:Loading}
-    ]},
-    {path:'/Search',component:Search},
-    { path: '/HotPlay', component: HotPlay ,children:[
-      {path:'/',component:Nowing},
-      {path:'/HotPlay/nowing',component:Nowing},
-      {path:'/HotPlay/loading',component:Loading}
-    ]},
+    {
+        path: '/',
+        component: HotPlay,
+        children: [
+            { path: '/', component: Nowing },
+            { path: '/HotPlay', component: Nowing },
+            { path: '/HotPlay/nowing', component: Nowing },
+            { path: '/HotPlay/loading', component: Loading }
+        ]
+    },
+    { path: '/Search', component: Search },
+    {
+        path: '/HotPlay',
+        component: HotPlay,
+        children: [
+            { path: '/', component: Nowing },
+            { path: '/HotPlay/nowing', component: Nowing },
+            { path: '/HotPlay/loading', component: Loading }
+        ]
+    },
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
     { path: '/movxiangqing/:id', component:movxiangqing,children:[
@@ -50,6 +61,7 @@ const routes = [
       {path: '/movxiangqing/lun/:id',component:lun}
     ]},
     {path:'/pingpage/:id',component:pingpage},
+    {path:'/ying/:id',component:ying},
     { path: '/Mine', component: Mine,children:[
       {path:'/',component:wantSee},
       {path:'/Mine/wantSee',component:wantSee},

@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .nofind{
   width: 100%;
   background: url('../../static/wait.png') center center no-repeat;
