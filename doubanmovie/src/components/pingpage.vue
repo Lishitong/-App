@@ -22,7 +22,7 @@
              </div>
            </div>
            <h4 class="zan">
-             <img src="../../static/img/zan.png" alt="">
+             <img src="../../static/img/zan.png" alt="" @click="zan">
              <label>{{item.useful_count}}</label>
            </h4>
          </div>
@@ -50,6 +50,11 @@ export default {
   methods: {
     pingback() {
       history.back()
+    },
+    zan() {
+      this.$router.push({
+        path:'/login'
+      })
     },
     getImage(url) {
       if (url !== undefined) {
