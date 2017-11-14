@@ -26,13 +26,21 @@ import login from '../pages/login'
 import zhuantiremen from '../pages/zhuantiremen'
 import suggest from '../pages/suggest'
 import howSee from '../pages/howSee'
+
+import why from '../pages/why'
+import howWatch from '../pages/howWatch'
+import feedBack from '../pages/feedBack'
+import aboutdb from '../pages/aboutdb'
+import whyOpendb from '../pages/whyOpendb'
+
 import Search from '../pages/Search'
 import LocalCity from '../pages/LocalCity'
 import Citys from '../components/Citys'
+
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
-
 const routes = [
+
 
     {
         path: '/',
@@ -56,26 +64,53 @@ const routes = [
     },
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
-    { path: '/movxiangqing/:id', component:movxiangqing,children:[
-      {path: '/movxiangqing/:id', component:ping},
-      {path: '/movxiangqing/ping/:id',component:ping},
-      {path: '/movxiangqing/lun/:id',component:lun}
-    ]},
-    {path:'/pingpage/:id',component:pingpage},
-    {path:'/ying/:id',component:ying},
-    { path: '/Mine', component: Mine,children:[
-      {path:'/',component:wantSee},
-      {path:'/Mine/wantSee',component:wantSee},
-      {path:'/Mine/nowSee',component:nowSee},
-      {path:'/Mine/sew',component:sew},
-      {path:'/Mine/seeSpeak',component:seeSpeak},
-      {path:'/Mine/movieMen',component:movieMen}
-    ]},
-  {path:'/shezhi',component:shezhi},
-  {path:'/login',component:login},
-  {path:'/zhuantiremen',component:zhuantiremen},
-  {path:'/suggest',component:suggest},
-  {path:'/howSee',component:howSee}
+
+    {
+        path: '/movxiangqing/:id',
+        component: movxiangqing,
+        children: [
+            { path: '/movxiangqing/:id', component: ping },
+            { path: '/movxiangqing/ping/:id', component: ping },
+            { path: '/movxiangqing/lun/:id', component: lun }
+        ]
+    },
+    { path: '/pingpage/:id', component: pingpage },
+        {path:'/ying/:id',component:ying},
+    {
+        path: '/Mine',
+        component: Mine,
+        children: [
+            { path: '/', component: wantSee },
+            { path: '/Mine/wantSee', component: wantSee },
+            { path: '/Mine/nowSee', component: nowSee },
+            { path: '/Mine/sew', component: sew },
+            { path: '/Mine/seeSpeak', component: seeSpeak },
+            { path: '/Mine/movieMen', component: movieMen }
+        ]
+    },
+    { path: '/Local', component: LocalCity },
+    {
+        path: '/Citys/:id',
+        component: Citys,
+        children: [
+            { path: '/Citys/index', redirect: '/HotPlay' }
+        ]
+    },
+    { path: '/shezhi', component: shezhi },
+    { path: '/login', component: login },
+    { path: '/zhuantiremen', component: zhuantiremen },
+    { path: '/suggest', component: suggest },
+    { path: '/howSee', component: howSee },
+
+
+
+
+  {path:'/why',component:why},
+  {path:'/howWatch',component:howWatch},
+  {path:'/feedBack',component:feedBack},
+  {path:'/aboutdb',component:aboutdb},
+  {path:'/whyOpendb',component:whyOpendb},
+
 ]
 
 const router = new Router({
