@@ -23,6 +23,9 @@ export default {
 .wrap {
   width: 100%;
   height: 1rem;
+  /*position:fixed;
+  background: white;
+  z-index:2;*/
 }
 .wrap a{
   float: left;
@@ -37,4 +40,5 @@ export default {
   border-bottom: 0.02rem solid #123;
   color: #123;
 }
+
 </style>

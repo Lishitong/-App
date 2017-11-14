@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .star{
     float: left;
     width: .3rem;

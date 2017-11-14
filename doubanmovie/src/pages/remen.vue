@@ -3,14 +3,14 @@
     <loading v-if="bol"></loading>
     <div id="top" v-else>
       <h2>豆瓣热门</h2>
-      <span>全部99+ ></span>
+      <span @click="turnzt(data)">全部99+></span>
     </div>
     <div id="bottom">
       <div class="wrap" :style="{width:wrapwidth}">
         <div v-for="(x,index1) in sub" class="movies">
-          <img class="smallImg" :src="getImage(x.images.small)" alt="">
+          <img class="smallImg" v-lazy="getImage(x.images.small)"  alt="">
           <p class="title">{{x.title}}</p>
-          <p>
+          <p class="fen">
             <span class="star" v-for="(y,index2) in 5">
               <img :src="reStar(index1,index2)" alt="">
             </span>
@@ -20,6 +20,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -28,12 +29,14 @@ export default {
   name:'remen',
   data(){
     return {
+      data:{},
       sub:[],
       bol : true
     }
   },
   components:{
     loading
+
   },
   methods:{
     getImage(url){
@@ -47,16 +50,19 @@ export default {
       }else {
         return "../../static/star2.png"
       }
+    },
+    turnzt(data){
+        this.$router.push('/zhuantiremen')
     }
   },
-
   computed:{
     wrapwidth(){
-      return (this.sub.length/2 * 311 + 34)/100 + 'rem';
+      return (this.sub.length/2 * 217 + 17)/100 + 'rem';
     }
   },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+      this.data = data;
       this.sub = data.subjects;
       this.bol = false
     })
@@ -64,20 +70,26 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   #remen{
+    padding-bottom:1rem;
     width: 100%;
     font-size: .36rem;
     p{
       width: 100%;
       overflow:hidden;
-      height: .50rem;
+      height: .4rem;
     }
     #top{
       width: 100%;
-      height: 1.5rem;
+      height: .3rem;
+      padding:.3rem 0;
       text-align:right;
-      line-height:1.5rem;
+      span{
+        font-size: .25rem;
+        color:#c7c7c7;
+        margin-right:.3rem;
+      }
     }
     #bottom{
       width: 100%;
@@ -89,23 +101,36 @@ export default {
       align-content: center;
     }
     h2{
-      font-size: .46rem;
+      font-size: .36rem;
       margin-left:.34rem;
+      font-weight: 300;
       float: left;
     }
     .title{
       text-align:left;
-      font-size:.32rem;
+      font-size:.26rem;
       font-weight: 500;
+      margin-top:.13rem;
+      white-space:nowrap;
+      overflow:hidden;
     }
     .smallImg{
-      width: 2.77rem;
-      height: 3.86rem;
+      width: 2rem;
+      height: 2.9rem;
     }
     .movies{
-      width:2.77rem;
-      margin-left:.34rem;
+      width:2rem;
+      margin-left:.17rem;
+      font-size: .23rem;
     }
-
+    .star{
+      img{
+        width: .27rem;
+        height: .27rem;
+      }
+    }
+    .fen{
+      margin-bottom:.2rem;
+    }
   }
 </style>

@@ -2,10 +2,14 @@
 
   <div class="">
     <div class="top">
-      <img class="shezhi" src="../../static/shezhi.png" alt="">
-      <div class="login">
-        <img class="loginImg" src="../../static/login.png" alt="">
-        <span id="loginSpan">未登录</span>
+      <img class="shezhi" @click="shezhi('shezhi')" src="../../static/shezhi.png" alt="">
+      <div class="login" v-if="bol==false">
+        <img class="loginImg" @click="login('login')" src="../../static/login.png" alt="">
+        <span id="loginSpan"  @click="login('login')">未登录</span>
+      </div>
+      <div class="succ login" v-else>
+        <img class="loginImg" src="../../static/men.jpg" alt="">
+        <span id="loginSpan">{{user}}</span>
       </div>
     </div>
 
@@ -29,10 +33,38 @@
     props: ['show'],
     data(){
       return {
-        ok:true
+        bol:false,
+        ok:true,
+        user:''
       }
   },
   methods:{
+    shezhi(shezhi){
+      this.$router.push({path:'/'+shezhi})
+    },
+    login(login){
+      this.$router.push({path:'/'+login})
+    },
+    setCookie(c_name,value,expiredays){
+      var exdate=new Date()
+      exdate.setDate(exdate.getDate()+expiredays)
+      document.cookie=c_name+ "=" +escape(value)+
+      ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    },
+    getCookie(c_name){
+    if (document.cookie.length>0)
+      {
+      var c_start=document.cookie.indexOf(c_name + "=")
+      if (c_start!=-1)
+      {
+      c_start=c_start + c_name.length+1
+      var c_end=document.cookie.indexOf(";",c_start)
+      if (c_end==-1) c_end=document.cookie.length
+      return unescape(document.cookie.substring(c_start,c_end))
+      }
+      }
+    return ""
+    }
 
   },
   watch:{
@@ -40,11 +72,17 @@
           this.ok=false;
     }
   },
-  created () {
-    if (this.$route.path != '/Mine/wantSee') {
-      this.ok = false;
+  // created () {
+  //   if (this.$route.path != '/Mine/wantSee'&&  this.ok==true ) {
+  //     this.ok = false;
+  //   }
+  // }
+    created(){
+      if (this.getCookie('user')!='') {
+        this.bol = true,
+        this.user = this.getCookie('user')
+      }
     }
-  }
 
   // props: ['show']
   }
@@ -71,6 +109,7 @@
     width:.8rem;
     height:.8rem;
     vertical-align:middle;
+    border-radius: 50%
   }
   #loginSpan {
     font-size:.3rem;

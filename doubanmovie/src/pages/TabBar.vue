@@ -6,8 +6,18 @@
           <p @click="local('Local')">{{ city }}</p>
           <span></span>
         </div>
-        <div v-if="showOn" class="tabtop-search tabtop-search-inputX" >电影 / 电视剧 / 影人</div>
-        <div v-else class="tabtop-search tabtop-search-inputY" :class="{'b': a}">电影 / 电视剧 / 影人</div>
+        <div v-if="showOn" class="tabtop-search tabtop-search-inputX"  @click="push()">
+          电影 / 电视剧 / 影人
+          <router-link to="/Search" >
+
+          </router-link>
+        </div>
+        <div v-else class="tabtop-search tabtop-search-inputY" :class="{'b': a}" @click="push()">
+          电影 / 电视剧 / 影人
+          <router-link to="/Search" >
+
+          </router-link>
+        </div>
       </div>
     </div>
 
@@ -53,7 +63,13 @@
         this.$router.push({
           path : '/' + tag
         })
+      },
+      push() {
+        this.$router.push({
+          path:'Search'
+        })
       }
+
     },
     watch : {
       '$route'(newValue, oldValue){
@@ -83,7 +99,7 @@
           if (newValue.query.city) {
             this.city = newValue.query.city;
             if (this.city.length > 2) {
-              this.a = true; 
+              this.a = true;
             }else{
               this.a = false;
             }

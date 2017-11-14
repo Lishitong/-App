@@ -17,7 +17,8 @@ require('swiper/dist/css/swiper.css')
           autoplay: 2000,
           autoplayDisableOnInteraction : false,
           direction : 'horizontal',
-          pagination : '.swiper-pagination'
+          pagination : '.swiper-pagination',
+          loop:true
       }
     }
   }
@@ -39,6 +40,7 @@ require('swiper/dist/css/swiper.css')
   width: .1rem;
   height: .1rem;
 }
+
 /*轮播图片*/
 .slide0{
   background: url(../../static/img/lunbo0.jpg) no-repeat top/100% 100%;
