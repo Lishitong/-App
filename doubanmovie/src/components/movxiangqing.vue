@@ -178,7 +178,7 @@ export default {
   }
 }
 </script>
-<style lang="css" scoped>
+<style lang="css" >
 .xq-box{
   width: 100%;
   height: 7rem;
