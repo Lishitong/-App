@@ -166,8 +166,6 @@ export default {
   color:black;
 }
 .nav{
-  position:relative;
-  height:0.6rem;
   line-height:0.6rem;
   border:0.001rem lightgray solid;
   border-left: none;
@@ -182,21 +180,22 @@ export default {
   display: inline-block;
 }
 .navleft{
-  width:75%;
+  width:70%;
+  height:0.6rem;
+  line-height:0.6rem;
 }
 .navright{
-  width:20%;
   height:0.4rem;
   line-height:0.4rem;
   text-align: right;
   border-left:0.005rem lightgray solid;
 }
+.navleft span:nth-of-type(1){
+  margin:0;
+}
 .nav span{
   display: inline-block;
   margin-left:0.2rem;
-}
-.nav span:nth-of-type(1){
-  margin:0;
 }
 
 .load{

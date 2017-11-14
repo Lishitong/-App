@@ -86,7 +86,7 @@ export default {
   height:3.3rem;
 }
 .interested-info{
-  width:38%;
+  width:31%;
   display: inline-block;
   margin-left:0.4rem;
 }
@@ -109,6 +109,7 @@ export default {
   font-weight: 100;
 }
 .text-right {
+  width:1.5rem;
   font-size: .25rem;
   color: #F6B529;
   font-weight: 900;
@@ -122,7 +123,7 @@ export default {
   line-height: .4rem;
 }
 .text-right .btn {
-  width: 1rem;
+  width: 1.5rem;
   height: .5rem;
   line-height: .5rem;
   border: 0.02rem solid #F6B529;
