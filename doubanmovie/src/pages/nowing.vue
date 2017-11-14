@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="footer">
-        <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
+        <p>(｡◕ˇ∀ˇ◕)</p >
     </div>
   </div>
 </template>

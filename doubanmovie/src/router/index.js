@@ -13,6 +13,7 @@ import Loading from '../pages/loading'
 import movxiangqing from '../components/movxiangqing'
 import ping from '../components/ping'
 import lun from '../components/lun'
+import ying from '../components/ying'
 import pingpage from '../components/pingpage'
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
@@ -50,6 +51,7 @@ const routes = [
       {path: '/movxiangqing/lun/:id',component:lun}
     ]},
     {path:'/pingpage/:id',component:pingpage},
+    {path:'/ying/:id',component:ying},
     { path: '/Mine', component: Mine,children:[
       {path:'/',component:wantSee},
       {path:'/Mine/wantSee',component:wantSee},
