@@ -2,27 +2,37 @@
   <div class="bg">
     <div class="bgTop">
       <img src="../../static/howSeeback.png" @click="shezhiback()" alt="">
-      <span>如何查看电影榜单？</span>
-      <img src="../../static/share.png"  @click="s()" alt="">
+      <span>如何在线观看电视/电影?</span>
+      <img src="../../static/share.png" @click="s()" alt="">
     </div>
-    <p>如何查看电影榜单？</p>
-    <p>『书影音』- 『电影』,下滑页面至『精选榜单』,即可查看到豆瓣Top250、本周口碑榜、新片榜、票房榜。</p>
-    <p>精选榜单</p>
-    <img class="howSee" src="../../static/howSee.png" alt="">
+    <p>如何在线观看电视/电影?</p>
+    <p>豆瓣是电影评论的分享平台，
+不支持APP内在
+线播放，但是对于部分可以在线观看的电
+影，会附有第三方网站播放链接，在你想看
+的电影条目中，如果有提示「观看全片」就
+是可以点击跳转观看的。
 
-    <div id="sharesAL" v-if="Share">
-      <shareAL :share="Shares"></shareAL>
-    </div>
+</p>
+<p>
+  小提示: 部分电影会标注收费，我们提供的
+  都是第三方视频网站的播放链接，是否收费
+  由视频提供方决定。
 
-    </div>
+</p>
+<img class="howWatch" src="../../static/howWatch.png" alt="">
+  <div id="sharesALL" v-if="Share">
+    <shareALL :share="Shares"></shareALL>
+  </div>
+  </div>
 </template>
 
 <script>
-import shareAL from '../components/shareALL'
+import shareALL from '../components/shareALL'
 export default {
-  name:"sharesAL",
+  name:"sharesALL",
   components:{
-    shareAL
+    shareALL
   },
   data(){
     return{
@@ -46,7 +56,6 @@ export default {
 
 <style lang="css" scoped="scoped">
 .bg{
-  height: 13rem;
   background-color: #F9F9F9;
 }
 .bgTop{
@@ -70,17 +79,18 @@ export default {
 p{
     font-size: .3rem;
     margin-left: 5%;
-    line-height: .6rem;
-    margin-bottom: .2rem;
+    margin-right: 5%;
+    line-height: .5rem;
+    margin-bottom: .1rem;
+    font-weight:500;
+    text-indent: .6rem;
 }
 p:nth-of-type(1){
   font-weight:800;
+  font-size: .36rem;
 }
-p:nth-of-type(3){
-  font-weight:800;
-  font-size: .26rem;
-}
-.howSee{
+
+.howWatch{
   width: 90%;
   margin: 5%
 }

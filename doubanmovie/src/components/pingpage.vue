@@ -22,14 +22,14 @@
              </div>
            </div>
            <h4 class="zan">
-             <img src="../../static/img/zan.png" alt="">
+             <img src="../../static/img/zan.png" alt="" @click="zan">
              <label>{{item.useful_count}}</label>
            </h4>
          </div>
          <p>{{item.content}}</p>
        </div>
    </div>
-   <div class="footer">
+   <div class="foo2">
        <p>(｡◕ˇ∀ˇ◕)</p >
    </div>
  </div>
@@ -50,6 +50,11 @@ export default {
   methods: {
     pingback() {
       history.back()
+    },
+    zan() {
+      this.$router.push({
+        path:'/login'
+      })
     },
     getImage(url) {
       if (url !== undefined) {
@@ -163,11 +168,11 @@ export default {
   width: 94%;
   line-height: .7rem;
 }
-.footer {
+.foo2 {
   width: 100%;
   height: 2rem;
 }
-.footer p {
+.foo2 p {
   width: 100%;
   text-align: center;
   line-height: 1rem;

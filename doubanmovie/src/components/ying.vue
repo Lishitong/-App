@@ -23,7 +23,7 @@
              </div>
            </div>
            <h4 class="zan">
-             <img src="../../static/img/zan.png" alt="">
+             <img src="../../static/img/zan.png" alt="" @click="zan">
              <label>{{item.useful_count}}</label>
            </h4>
          </div>
@@ -31,7 +31,7 @@
          <h6><span @click="zhankai">{{ kai }}</span></h6>
        </div>
    </div>
-   <div class="footer">
+   <div class="foo3">
        <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
    </div>
  </div>
@@ -52,6 +52,11 @@ export default {
   methods: {
     yingback() {
       history.back()
+    },
+    zan() {
+      this.$router.push({
+        path:'/login'
+      })
     },
     getImage(url) {
       if (url !== undefined) {
@@ -206,11 +211,11 @@ export default {
   font-weight: 900;
 }
 
-.footer {
+.foo3 {
   width: 100%;
   height: 2rem;
 }
-.footer p {
+.foo3 p {
   width: 100%;
   text-align: center;
   line-height: 1rem;

@@ -39,7 +39,8 @@ export default {
   data(){
     return {
       logindb:false,
-      welcome:true
+      welcome:true,
+      footer:true
     }
   },
   methods:{
@@ -67,6 +68,7 @@ export default {
       return ""
     },
     loginOn(){
+
       //   console.log(this.$refs.loginUserName.value)
       // if(this.$refs.loginUserName.value=="douer"&&this.$refs.loginPassWord.value=="go"){
       //   // alert('fafafa')
@@ -79,14 +81,17 @@ export default {
     },
     ll(){
       console.log(this.getCookie('user'));
+
     },
     anim(){
       this.welcome=false;
       this.logindb=true;
+
     },
     show(){
       this.welcome=true;
       this.logindb=false;
+
     }
   }
 }
@@ -121,7 +126,7 @@ export default {
     width: 90%;
     margin-left: 5%;
     text-align: center;
-    height: 7rem;
+    height: 8rem;
 
   }
   main .welcomedb{
