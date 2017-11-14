@@ -3,12 +3,12 @@
     <loading v-if="bol"></loading>
     <div id="top" v-else>
       <h2>豆瓣热门</h2>
-      <span>全部99+></span>
+      <span @click="turnzt(data)">全部99+></span>
     </div>
     <div id="bottom">
       <div class="wrap" :style="{width:wrapwidth}">
         <div v-for="(x,index1) in sub" class="movies">
-          <img class="smallImg" :src="getImage(x.images.small)" alt="">
+          <img class="smallImg" v-lazy="getImage(x.images.small)"  alt="">
           <p class="title">{{x.title}}</p>
           <p class="fen">
             <span class="star" v-for="(y,index2) in 5">
@@ -29,6 +29,7 @@ export default {
   name:'remen',
   data(){
     return {
+      data:{},
       sub:[],
       bol : true
     }
@@ -49,9 +50,11 @@ export default {
       }else {
         return "../../static/star2.png"
       }
+    },
+    turnzt(data){
+        this.$router.push('/zhuantiremen')
     }
   },
-
   computed:{
     wrapwidth(){
       return (this.sub.length/2 * 217 + 17)/100 + 'rem';
@@ -59,6 +62,7 @@ export default {
   },
   created(){
     this.JSONP('https://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
+      this.data = data;
       this.sub = data.subjects;
       this.bol = false
     })
@@ -66,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   #remen{
     padding-bottom:1rem;
     width: 100%;

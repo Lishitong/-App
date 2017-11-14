@@ -6,8 +6,9 @@
 
 <script>
 import rem from '../static/js/rem'
-
 import TabBar from './pages/TabBar'
+import LocalCity from './pages/LocalCity'
+import Citys from './components/Citys'
 
 export default {
   name: 'app',

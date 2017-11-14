@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(x,index) in 4">
         <span>{{index+1}}</span>
-        <img :src="data.url[index]" alt="">
+        <img v-lazy="data.url[index]" alt="">
         <p>{{data.title[index]}}</p>
         <p class="stars">
             <span class="star" v-for="(y,index2) in 5">
@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .top250{
   font-size: .32rem;
   float: left;
@@ -46,7 +46,7 @@ export default {
     float: left;
     width: 70%;
     height: .4rem;
-    margin: .05rem 0 0 .1rem;
+    margin: .1rem 0 0 .1rem;
     text-align:left;
   }
   span{
@@ -62,6 +62,7 @@ export default {
     margin-top:.2rem;
     font-size: .22rem;
     color:#cccccc;
+    border-bottom: 1px solid #ddd;
     span{
       float: left;
       height: 100%;
