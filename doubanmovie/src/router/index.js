@@ -15,6 +15,7 @@ import ping from '../components/ping'
 import lun from '../components/lun'
 import ying from '../components/ying'
 import pingpage from '../components/pingpage'
+
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'

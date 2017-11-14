@@ -91,7 +91,7 @@
         </div>
         <h2  @click="ying(id)">全部影评{{msg.reviews_count}}条</h2>
       </div>
-      <div class="footer">
+      <div class="foo1">
           <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
       </div>
     </div>
@@ -424,6 +424,7 @@ export default {
 }
 .yinbox {
   width: 2.2rem;
+  margin-left: .04rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -510,11 +511,11 @@ export default {
   line-height: 1rem;
   border-bottom: .01rem solid lightgray;
 }
-.footer {
+.foo1 {
   width: 100%;
   height: 2rem;
 }
-.footer p {
+.foo1 p {
   width: 100%;
   text-align: center;
   line-height: 1rem;

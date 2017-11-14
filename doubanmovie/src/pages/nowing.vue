@@ -35,7 +35,7 @@
         <div class="btn">{{ item.shop }}</div>
       </div>
     </div>
-    <div class="footer">
+    <div class="foo">
         <p>(｡◕ˇ∀ˇ◕)</p >
     </div>
   </div>
@@ -182,11 +182,11 @@ export default {
   position:absolute;
   height: .2rem;
 }
-.nowing .footer {
+.nowing .foo {
   width: 100%;
   height: 2rem;
 }
-.nowing .footer p {
+.nowing .foo p {
   width: 100%;
   text-align: center;
   line-height: 1rem;
