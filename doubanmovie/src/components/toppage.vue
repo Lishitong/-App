@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="top250">
     <ul>
-      <li v-for="(x,index) in 4">
+      <li v-for="(x,index) in 4" @click="push(data.id[index])">
         <span>{{index+1}}</span>
         <img v-lazy="data.url[index]" alt="">
         <p>{{data.title[index]}}</p>
@@ -27,6 +27,11 @@ export default {
       }else {
         return "../../static/star2.png"
       }
+    },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
     }
   }
 }

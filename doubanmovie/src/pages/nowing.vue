@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="footer">
-        <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
+        <p>(｡◕ˇ∀ˇ◕)</p >
     </div>
   </div>
 </template>
@@ -92,7 +92,7 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .each-movie {
   position: relative;
   width:100%;
@@ -182,11 +182,11 @@ export default {
   position:absolute;
   height: .2rem;
 }
-.footer {
+.nowing .footer {
   width: 100%;
   height: 2rem;
 }
-.footer p {
+.nowing .footer p {
   width: 100%;
   text-align: center;
   line-height: 1rem;

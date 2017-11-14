@@ -9,6 +9,9 @@ import VueLazyload from 'vue-lazyload'
 import router from './router'
 import VueResource from 'vue-resource'
 
+// databus
+window.databus = new Vue()
+
 //安装
 Vue.use(VueResource)
 Vue.use(VueLazyload, {

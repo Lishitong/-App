@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="interestedLiCon">
+  <div class="interestedLiCon" @click="push(item.id)">
     <div  v-if="flagLi" class="li">
       <div class="delete" v-show="flag" @click="deleteFn()" >
         不感兴趣
@@ -65,6 +65,11 @@ export default {
       if (url !== undefined) {
         return url.replace('https://', 'https://images.weserv.nl/?url=');
       }      
+    },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
     },
     show() {
       var that;

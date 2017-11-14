@@ -77,7 +77,7 @@
            </div>
          </div>
       </div>
-      <div class="pinglun">
+      <div class="pinglun" @click="getData">
         <router-link :to="'/movxiangqing/ping/'+id">评论</router-link>
         <router-link :to="'/movxiangqing/lun/'+id">讨论区</router-link>
       </div>
@@ -89,7 +89,7 @@
           <h2>{{item.author.name}}</h2>
           <p>{{item.summary}}</p>
         </div>
-        <h2>全部影评{{msg.reviews_count}}条</h2>
+        <h2  @click="ying(id)">全部影评{{msg.reviews_count}}条</h2>
       </div>
       <div class="footer">
           <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
@@ -124,6 +124,11 @@ export default {
         return url.replace('http://', 'https://images.weserv.nl/?url=');
       }
     },
+    ying(item) {
+      this.$router.push({
+        path:'/ying/' + item
+      })
+    },
     back() {
       history.back()
     },
@@ -145,8 +150,10 @@ export default {
             this.flag = true,
             this.flag1 = false;
           }
-          console.log('movexiangqingye打印');
-          console.log(this.msg);
+          // console.log('movexiangqingye打印');
+          // console.log(this.msg);
+          // 传值
+          databus.$emit('alldata',this.msg);
         }
       })
     },
@@ -178,7 +185,7 @@ export default {
   }
 }
 </script>
-<style lang="css" scoped>
+<style lang="css">
 .xq-box{
   width: 100%;
   height: 7rem;
