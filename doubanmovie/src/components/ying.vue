@@ -37,31 +37,31 @@ export default {
       history.back()
     },
     getData() {
-      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start="+this.start+"&count=20&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
+      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start="+this.start+"&count=1000000&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
         if (err) {
           console.error(err);
         } else {
           this.msg = data;
           // console.log('全部影评页面打印');
           // console.log(this.msg);
-          console.log(data.reviews);
+          // console.log(data.reviews);
         }
       })
     },
-    menu() {
-    this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
+    // menu() {
+    // this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
     // console.log(this.scroll);
     // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
-    if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {
+    // if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {
       // console.log(this.start);
       // this.start+=8;
       // console.log(this.start);
-      this.getHero(this.start);
-    }else if (this.start==88) {
-      this.wait=false;
-      this.footer=true;
-    }
-   }
+  //     this.getData(this.start);
+  //   }else if (this.start==88) {
+  //     this.wait=false;
+  //     this.footer=true;
+  //   }
+  //  }
 
   },
   created() {

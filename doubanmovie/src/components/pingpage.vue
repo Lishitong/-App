@@ -29,11 +29,11 @@
          <p>{{item.content}}</p>
        </div>
    </div>
-   <div v-if="load" class="load" @scroll="menu()">
+   <!-- <div v-if="load" class="load" @scroll="menu()">
       Loading……
-   </div>
+   </div> -->
    <div v-if="foo2" class="foo2">
-       <p>(｡◕ˇ∀ˇ◕)</p >
+       <p>(｡◕ˇ∀ˇ◕)</p>
    </div>
    <goTop></goTop>
  </div>
@@ -48,11 +48,12 @@ export default {
     return { // 在数据中接收
       id: this.$route.params.id,
       msg: {},
-      start:0,
-      scroll:0,
-      load:true,
-      foo2:false,
-      alldata:[]
+      // start:0,
+      // scroll:0,
+      // load:true,
+      foo2:true,
+      // isTrue:false,
+      // alldata:[]
     }
   },
   components:{
@@ -73,31 +74,39 @@ export default {
       }
     },
     getData() {
-      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/comments?apikey=0b2bdeda43b5688921839c8ecb20399b&start="+this.start+"&count=20&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
+      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/comments?apikey=0b2bdeda43b5688921839c8ecb20399b&start=0&count=10000&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
         if (err) {
           console.error(err);
         } else {
+          // this.isTrue = false
+          // this.start = data.next_start
           this.msg = data;
+          // console.log(data);
           // let thatdata = data.comments;
+          // if (data.comments.length<10) {
+          //   this.foo2 = true
+          //   this.load = false
+          // }
           // for (let i = 0;i <thatdata.length;i ++) {
           //   this.alldata.push(thatdata[i]);
+          //   // console.log(data.comments[i]);
+          //   // console.log(data.comments[i].content);
           // }
         }
       })
     },
     menu() {
-       this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
-       // console.log(this.scroll);
-       // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
-       if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<=(this.msg.total-20)) {
-         console.log(this.start);
-        //  this.start+=20;
-         // console.log(this.start);
-         this.getData();
-       }else if (this.start==(this.msg.total - 20)) {
-        //  this.load=false;
-        //  this.foo2=true;
-       }
+      //  this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
+      //  // console.log(this.scroll);
+      //  // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
+      //  if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.isTrue==false&&this.start<=(this.msg.total-20)) {
+      //    this.isTrue = true
+      //    this.getData();
+      //  }
+      //  else if (this.start==(this.msg.total - 20)) {
+      //    this.load=false;
+      //    this.foo2=true;
+      //  }
    }
   },
   created() {
@@ -111,7 +120,7 @@ export default {
     }
   },
   mounted(){
-      window.addEventListener('scroll', this.menu);
+      // window.addEventListener('scroll', this.menu);
   }
 }
 </script>
