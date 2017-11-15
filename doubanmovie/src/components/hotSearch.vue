@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="hotsearch">
-    <li v-for="(item,del) in obj.subjects">
+    <li v-for="(item,del) of obj.subjects">
       <h2>
         <span>{{del+1}}</span>
         {{item.title}}

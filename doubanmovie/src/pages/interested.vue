@@ -4,7 +4,7 @@
     <h5>你可能感兴趣的</h5>
     <h3 v-if="bol" class="load">(◕ᴗ◕✿)</h3>
     <ul v-else>
-      <li v-for="itemarr in arrbox">
+      <li v-for="itemarr of arrbox">
         <interestedcon :message="itemarr"></interestedcon>
       </li>
     </ul>

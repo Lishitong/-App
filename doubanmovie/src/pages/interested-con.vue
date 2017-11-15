@@ -2,7 +2,7 @@
   <div class="interested-con">
 
     <ul>
-      <li v-for="aa in message">
+      <li v-for="aa of message">
       <interestedLiCon :item="aa"></interestedLiCon>
       </li>
       <div v-if="flagJudge" class="judge">
