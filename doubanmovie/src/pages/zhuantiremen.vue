@@ -3,7 +3,7 @@
     <back :title="'豆瓣热门'"></back>
     <div class="zh-bottom">
       <ul>
-        <li v-for="(x,index) in data.length">
+        <li v-for="(x,index) in data.length" @click="push(data.id[index])">
           <img v-lazy="getImage(data.url[index])" alt="">
           <div class="">
             <h2>{{data.title[index]}}</h2>
@@ -38,7 +38,8 @@ export default {
         fen:[],
         dao:[],
         act:[],
-        length:0
+        length:0,
+        id:[]
       },
     }
   },
@@ -58,13 +59,20 @@ export default {
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
     },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
+    },
     getdata(start){
       this.JSONP('https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start='+start+'&count=5&client=somemessage&udid=dddddddddddddddddddddd',null,(err,data) => {
         this.bol = false;
         this.data.length += data.subjects.length
         let i = this.data.start
+        console.log(this.data.id);
         for (; i < this.data.start + 5; i++) {
           if (i<data.total) {
+            this.data.id[i]=data.subjects[i-this.data.start].id;
             this.data.url[i] = data.subjects[i-this.data.start].images.small
             this.data.title[i] = data.subjects[i-this.data.start].title
             this.data.stars[i] = data.subjects[i-this.data.start].rating.stars

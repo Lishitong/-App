@@ -1,0 +1,53 @@
+// import HotPlay from '../pages/HotPlay'
+// import FindMovie from '../pages/FindMovie'
+// import Mine from '../pages/Mine'
+// import Nowing from '../pages/nowing'
+// import Loading from '../pages/loading'
+// // 正在热映详情
+// import movxiangqing from '../components/movxiangqing'
+// import ping from '../components/ping'
+// import lun from '../components/lun'
+// import ying from '../components/ying'
+// import pingpage from '../components/pingpage'
+
+// import wantSee from '../pages/wantSee'
+// import nowSee from '../pages/nowSee'
+// import sew from '../pages/sew'
+// import seeSpeak from '../pages/seeSpeak'
+// import movieMen from '../pages/movieMen'
+// import shezhi from '../pages/shezhi'
+// import login from '../pages/login'
+// import zhuantiremen from '../pages/zhuantiremen'
+// import suggest from '../pages/suggest'
+// import howSee from '../pages/howSee'
+
+// import why from '../pages/why'
+// import howWatch from '../pages/howWatch'
+// import feedBack from '../pages/feedBack'
+// import aboutdb from '../pages/aboutdb'
+// import whyOpendb from '../pages/whyOpendb'
+
+// import Search from '../pages/Search'
+// import LocalCity from '../pages/LocalCity'
+// import Citys from '../components/Citys'
+
+
+
+
+
+
+// const HotPlay = resolve => {
+//     // require.ensure 是 Webpack 的特殊语法，用来设置 code-split point
+//     // （代码分块）
+//     require.ensure(['../pages/HotPlay'], () => {
+//         resolve(require('../pages/HotPlay'))
+//     })
+// }
+
+// const FindMovie = (resolve) => {
+//     import ('../pages/FindMovie').then((module) => {
+//         resolve(module)
+//     })
+// }
+// const HotPlay = resolve => require(['../pages/HotPlay'], resolve)
+// const FindMovie = resolve => require(['../pages/FindMovie'], resolve)

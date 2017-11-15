@@ -1,10 +1,10 @@
 <template lang="html">
 
   <div class="interested">
-    <h5>你可能感兴趣的</h5>
+    <h5>{{ fan }}</h5>
     <h3 v-if="bol" class="load">(◕ᴗ◕✿)</h3>
     <ul v-else>
-      <li v-for="itemarr of arrbox">
+      <li v-for="(itemarr, index) in arrbox" :key="index">
         <interestedcon :message="itemarr"></interestedcon>
       </li>
     </ul>
@@ -33,7 +33,8 @@ export default {
       start:0,
       scroll:0,
       wait:true,
-      footer:false
+      footer:false,
+      fan:'你可能感兴趣的'
     }      
   },
   components:{

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="hotsearch">
-    <li v-for="(item,del) of obj.subjects">
+    <li v-for="(item,del) in obj.subjects" @click="push(item.id)">
       <h2>
         <span>{{del+1}}</span>
         {{item.title}}
@@ -27,6 +27,11 @@ export default {
               this.obj=data;
             }
           })
+      },
+      push(item) {
+        this.$router.push({
+          path:'/movxiangqing/' + item
+        })
       }
   },
   created(){

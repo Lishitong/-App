@@ -37,7 +37,7 @@
       <div class="ul" v-if="ying">
         <p v-if="flag">影视</p>
         <ul>
-          <li v-for="item in obj">
+          <li v-for="(item, i) in obj" :key="i">
             <img :src="getImage(item.images.medium)" alt="">
             <div class="divright">
               <h1>{{item.title}}</h1>
@@ -52,7 +52,11 @@
 
       </div>
       <div class="" v-if="sear" >
+
         <interestedLiCon v-for='aa of obj' :item="aa">
+
+        <!-- <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a"> -->
+
 
         </interestedLiCon>
       </div>

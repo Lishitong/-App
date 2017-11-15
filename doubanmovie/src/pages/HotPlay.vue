@@ -20,6 +20,9 @@ export default {
 </script>
 
 <style scoped>
+.out {
+  margin-top: 1rem;
+}
 .wrap {
   width: 100%;
   height: 1rem;

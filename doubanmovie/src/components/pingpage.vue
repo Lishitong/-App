@@ -2,10 +2,10 @@
  <div class="pingpage">
    <div class="pingpage-head">
     <div @click="pingback"><img src="../../static/img/lastpage.png" alt=""></div>
-    <div>全部短评</div>
+    <div>热门短评</div>
     <div><h1>看过</h1></div>
    </div>
-   <h1>短评<span>{{msg.total}}</span>条</h1>
+   <h1>短评<span>{{num}}</span>条</h1>
    <div class="pingpage-all" v-for="item of msg.comments">
        <div class="pingpage-img">
          <img :src="getImage(item.author.avatar)" alt="">
@@ -58,7 +58,7 @@ export default {
       foo2:true,
       // isTrue:false,
       // alldata:[]
-
+      num:0
     }
   },
   components:{
@@ -86,6 +86,7 @@ export default {
           // this.isTrue = false
           // this.start = data.next_start
           this.msg = data;
+          this.num = data.comments.length;
           // console.log(data);
           // let thatdata = data.comments;
           // if (data.comments.length<10) {
@@ -131,13 +132,13 @@ export default {
 </script>
 <style lang="css">
 .pingpage-head {
-  /*position: fixed;
+  position: fixed;
   top: 0;
-  z-index: 1;*/
+  z-index: 1;
   width: 100%;
-  margin: 0 auto;
   height: 1rem;
   line-height: 1rem;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -164,6 +165,7 @@ export default {
   width: 90%;
   height: 1rem;
   margin: 0 auto;
+  margin-top: 1rem;
   line-height: 1rem;
 }
 .pingpage-img img {
@@ -218,7 +220,7 @@ export default {
 }
 .foo2 ,.load{
   width: 100%;
-  height: 2rem;
+  height: 1rem;
 }
 .foo2 p ,.load{
   width: 100%;

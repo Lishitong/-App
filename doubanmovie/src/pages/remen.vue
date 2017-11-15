@@ -57,7 +57,11 @@ export default {
       }
     },
     turnzt(data){
-        this.$router.push('/zhuantiremen')
+        this.$router.push({
+          path : '/zhuantiremen',
+          component: resolve => require(['../pages/zhuantiremen.vue'], resolve)
+
+        })
     }
   },
   computed:{
