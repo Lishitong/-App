@@ -2,7 +2,7 @@
   <div class="nowing">
     <div class="each-movie" v-for="item of msg">
       <div class="movie-img">
-        <img :src="getImage(item.images.large)" alt=""  @click="push(item.id)">
+        <img v-lazy="getImage(item.images.large)" alt=""  @click="push(item.id)">
       </div>
       <div class="movie-text"  @click="push(item.id)">
         <!-- 标题 -->
@@ -38,10 +38,12 @@
     <div class="foo">
         <p>(｡◕ˇ∀ˇ◕)</p >
     </div>
+    <goTop></goTop>
   </div>
 </template>
 
 <script>
+import goTop from '../components/gotop'
 let jsonp = require('jsonp')
 export default {
   name: 'Nowing',
@@ -50,6 +52,9 @@ export default {
       msg: {},
       flag:true
     }
+  },
+  components:{
+    goTop
   },
   methods: {
     getHero() {
