@@ -41,10 +41,12 @@
     <div class="loadpage" v-else>
       <img src="./../../static/loading.gif" alt="">
     </div>
+    <goTop></goTop>
   </div>
 </template>
 
 <script>
+import goTop from './gotop'
 import back from './../components/back.vue'
 export default {
   name: 'zhuanti250',
@@ -65,7 +67,7 @@ export default {
     }
   },
   components: {
-    back
+    back,goTop
   },
   filters: {
     actname(index3, l, num) {
