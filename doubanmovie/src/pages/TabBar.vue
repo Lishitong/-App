@@ -62,7 +62,7 @@
       },
       push() {
         this.$router.push({
-          path:'Search'
+          path:'/Search'
         })
       },
       getlocalcity(){

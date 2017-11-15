@@ -57,7 +57,8 @@ const LocalCity = () =>
     import ( /* webpackChunkName: "LocalCity" */ '../pages/LocalCity.vue')
 const Citys = () =>
     import ( /* webpackChunkName: "Citys" */ '../components/Citys.vue')
-
+const zhuanti250 = () =>
+    import ( /* webpackChunkName: "Citys" */ '../components/zhuanti250.vue')
 
 Vue.use(Router)
 const routes = [{
@@ -70,7 +71,7 @@ const routes = [{
             { path: '/HotPlay/loading', component: Loading, meta: { showBar: true, showTop: true } }
         ]
     },
-    { path: '/HotPlay/Search', component: Search },
+    { path: '/Search', component: Search },
     { path: '/FindMovie', component: FindMovie, meta: { showBar: true, showTop: true } },
     {
         path: '/movxiangqing/:id',
@@ -115,6 +116,8 @@ const routes = [{
     { path: '/feedBack', component: feedBack },
     { path: '/aboutdb', component: aboutdb },
     { path: '/whyOpendb', component: whyOpendb },
+    { path: '/zhuanti250/:id', component: zhuanti250 },
+
 
 ]
 

@@ -133,6 +133,9 @@ export default {
       font-size: .23rem;
     }
     .star{
+      float: left;
+      width: .27rem;
+      height: .27rem;
       img{
         width: .27rem;
         height: .27rem;

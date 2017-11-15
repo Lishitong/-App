@@ -39,6 +39,7 @@ export default {
 
 <style lang="less" scoped>
 .top250{
+  width: 100%;
   font-size: .32rem;
   float: left;
   li{
@@ -73,6 +74,10 @@ export default {
       height: 100%;
       line-height:.3rem;
       margin:0;
+    }
+    .star{
+      width: .27rem;
+      height: .27rem;
     }
     span:nth-of-type(6){
       margin-left:.1rem;

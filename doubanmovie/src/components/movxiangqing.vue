@@ -12,7 +12,7 @@
           </div>
           <h1 class="zhuanfa"></h1>
         </div>
-        <img :src="getImage(images.medium)" alt="">
+        <img v-lazy="getImage(images.medium)" alt="">
       </div>
       <div id="xq-text">
         <div class="xq-text">
@@ -55,12 +55,12 @@
         <div class="yingimg">
            <div class="yingbig">
              <div class="yinbox" v-for="item of directors">
-               <img  :src="getImage(item.avatars.large)" alt="">
+               <img  v-lazy="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>导演</p>
              </div>
              <div class="yinbox"  v-for="item of casts">
-               <img :src="getImage(item.avatars.large)" alt="">
+               <img v-lazy="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>英文名：{{item.name_en}}</p>
              </div>
@@ -72,7 +72,7 @@
          <div class="juzhaoimg">
            <div class="juzhaobox">
              <div class="jz" v-for="item of msg.photos">
-               <img :src="getImage(item.image)" alt="">
+               <img v-lazy="getImage(item.image)" alt="">
              </div>
            </div>
          </div>
@@ -94,13 +94,18 @@
       <div class="foo1">
           <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
       </div>
+      <goTop></goTop>
     </div>
 </template>
 
 <script>
+import goTop from './gotop'
 let jsonp = require('jsonp')
 export default {
   name: 'movxiangqing',
+  components:{
+    goTop
+  },
   data() {
     return { // 在数据中接收
       id: this.$route.params.id,

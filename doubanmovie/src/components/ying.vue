@@ -6,38 +6,19 @@
     <div><h1>看过</h1></div>
    </div>
    <h1>影评<span>{{msg.total}}</span>条</h1>
-   <div class="yingpage-all" v-for="item of msg.reviews">
-       <div class="yingpage-img">
-         <img :src="getImage(item.author.avatar)" alt="">
-       </div>
-       <div class="yingpage-text">
-        <h1>{{item.title}}</h1>
-         <div class="text-top">
-           <div>
-             {{item.author.name}}
-             <div class="stars" >
-                 <img src="../../static/img/gray.png" alt="">
-                 <div class="starsbox" :style="{width:item.rating.max*0.1+'rem'}">
-                  <img  src="../../static/img/huang.png" alt="" >
-                 </div>
-             </div>
-           </div>
-           <h4 class="zan">
-             <img src="../../static/img/zan.png" alt="" @click="zan">
-             <label>{{item.useful_count}}</label>
-           </h4>
-         </div>
-         <p :class="{'zhankai':flag}">{{item.content}}</p>
-         <h6><span @click="zhankai">{{ kai }}</span></h6>
-       </div>
+   <div class="yingpagedata" v-for="item of msg.reviews">
+     <yingpagedata :yingpagedata="item"></yingpagedata>
    </div>
    <div class="foo3">
-       <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
+       <p>(｡◕ˇ∀ˇ◕)</p >
    </div>
+   <goTop></goTop>
  </div>
 </template>
 
 <script>
+import goTop from './gotop'
+import yingpagedata from './yingpagedata'
 let jsonp = require('jsonp')
 export default {
   name: 'yingpage',
@@ -45,44 +26,43 @@ export default {
     return { // 在数据中接收
       id: this.$route.params.id,
       msg: {},
-      kai:'展开',
-      flag:true
+      start:0
     }
+  },
+  components:{
+    yingpagedata,goTop
   },
   methods: {
     yingback() {
       history.back()
     },
-    zan() {
-      this.$router.push({
-        path:'/login'
-      })
-    },
-    getImage(url) {
-      if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
-      }
-    },
     getData() {
-      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start=0&count=10000&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
+      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start="+this.start+"&count=1000000&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
         if (err) {
           console.error(err);
         } else {
           this.msg = data;
           // console.log('全部影评页面打印');
           // console.log(this.msg);
+          // console.log(data.reviews);
         }
       })
     },
-    zhankai() {
-      if (this.flag) {
-        this.flag = false;
-        this.kai = '收起';
-      }else {
-        this.flag = true;
-        this.kai = '展开';
-      }
-    }
+    // menu() {
+    // this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
+    // console.log(this.scroll);
+    // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
+    // if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {
+      // console.log(this.start);
+      // this.start+=8;
+      // console.log(this.start);
+  //     this.getData(this.start);
+  //   }else if (this.start==88) {
+  //     this.wait=false;
+  //     this.footer=true;
+  //   }
+  //  }
+
   },
   created() {
     if (this.id) {
@@ -101,6 +81,9 @@ export default {
 </script>
 <style lang="css">
 .yingpage-head {
+  /*position: fixed;
+  top: 0;
+  z-index: 1;*/
   width: 100%;
   margin: 0 auto;
   height: 1rem;
@@ -129,86 +112,9 @@ export default {
 }
 .yingpage>h1 {
   width: 90%;
-  margin: 0 auto;
-  line-height: 1rem;
-}
-.yingpage-img img {
-  margin-top: 1rem;
-  width: .5rem;
-  height: .5rem;
-  border-radius: 50%;
-}
-.yingpage-all {
-  margin: 0 auto;
-  width: 90%;
-  display: flex;
-  justify-content:flex-start;
-  align-items: flex-start;
-}
-.yingpage-text {
-  width: 98%;
-  margin-left: 2%;
-}
-.text-top {
-  width: 94%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #000;
-  font-weight: 900;
-}
-
-.stars {
-  height: .2rem;
-  line-height: .2rem;
-  width:1rem;
-  position: relative;
-  display: inline-block;
-}
-.starsbox{
-  overflow: hidden;
-  position:absolute;
-  height: .35rem;
-}
-.stars img{
-  width: 1rem;
-  position:absolute;
-  height: .2rem;
-}
-.zan img {
-  width: .3rem;
-  height: .3rem;
-}
-.yingpage-text>h1 {
-  width: 90%;
   height: 1rem;
-  line-height: 1rem;
-  font-weight: 900;
-  font-size: .26rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.yingpage-text>p {
-  width: 94%;
-  margin-bottom: .5rem;
-  line-height: .7rem;
-}
-.zhankai {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-}
-.yingpage-text h6 {
-  width: 94%;
   margin: 0 auto;
-  line-height: .8rem;
-  height: .8rem;
-  text-align: right;
-  color: green;
-  font-weight: 900;
+  line-height: 1rem;
 }
 
 .foo3 {
