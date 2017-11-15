@@ -152,12 +152,18 @@ export default {
 
 <style lang="less">
 .zhuanti250 {
+    padding:1rem 0;
     width: 100%;
     .bar {
+        position:fixed;
+        background-color:#fff;
         width: 100%;
+        top:.8rem;
+        z-index:3;
         display: flex;
         justify-content: space-around;
         border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
         div {
             width: 12%;
             text-align: center;
