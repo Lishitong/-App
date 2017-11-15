@@ -3,7 +3,7 @@
       <div class="xq-box">
         <div class="xq-top">
           <h1 class="lastpage" @click="back"></h1>
-          <div class="fire">
+          <div class="fire" :class="{'firexian':fireT}">
             <img src="../../static/img/fire.png" alt="">
             <span><label>{{ msg.reviews_count }}</label>人正在热议 ></span>
           </div>
@@ -120,7 +120,8 @@ export default {
       kai:'展开',
       directors:{},
       casts:{},
-      reviews:{}
+      reviews:{},
+      fireT:false
     }
   },
   methods: {
@@ -154,6 +155,12 @@ export default {
             this.rating.average = '';
             this.flag = true,
             this.flag1 = false;
+          }
+          // 正在热议
+          if (this.msg.reviews_count == 0) {
+            this.fireT = true;
+          }else {
+            this.fireT = false;
           }
           // console.log('movexiangqingye打印');
           // console.log(this.msg);
@@ -213,6 +220,7 @@ export default {
 .baomihua {
   font-size: .3rem;
   font-weight: 900;
+  color: #fff;
 }
 .baomihua img {
   width: .4rem;
@@ -526,5 +534,8 @@ export default {
   line-height: 1rem;
   font-size: .3rem;
   font-weight: 900;
+}
+.firexian {
+  display: none;
 }
 </style>

@@ -48,7 +48,7 @@
 
       </div>
       <div class="" v-if="sear" >
-        <interestedLiCon v-for='(aa, bb) in obj' :key="bb" :item="aa">
+        <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a">
 
         </interestedLiCon>
       </div>

@@ -2,10 +2,10 @@
  <div class="yingpage">
    <div class="yingpage-head">
     <div @click="yingback"><img src="../../static/img/lastpage.png" alt=""></div>
-    <div>全部影评</div>
+    <div>热门影评</div>
     <div><h1>看过</h1></div>
    </div>
-   <h1>影评<span>{{msg.total}}</span>条</h1>
+   <h1>影评<span>{{num}}</span>条</h1>
    <div class="yingpagedata" v-for="item of msg.reviews">
      <yingpagedata :yingpagedata="item"></yingpagedata>
    </div>
@@ -26,7 +26,8 @@ export default {
     return { // 在数据中接收
       id: this.$route.params.id,
       msg: {},
-      start:0
+      start:0,
+      num:0
     }
   },
   components:{
@@ -42,6 +43,7 @@ export default {
           console.error(err);
         } else {
           this.msg = data;
+          this.num = data.reviews.length;
           // console.log('全部影评页面打印');
           // console.log(this.msg);
           // console.log(data.reviews);
