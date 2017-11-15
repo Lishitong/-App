@@ -132,13 +132,13 @@ export default {
 </script>
 <style lang="css">
 .pingpage-head {
-  /*position: fixed;
+  position: fixed;
   top: 0;
-  z-index: 1;*/
+  z-index: 1;
   width: 100%;
-  margin: 0 auto;
   height: 1rem;
   line-height: 1rem;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -165,6 +165,7 @@ export default {
   width: 90%;
   height: 1rem;
   margin: 0 auto;
+  margin-top: 1rem;
   line-height: 1rem;
 }
 .pingpage-img img {
@@ -219,7 +220,7 @@ export default {
 }
 .foo2 ,.load{
   width: 100%;
-  height: 2rem;
+  height: 1rem;
 }
 .foo2 p ,.load{
   width: 100%;
