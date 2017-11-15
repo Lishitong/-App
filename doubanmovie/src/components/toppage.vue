@@ -75,6 +75,10 @@ export default {
       line-height:.3rem;
       margin:0;
     }
+    .star{
+      width: .27rem;
+      height: .27rem;
+    }
     span:nth-of-type(6){
       margin-left:.1rem;
     }

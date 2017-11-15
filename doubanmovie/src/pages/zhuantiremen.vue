@@ -106,6 +106,11 @@ export default {
 
 <style lang="less" scoped>
   .zhuantiremen{
+    .star{
+      float: left;
+      width: .27rem;
+      height: .27rem;
+    }
     .zh-bottom{
       h2{
         font-size: .35rem;

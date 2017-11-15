@@ -177,6 +177,8 @@ export default {
     h2{
       font-size:.36rem;
       float: left;
+      height: .7rem;
+      line-height:.7rem;
       margin:0 0 .2rem .2rem;
       overflow: hidden;
     }
