@@ -18,12 +18,13 @@
       (◕ᴗ◕✿)
     </div>
     <loadingli :objdate="obj" v-else></loadingli>
-
+    <goTop></goTop>
 
   </div>
 </template>
 
 <script>
+import goTop from '../components/gotop'
 import loadingli from './loading-li'
 export default {
   data() {
@@ -46,7 +47,7 @@ export default {
     }
   },
   components:{
-    loadingli
+    loadingli,goTop
   },
   methods: {
     getHero() {
