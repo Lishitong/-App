@@ -16,7 +16,7 @@
               <span :class="{'left-line' : open}"></span>
               <span :class="{'right-line' : close}"></span>
             </div>
-          </div>    
+          </div>
         </transition>
         <div class="local-search">
           <p class="icon-search"></p>
@@ -32,13 +32,13 @@
             </div>
             <h3 v-if="noneNull" class="none"> {{ msg }} </h3>
           </div>
-          
+
           <div ref="zhezhaoc" :class="{'fadeOn': zhezhao}"  @click="acti"></div>
         </div>
       </div>
         <div class="local-weizhi" v-if="active">
           <h3>GPS定位城市</h3>
-          <p class="dangqian"><label class="icon-location2"></label><span>北京</span></p>
+          <Localtion />
           <h3 class="remen">热门城市</h3>
           <ul class="remen-city">
             <li v-for="city in remen" @click="inde(city)" > {{ city }} </li>
@@ -46,7 +46,7 @@
         </div>
       <div class="local-weizhi" :style="{ marginTop: '1rem' }" v-else>
           <h3>GPS定位城市</h3>
-          <p class="dangqian"><label class="icon-location2"></label><span>北京</span></p>
+          <Localtion />
           <h3 class="remen">热门城市</h3>
           <ul class="remen-city">
             <li v-for="city in remen" @click="inde(city)" > {{ city }} </li>
@@ -61,11 +61,12 @@
         </ol>
       </div>
     </div>
-    
+
   </div>
 </template>
 
 <script>
+  import Localtion from '../components/Location.vue'
 
   export default {
     data(){
@@ -86,6 +87,9 @@
         msg:'没有这个地方哟，或者没有收录哟',
         noneNull : false
       }
+    },
+    components:{
+      Localtion
     },
     methods : {
       back(){
@@ -123,8 +127,8 @@
           }
           return obj;
       },
-      
-      searchData: function(data) {
+
+      searchData(data) {
         const search = this.changeCity;
         const d_citys = data.citys;
         let ret = [];
@@ -157,7 +161,7 @@
                       "Y":[],
                       "Z":[],
                     }
-                  } 
+                  }
         if (search) {
           for (var keys in d_citys) {
             const ks_citys = d_citys[keys];
@@ -226,9 +230,13 @@
         this.cityObj = obj.citys;
         this.isEmpty(obj);
       }
-     
     },
-    
+
+    watch:{
+      '$route'(newValue, oldValue){
+        console.log(newValue)
+        console.log(oldValue)}
+    },
     created(){
       this.axios.get('../../static/China_Province.json').then(data=>{
         this.cities = data.data
@@ -238,7 +246,7 @@
       })
       this.wheight = window.innerHeight;
       console.log(this.wheight)
-    },
+      },
     updated () {
      if (this.$refs.inputSearch.value.length) {
           this.searchCity = true;
@@ -259,7 +267,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" scoped >
   .local-city {
     width: 100%;
     height: 100%;
@@ -372,7 +380,7 @@
       margin-left: 1rem;
       margin-right: .3rem;
     }
-    
+
     .icon-search:before {
       font-size: .3rem;
       color: #9b9b9b;
@@ -404,7 +412,7 @@
       color: #9b9b9b;
       margin-bottom: .26rem;
     }
-    
+
     .remen-city {
       margin-left: -.15rem;
       display: flex;

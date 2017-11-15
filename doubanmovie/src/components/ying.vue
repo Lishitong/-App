@@ -1,16 +1,17 @@
 <template lang="html">
- <div class="pingpage">
-   <div class="pingpage-head">
-    <div @click="pingback"><img src="../../static/img/lastpage.png" alt=""></div>
-    <div>全部短评</div>
+ <div class="yingpage">
+   <div class="yingpage-head">
+    <div @click="yingback"><img src="../../static/img/lastpage.png" alt=""></div>
+    <div>全部影评</div>
     <div><h1>看过</h1></div>
    </div>
-   <h1>短评<span>{{msg.total}}</span>条</h1>
-   <div class="pingpage-all" v-for="item of msg.comments">
-       <div class="pingpage-img">
+   <h1>影评<span>{{msg.total}}</span>条</h1>
+   <div class="yingpage-all" v-for="item of msg.reviews">
+       <div class="yingpage-img">
          <img :src="getImage(item.author.avatar)" alt="">
        </div>
-       <div class="pingpage-text">
+       <div class="yingpage-text">
+        <h1>{{item.title}}</h1>
          <div class="text-top">
            <div>
              {{item.author.name}}
@@ -26,11 +27,12 @@
              <label>{{item.useful_count}}</label>
            </h4>
          </div>
-         <p>{{item.content}}</p>
+         <p :class="{'zhankai':flag}">{{item.content}}</p>
+         <h6><span @click="zhankai">{{ kai }}</span></h6>
        </div>
    </div>
-   <div class="foo2">
-       <p>(｡◕ˇ∀ˇ◕)</p >
+   <div class="foo3">
+       <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
    </div>
  </div>
 </template>
@@ -38,17 +40,17 @@
 <script>
 let jsonp = require('jsonp')
 export default {
-  name: 'pingpage',
+  name: 'yingpage',
   data() {
     return { // 在数据中接收
       id: this.$route.params.id,
       msg: {},
-      start:0,
-      scroll:0
+      kai:'展开',
+      flag:true
     }
   },
   methods: {
-    pingback() {
+    yingback() {
       history.back()
     },
     zan() {
@@ -62,21 +64,33 @@ export default {
       }
     },
     getData() {
-      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/comments?apikey=0b2bdeda43b5688921839c8ecb20399b&start="+this.start+"&count=20&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
+      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start=0&count=10000&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
         if (err) {
           console.error(err);
         } else {
           this.msg = data;
-          // console.log('全部短评页面打印');
+          // console.log('全部影评页面打印');
           // console.log(this.msg);
         }
       })
+    },
+    zhankai() {
+      if (this.flag) {
+        this.flag = false;
+        this.kai = '收起';
+      }else {
+        this.flag = true;
+        this.kai = '展开';
+      }
     }
   },
   created() {
     if (this.id) {
       this.getData();
     }
+  },
+  updated() {
+
   },
   watch: {
     '$route'(newdata,olddata) {
@@ -86,7 +100,7 @@ export default {
 }
 </script>
 <style lang="css">
-.pingpage-head {
+.yingpage-head {
   width: 100%;
   margin: 0 auto;
   height: 1rem;
@@ -98,11 +112,11 @@ export default {
   font-size: .3rem;
   font-weight: 900;
 }
-.pingpage-head div img {
+.yingpage-head div img {
   width: .5rem;
   height: .4rem;
 }
-.pingpage-head div h1 {
+.yingpage-head div h1 {
   width: .8rem;
   height: .5rem;
   line-height: .5rem;
@@ -113,24 +127,25 @@ export default {
   font-size: .2rem;
   color: gray;
 }
-.pingpage>h1 {
+.yingpage>h1 {
   width: 90%;
   margin: 0 auto;
   line-height: 1rem;
 }
-.pingpage-img img {
+.yingpage-img img {
+  margin-top: 1rem;
   width: .5rem;
   height: .5rem;
   border-radius: 50%;
 }
-.pingpage-all {
+.yingpage-all {
   margin: 0 auto;
   width: 90%;
   display: flex;
   justify-content:flex-start;
   align-items: flex-start;
 }
-.pingpage-text {
+.yingpage-text {
   width: 98%;
   margin-left: 2%;
 }
@@ -164,15 +179,43 @@ export default {
   width: .3rem;
   height: .3rem;
 }
-.pingpage-text>p {
+.yingpage-text>h1 {
+  width: 90%;
+  height: 1rem;
+  line-height: 1rem;
+  font-weight: 900;
+  font-size: .26rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.yingpage-text>p {
   width: 94%;
+  margin-bottom: .5rem;
   line-height: .7rem;
 }
-.foo2 {
+.zhankai {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.yingpage-text h6 {
+  width: 94%;
+  margin: 0 auto;
+  line-height: .8rem;
+  height: .8rem;
+  text-align: right;
+  color: green;
+  font-weight: 900;
+}
+
+.foo3 {
   width: 100%;
   height: 2rem;
 }
-.foo2 p {
+.foo3 p {
   width: 100%;
   text-align: center;
   line-height: 1rem;

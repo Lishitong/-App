@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <div v-for="(item,del) in objdate"    class="li"  >
+    <div v-for="(item,del) in objdate"    class="li"  @click="push(item.id)">
       <div class="div">
         <div class="img-box">
           <img :src="getImage(item.images.large)" alt="">
@@ -60,6 +60,11 @@ export default {
       if (url !== undefined) {
         return url.replace('https://', 'https://images.weserv.nl/?url=');
       }      
+    },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
     }
   }
 }

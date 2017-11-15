@@ -1,7 +1,7 @@
 <template lang="html">
 
   <div class="interested">
-    <h5>你可能感兴趣的</h5>
+    <h5>{{ fan }}</h5>
     <h3 v-if="bol" class="load">(◕ᴗ◕✿)</h3>
     <ul v-else>
       <li v-for="itemarr in arrbox">
@@ -33,7 +33,8 @@ export default {
       start:0,
       scroll:0,
       wait:true,
-      footer:false
+      footer:false,
+      fan:'你可能感兴趣的'
     }      
   },
   components:{
@@ -68,7 +69,7 @@ export default {
               }
 
                  this.bol=false
-                console.log(this.arrbox);
+                // console.log(this.arrbox);
                     
             }      
           })
@@ -76,12 +77,12 @@ export default {
 
     menu() {
     this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
-    console.log(this.scroll);
-    console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
+    // console.log(this.scroll);
+    // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
     if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {
-      console.log(this.start);
+      // console.log(this.start);
       this.start+=8;
-      console.log(this.start);
+      // console.log(this.start);
       this.getHero(this.start);
     }else if (this.start==88) {
       this.wait=false;

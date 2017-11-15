@@ -14,7 +14,7 @@
           </div>
         </h3>
         <h4>
-          <img src="../../static/img/zan.png" alt="">
+          <img src="../../static/img/zan.png" alt="" @click="zan">
           <label>{{item.useful_count}}</label>
         </h4>
      </h2>
@@ -46,21 +46,23 @@ export default {
       }
     },
     getData() {
-      jsonp("http://api.douban.com/v2/movie/subject/" + this.id + "?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          this.msg = data;
-          this.popular = data.popular_comments;
-          this.counts = data.comments_count;
-          this.rating = data.rating;
-          console.log(this.popular);
-        }
+      databus.$on('alldata',(data)=>{
+        this.msg = data;
+        this.popular = data.popular_comments;
+        this.counts = data.comments_count;
+        this.rating = data.rating;
+        // console.log('热门短评，bus传值');
+        // console.log(this.msg);
       })
     },
     pushping(item) {
       this.$router.push({
         path:'/pingpage/' + item
+      })
+    },
+    zan() {
+      this.$router.push({
+        path:'/login'
       })
     }
   },
@@ -69,9 +71,6 @@ export default {
       this.getData();
     }
   },
-  updated() {
-
-  },
   watch: {
     '$route'(newdata,olddata) {
       this.id = newdata.params.id;
@@ -79,7 +78,7 @@ export default {
   }
 }
 </script>
-<style lang="css" scoped>
+<style lang="css">
 .ping h1 {
   width: 90%;
   height: .9rem;

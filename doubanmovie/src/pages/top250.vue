@@ -60,6 +60,7 @@ export default {
         stars:[],
         fen:[],
         ping:[],
+        id:[],
         bu:'',
         tit:''
       },
@@ -69,6 +70,7 @@ export default {
         stars:[],
         fen:[],
         ping:[],
+        id:[],
         bu:'',
         tit:''
       },
@@ -78,6 +80,7 @@ export default {
         stars:[],
         fen:[],
         ping:[],
+        id:[],
         bu:'',
         tit:''
       },
@@ -111,6 +114,9 @@ export default {
           this.dat1.stars[x] = this.data1.subjects[x].rating.stars
           this.dat1.fen[x] = this.data1.subjects[x].rating.average
           this.dat1.ping[x] = this.data1.subjects[x].collect_count
+          console.log(data.subjects[x].id);
+          this.dat1.id[x] = data.subjects[x].id
+
         }
     });
     this.JSONP('https://api.douban.com/v2/movie/weekly?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
@@ -124,6 +130,7 @@ export default {
           this.dat2.stars[x] = this.data2.subjects[x].subject.rating.stars
           this.dat2.fen[x] = this.data2.subjects[x].subject.rating.average
           this.dat2.ping[x] = this.data2.subjects[x].subject.collect_count
+          this.dat2.id[x] = this.data2.subjects[x].subject.id
         }
     });
     this.JSONP('https://api.douban.com/v2/movie/us_box?apikey=0b2bdeda43b5688921839c8ecb20399b',null,(err,data) => {
@@ -137,6 +144,7 @@ export default {
           this.dat3.stars[x] = this.data3.subjects[x].subject.rating.stars
           this.dat3.fen[x] = this.data3.subjects[x].subject.rating.average
           this.dat3.ping[x] = this.data3.subjects[x].subject.collect_count
+          this.dat3.id[x] = this.data3.subjects[x].subject.id
         }
     });
   },
