@@ -3,7 +3,7 @@
     <div v-for="(item,del) in objdate"    class="li"  @click="push(item.id)">
       <div class="div">
         <div class="img-box">
-          <img :src="getImage(item.images.large)" alt="">
+          <img v-lazy="getImage(item.images.large)" alt="">
         </div>
 
         <div class="interested-info">
@@ -11,9 +11,7 @@
 
           <div class="director">
             <p>
-              <div class="stars">
 
-              </div>
               <span v-if="flagAver">{{item.rating.average}}</span>
             </p>
             <p>
@@ -72,7 +70,7 @@ export default {
 
 <style lang="css" scoped>
 .li{
-  /*position: relative;*/
+  position: relative;
 }
 .div{
   height:3.8rem;

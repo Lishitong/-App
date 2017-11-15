@@ -44,7 +44,8 @@ export default {
       id: this.$route.params.id,
       msg: {},
       start:0,
-      scroll:0
+      scroll:0,
+      obj:[]
     }
   },
   methods: {

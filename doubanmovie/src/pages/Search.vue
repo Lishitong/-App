@@ -3,13 +3,34 @@
       <div class="input-top">
         <div class="input">
           <img src="../../static/Search-search.png" alt="" >
-          <input type="text" name="val" value="" placeholder="搜索电影 / 电视剧 / 影人" ref="input1" @keyup="search()">
+          <input type="text" name="val" value="" placeholder="搜索电影 / 电视剧 / 影人" ref="input1"  @keyup="search()"
+          @keyup.enter="enter()">
           <img v-if="flagimg" class="del" src="../../static/del.png" alt="" @click="del()">
         </div>
         <span @click="back()">取消</span>
 
       </div>
-      <div class="ul">
+      <div class="hot" v-if="flagHot">
+        <div class="history">
+          <div class="nav" v-if="flaghistory">
+            <p >搜索历史</p>
+            <p>清除</p>
+          </div>
+          <div class="">
+
+          </div>
+
+        </div>
+        <div class="hot">
+          <p>热门搜索</p>
+          <ul>
+            <hotsearch></hotsearch>
+          </ul>
+
+        </div>
+
+      </div>
+      <div class="ul" v-if="ying">
         <p v-if="flag">影视</p>
         <ul>
           <li v-for="item in obj">
@@ -26,43 +47,82 @@
 
 
       </div>
+      <div class="" v-if="sear" >
+        <interestedLiCon v-for='aa in obj' :item="aa">
+
+        </interestedLiCon>
+      </div>
+
+
 
     </div>
 </template>
 
 <script>
-  export default {
-    data(){
-      return {
-        obj:[],
-        flag:false,
-        flagimg:false
-      }
-    },
-    methods:{
-      search(val){
-        this.flagimg=true;
-        this.JSONP('https://api.douban.com/v2/movie/search?q='+this.$refs.input1.value+'?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd', null, (err, data)=>{      
-          if (err) {      
-            console.error(err.message);      
-          } else {
-            this.flag=true;
-            console.log(data.subjects);
-            this.obj=data.subjects;
+import hotsearch from '../components/hotSearch'
+import interestedLiCon from './interestedLiCon'
+export default {
+  data() {
+    return {
+      obj: [],
+      flag: false,
+      flagimg: false,
+      flagHot: true,
+      flaghistory: true,
+      ying:false,
+      sear:false
+    }
+  },
+  components: {
+    hotsearch,
+    interestedLiCon
+  },
+  methods: {
+    se(){
+      this.JSONP('https://api.douban.com/v2/movie/search?q='+this.$refs.input1.value, null, (err, data) => {      
+        if (err) {      
+          console.error(err.message);      
+        } else {
+          this.flag = true;
+          console.log(data.subjects);
+          this.obj = data.subjects;
 
-          }
+        }
       })
+    },
+    search() {
+      this.flagimg = true;
+      this.se();
+      this.flagHot=false;
+      this.ying=true;
+      this.sear=false
+    },
+    enter(){
+      this.ying=false;
+      this.flagimg = true;
+      this.se();
+      this.sear=true
     },
     getImage(url) {
       if (url !== undefined) {
         return url.replace('https://', 'https://images.weserv.nl/?url=');
       }      
     },
-    del(){
-      this.$refs.input1.value=''
+    del() {
+      this.$refs.input1.value = ''
+      this.flagHot=true;
+      this.sear=false
     },
-    back(){
+    back() {
       history.back()
+    }
+  },
+  updated(){
+    console.log(this.$refs.input1.value);
+    if (this.$refs.input1.value == false) {
+      console.log('hh');
+      this.flagHot=true;
+      this.flagimg=false;
     }
   }
 
@@ -74,70 +134,86 @@
 
 
 <style lang="less" scoped>
-ul{
-  list-style:none;
+ul {
+    list-style: none;
 }
-.ul li{
-  height:1rem;
-  padding:0.2rem;
+.ul li {
+    height: 1rem;
+    padding: 0.2rem;
 }
-.ul li img{
-  width:1.5rem;
-  height:1.3rem;
+.ul li img {
+    width: 1.5rem;
+    height: 1.3rem;
 }
-.divright{
-  width:75%;
-  height:1rem;
-  float:right;
-  margin-top:.3rem;
-  display:inline-block;
+.divright {
+    width: 75%;
+    height: 1rem;
+    float: right;
+    margin-top: 0.3rem;
+    display: inline-block;
 }
-.ul p{
-  height:0.1rem;
-  font-size:0.3rem;
-  padding:.2rem;
-  color:#c7c7c7;
+.ul p {
+    height: 0.1rem;
+    font-size: 0.3rem;
+    padding: 0.2rem;
+    color: #c7c7c7;
 }
-.ul li h1{
-  font-size:.3rem;
-  font-weight:600;
+.ul li h1 {
+    font-size: 0.3rem;
+    font-weight: 600;
 }
-.input-top{
-  height:.6rem;
-  background:#42BB54;
-  padding:0.2rem .3rem;
+.input-top {
+    height: 0.6rem;
+    background: #42BB54;
+    padding: 0.2rem 0.3rem;
 }
-.input-top .input{
-  width:85%;
-  height:.6rem;
-  display:inline-block;
-  padding:0 0 0 .2rem;
-  border-radius:0.1rem;
-  background:white;
+.input-top .input {
+    width: 85%;
+    height: 0.6rem;
+    display: inline-block;
+    padding: 0 0 0 0.2rem;
+    border-radius: 0.1rem;
+    background: white;
 }
-.input-top>span{
-  color:white;
-  font-size:.33rem;
+.input-top > span {
+    color: white;
+    font-size: 0.33rem;
 }
-.input-top input{
-  width:80%;
-  height:.6rem;
-  color:black;
-  font-size:.3rem;
-  font-weight:100;
+.input-top input {
+    width: 80%;
+    height: 0.6rem;
+    color: black;
+    font-size: 0.3rem;
+    font-weight: 100;
 }
-.del{
-}
+.del {}
 ::-webkit-input-placeholder {
-    color:#C7C7C7;
+    color: #C7C7C7;
 }
 :-moz-placeholder {
-    color:#C7C7C7;
+    color: #C7C7C7;
 }
 ::-moz-placeholder {
-    color:#C7C7C7;
+    color: #C7C7C7;
 }
 :-ms-input-placeholder {
-    color:#C7C7C7;
+    color: #C7C7C7;
 }
+.nav {
+    display: flex;
+    justify-content:space-between;
+}
+.nav p{
+  padding:.2rem;
+  font-size:.24rem;
+}
+.nav p:nth-of-type(1){
+  color:gray;
+}
+.hot>p{
+  padding:.2rem;
+  font-size:.27rem;
+  color:gray;
+}
+
 </style>
