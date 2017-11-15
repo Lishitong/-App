@@ -8,7 +8,7 @@
         <interestedcon :message="itemarr"></interestedcon>
       </li>
     </ul>
-    <p class="wait" v-if="wait" @scroll="menu()">O(∩_∩)O哈哈~</p>
+    <p class="wait" v-if="wait" >O(∩_∩)O哈哈~</p>
     <div class="footer" v-if="footer">
       <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p>
     </div>
@@ -49,10 +49,10 @@ export default {
             } else {
               console.log(data);
               var a=data.subjects;
-              this.a=data.subjects;
+              // this.a=data.subjects;
 
               for (var i = 0; i < a.length; i++) {
-                this.obj.push(a[i]);
+                this.obj. push(a[i]);
                 this.obj.sort(function(){
                   return Math.random()-0.5
                 })

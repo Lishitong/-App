@@ -48,6 +48,10 @@ export default {
     return { // 在数据中接收
       id: this.$route.params.id,
       msg: {},
+
+      // start:0,
+      // scroll:0,
+      // obj:[]
       // start:0,
       // scroll:0,
       // load:true,

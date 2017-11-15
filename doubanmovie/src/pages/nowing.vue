@@ -97,7 +97,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .each-movie {
   position: relative;
   width:100%;
