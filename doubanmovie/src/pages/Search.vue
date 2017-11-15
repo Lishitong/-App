@@ -14,7 +14,11 @@
         <div class="history">
           <div class="nav" v-if="flaghistory">
             <p >搜索历史</p>
-            <p>清除</p>
+            <p @click="delt()">清除</p>
+
+          </div>
+          <div class="historyDiv" >
+            <span v-for="(s,inde) in value" :key="inde" @click="span(inde)">{{s}}</span>
           </div>
           <div class="">
 
@@ -48,7 +52,11 @@
 
       </div>
       <div class="" v-if="sear" >
-        <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a">
+
+        <interestedLiCon v-for='aa of obj' :item="aa">
+
+        <!-- <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a"> -->
+
 
         </interestedLiCon>
       </div>
@@ -70,7 +78,8 @@ export default {
       flagHot: true,
       flaghistory: true,
       ying:false,
-      sear:false
+      sear:false,
+      value:[]
     }
   },
   components: {
@@ -83,6 +92,7 @@ export default {
         if (err) {      
           console.error(err.message);      
         } else {
+          // console.log(that);
           this.flag = true;
           console.log(data.subjects);
           this.obj = data.subjects;
@@ -95,13 +105,32 @@ export default {
       this.se();
       this.flagHot=false;
       this.ying=true;
-      this.sear=false
+      this.sear=false;
+      if (this.$refs.input1.value == false) {
+        this.flagHot=true;
+        this.flagimg=false;
+      }
     },
     enter(){
       this.ying=false;
       this.flagimg = true;
       this.se();
-      this.sear=true
+      this.sear=true;
+      this.value.push(this.$refs.input1.value)
+    },
+    span(s){
+
+      // this.flagimg=false;
+      console.log(s);
+      this.$refs.input1.value=this.value[s];
+      this.flagHot=false;
+      this.ying=false;
+      this.flagimg = true;
+      this.se();
+      this.sear=true;
+    },
+    delt(){
+      this.value=[]
     },
     getImage(url) {
       if (url !== undefined) {
@@ -111,7 +140,8 @@ export default {
     del() {
       this.$refs.input1.value = ''
       this.flagHot=true;
-      this.sear=false
+      this.sear=false;
+      console.log(this.value);
     },
     back() {
       history.back()
@@ -120,7 +150,6 @@ export default {
   updated(){
     console.log(this.$refs.input1.value);
     if (this.$refs.input1.value == false) {
-      console.log('hh');
       this.flagHot=true;
       this.flagimg=false;
     }
@@ -214,6 +243,14 @@ ul {
   padding:.2rem;
   font-size:.27rem;
   color:gray;
+}
+.historyDiv{
+  padding:.2rem;
+}
+.historyDiv span{
+  display:inline-block;
+  padding-right:.3rem;
+  font-size:.24rem;
 }
 
 
