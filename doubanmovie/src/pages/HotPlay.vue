@@ -2,7 +2,7 @@
     <div class="out">
       <swiper />
       <div class="wrap">
-        <router-link to="/HotPlay/nowing">正在热映</router-link>
+        <router-link to="/HotPlay/nowing" :class="{'router-link-active':ok}">正在热映</router-link>
         <router-link to="/HotPlay/loading">即将上映</router-link>
       </div>
         <router-view/>
@@ -13,8 +13,18 @@
 import swiper from './swiper'
 export default {
   name:'now',
+  data(){
+    return {
+      ok:true
+    }
+  },
   components:{
     swiper
+  },
+  watch:{
+    '$route'(newValue,oldValue){
+          this.ok=false;
+    }
   }
 }
 </script>

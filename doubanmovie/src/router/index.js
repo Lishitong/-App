@@ -21,6 +21,8 @@ const ying = () =>
     import ( /* webpackChunkName: "ying" */ '../components/ying.vue')
 const pingpage = () =>
     import ( /* webpackChunkName: "pingpage" */ '../components/pingpage.vue')
+const per = () =>
+    import ( /* webpackChunkName: "Citys" */ '../components/per.vue')
 const wantSee = () =>
     import ( /* webpackChunkName: "Mine" */ '../pages/wantSee.vue')
 const nowSee = () =>
@@ -82,6 +84,7 @@ const routes = [{
             { path: '/movxiangqing/lun/:id', component: lun }
         ]
     },
+    { path: '/per/:id',component:per},
     { path: '/pingpage/:id', component: pingpage },
     { path: '/ying/:id', component: ying },
     {
