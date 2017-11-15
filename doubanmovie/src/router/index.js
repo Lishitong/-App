@@ -11,11 +11,11 @@ import Nowing from '../pages/nowing'
 import Loading from '../pages/loading'
 // 正在热映详情
 import movxiangqing from '../components/movxiangqing'
+import zhuanti250 from '../components/zhuanti250'
 import ping from '../components/ping'
 import lun from '../components/lun'
 import ying from '../components/ying'
 import pingpage from '../components/pingpage'
-
 import wantSee from '../pages/wantSee'
 import nowSee from '../pages/nowSee'
 import sew from '../pages/sew'
@@ -64,7 +64,21 @@ const routes = [
     },
     { path: '/FindMovie', component: FindMovie },
     { path: '/Mine', component: Mine },
-
+    { path: '/movxiangqing:id', component:movxiangqing},
+    { path: '/Mine', component: Mine,children:[
+      {path:'/',component:wantSee},
+      {path:'/Mine/wantSee',component:wantSee},
+      {path:'/Mine/nowSee',component:nowSee},
+      {path:'/Mine/sew',component:sew},
+      {path:'/Mine/seeSpeak',component:seeSpeak},
+      {path:'/Mine/movieMen',component:movieMen}
+    ]},
+  {path:'/shezhi',component:shezhi},
+  {path:'/login',component:login},
+  {path:'/zhuantiremen',component:zhuantiremen},
+  {path:'/suggest',component:suggest},
+  {path:'/howSee',component:howSee},
+  {path:'/zhuanti250/:id',component:zhuanti250},
     {
         path: '/movxiangqing/:id',
         component: movxiangqing,

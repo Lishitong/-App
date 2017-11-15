@@ -1,12 +1,6 @@
 <template lang="html">
-  <div @scroll="asd()" class="zhuantiremen">
-    <div class="zh-top">
-      <div>
-        <img @click="back" src="./../../static/arrow.png" alt="">
-        <span>豆瓣热门</span>
-      </div>
-      <img src="./../../static/share.png" alt="">
-    </div>
+  <div class="zhuantiremen">
+    <back :title="'豆瓣热门'"></back>
     <div class="zh-bottom">
       <ul>
         <li v-for="(x,index) in data.length">
@@ -30,6 +24,7 @@
 </template>
 
 <script>
+import back from './../components/back.vue'
 export default {
   name:'zhuantiremen',
   data(){
@@ -47,11 +42,10 @@ export default {
       },
     }
   },
+  components:{
+    back
+  },
   methods:{
-    asd(){console.log('asd');},
-    back(){
-      history.back();
-    },
     reStar(in1,in2){
       if (in2*10<in1-5) {
         return "../../static/star1.png"
@@ -112,29 +106,10 @@ export default {
 
 <style lang="less" scoped>
   .zhuantiremen{
-    .zh-top{
-      background-color:#fff;
-      width: 100%;
-      position: fixed;
-      z-index:2;
-      top: 0;
-      height: .8rem;
-      border-bottom:1px solid #ccc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      div{
-        display: flex;
-        align-items: center;
-      }
-      span{
-        font-size: .25rem;
-      }
-      img{
-        width: .3rem;
-        height: .3rem;
-        margin: 0 .2rem;
-      }
+    .star{
+      float: left;
+      width: .27rem;
+      height: .27rem;
     }
     .zh-bottom{
       h2{

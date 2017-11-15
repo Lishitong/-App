@@ -4,7 +4,7 @@
      <div class="perping" v-for="item of popular">
       <h2>
         <h3>
-          <img :src="getImage(item.author.avatar)" alt="">
+          <img v-lazy="getImage(item.author.avatar)" alt="">
           <span>{{item.author.name}}</span>
           <div class="stars" >
               <img src="../../static/img/gray.png" alt="">
