@@ -14,7 +14,7 @@
     </div>
     <div class="main" v-if="bol">
       <ul>
-        <li v-for="(x,index) in dat.rank.length">
+        <li v-for="(x,index) in dat.rank.length" @click="push(id[index])">
           <div class="ma-top">
             <span class="gang"></span>
             <span>{{dat.rank[index]}}</span>
@@ -60,7 +60,8 @@ export default {
         rank: [],
         delta: [],
         sub: []
-      }
+      },
+      id:[]
     }
   },
   components: {
@@ -80,14 +81,21 @@ export default {
       this.JSONP('https://api.douban.com/v2/movie/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&count=50&start=' + start, null, (err, data) => {
         this.bol = true
         this.title = data.title
+        console.log(data);
         console.log(start);
         for (let i = 0; i < data.subjects.length; i++) {
           this.dat.sub.splice(i, 1, data.subjects[i])
           this.dat.rank.splice(i, 1, i + 1 + start)
           this.dat.delta.splice(i, 1, data.subjects.length - i)
+          this.id[i] = data.subjects[i].id
         }
       })
       console.log(this.dat);
+    },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
     },
     getImage(url) {
       if (url !== undefined) {
@@ -123,12 +131,14 @@ export default {
       this.JSONP('https://api.douban.com/v2/movie/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&', null, (err, data) => {
         this.bol = true
         this.title = data.title
+        console.log('mmmm');
         console.log(data);
         for (let i = 0; i < data.subjects.length; i++) {
           console.log(1);
           this.dat.sub[i] = data.subjects[i].subject
           this.dat.rank[i] = data.subjects[i].rank
           this.dat.delta[i] = data.subjects[i].delta
+          this.id[i] = data.subjects[i].subject.id
           console.log(this.dat.sub[i]);
         }
       })
