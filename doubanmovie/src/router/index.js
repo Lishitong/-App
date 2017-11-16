@@ -61,7 +61,12 @@ const Citys = () =>
     import ( /* webpackChunkName: "Citys" */ '../components/Citys.vue')
 const zhuanti250 = () =>
     import ( /* webpackChunkName: "Citys" */ '../components/zhuanti250.vue')
-
+const register = () =>
+    import ( /* webpackChunkName: "login" */ '../pages/register.vue')
+const losePassword = () =>
+    import ( /* webpackChunkName: "login" */ '../pages/losePassword.vue')
+const myfil = () =>
+    import ( /* webpackChunkName: "shezhi" */ '../pages/myfil.vue')
 Vue.use(Router)
 const routes = [{
         path: '/',
@@ -114,6 +119,9 @@ const routes = [{
     { path: '/zhuantiremen', component: zhuantiremen },
     { path: '/suggest', component: suggest },
     { path: '/howSee', component: howSee },
+    { path: '/register', component: register },
+    { path: '/losePassword', component: losePassword },
+    { path: '/myfil', component:myfil},
     { path: '/why', component: why },
     { path: '/howWatch', component: howWatch },
     { path: '/feedBack', component: feedBack },

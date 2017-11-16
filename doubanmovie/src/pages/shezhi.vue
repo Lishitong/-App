@@ -31,7 +31,7 @@
     </div>
     <div class="wrap" v-if="bol">
       <div class="alertbox">
-        <p>是否清楚缓存</p>
+        <p>是否清除缓存</p>
         <button type="button" name="button1" @click="clearCookie()">是</button>
         <button type="button" name="button2" @click="closeBox()">否</button>
       </div>

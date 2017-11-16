@@ -18,12 +18,14 @@
       <img src="../../static/wilPut.png" alt="">
       <div class="call">
         <span>联系方式</span>
-        <input type="text" name="" placeHolder="手机或者邮箱都可以哦">
+        <input type="text" name="" ref="textCT"  placeHolder="手机或者邮箱都可以哦">
       </div>
-      <button type="button" name="button">提交</button>
+      <button type="button" name="button" @click="gologin()">提交</button>
 
     </footer>
+      <p class="unlogin" v-if="unlogin">提交成功</p>
   </div>
+
 </template>
 
 <script>
@@ -47,8 +49,8 @@ export default {
 
                      ],
                      changeRed:0,
-                     tshow:false
-
+                     tshow:false,
+                     unlogin:false
     }
   },
   methods:{
@@ -67,9 +69,20 @@ export default {
     },
     reds:function(index,img){
                    this.changeRed = index;
+               },
+               gologin(){
+
+                       this.unlogin = true;
+                       this.$refs.textC.value="";
+                       this.$refs.textCT.value="";
+                       setTimeout(()=>{
+                         this.unlogin = false;
+                       },1500)
+
                }
 
-  }
+  },
+
 }
 </script>
 
@@ -194,5 +207,21 @@ footer button{
   font-size: .3rem;
   width: 60%;
   margin-left: 20%;
+}
+.unlogin{
+  position: absolute;
+  left: 50%;
+  margin-left: -2.5rem;
+  top: 50%;
+  margin-top: -3rem;
+  width: 3rem;
+  height: 2rem;
+  padding: 1rem;
+  background-color: #F9F9F9;
+  border-radius: .4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: .26rem;
 }
 </style>
