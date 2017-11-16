@@ -1,0 +1,77 @@
+<template lang="html">
+  <div class="fen">
+    <div class="fentop">
+      <div class="f">
+        <img src="../../static/fen/dou.png" alt="">
+        <p>豆瓣</p>
+      </div>
+      <div class="f">
+        <img src="../../static/fen/qq.png" alt="">
+        <p>QQ</p>
+      </div>
+      <div class="f">
+        <img src="../../static/fen/kong.png" alt="">
+        <p>QQ空间</p>
+      </div>
+      <div class="f">
+        <img src="../../static/fen/wei.png" alt="">
+        <p>微信</p>
+      </div>
+    </div>
+    <div class="fentop">
+      <div class="f">
+        <img src="../../static/fen/fu.png" alt="">
+        <p>复制</p>
+      </div>
+      <div class="f">
+        <img src="../../static/fen/bo.png" alt="">
+        <p>微博</p>
+      </div>
+      <div class="f">
+        <img src="../../static/fen/liu.png" alt="">
+        <p>QQ浏览器</p>
+      </div>
+      <div class="f">
+        <img src="../../static/fen/bai.png" alt="">
+        <p>百度云</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="css">
+.fen {
+  width: 100%;
+  background: #ffe;
+  font-size: .2rem;
+}
+.fentop {
+  width: 100%;
+  height: 2rem;
+  margin-top: .2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: .01rem solid #ddd;
+}
+.fentop .f {
+  height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: gray;
+}
+.fentop .f img {
+  border: .01rem solid #ddd;
+  border-radius: .1rem;
+  width: 1rem;
+  height: 1rem;
+}
+</style>

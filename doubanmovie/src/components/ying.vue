@@ -9,7 +9,7 @@
    <div class="yingpagedata" v-for="item of msg.reviews">
      <yingpagedata :yingpagedata="item"></yingpagedata>
    </div>
-   <div class="foo3">
+   <div class="foo4">
        <p>(｡◕ˇ∀ˇ◕)</p >
    </div>
    <goTop></goTop>
@@ -44,35 +44,14 @@ export default {
         } else {
           this.msg = data;
           this.num = data.reviews.length;
-          // console.log('全部影评页面打印');
-          // console.log(this.msg);
-          // console.log(data.reviews);
         }
       })
-    },
-    // menu() {
-    // this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
-    // console.log(this.scroll);
-    // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
-    // if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {
-      // console.log(this.start);
-      // this.start+=8;
-      // console.log(this.start);
-  //     this.getData(this.start);
-  //   }else if (this.start==88) {
-  //     this.wait=false;
-  //     this.footer=true;
-  //   }
-  //  }
-
+    }
   },
   created() {
     if (this.id) {
       this.getData();
     }
-  },
-  updated() {
-
   },
   watch: {
     '$route'(newdata,olddata) {
@@ -120,11 +99,11 @@ export default {
   line-height: 1rem;
 }
 
-.foo3 {
+.foo4 {
   width: 100%;
   height: 1rem;
 }
-.foo3 p {
+.foo4 p {
   width: 100%;
   text-align: center;
   line-height: 1rem;
