@@ -20,7 +20,7 @@
           <p><span>{{ msg.year }}/</span><span>{{ countries[0] }}/</span><span v-for="item of msg.genres">{{ item }}/</span></p>
           <p>原名：{{ msg.original_title }}</p>
           <p>上映时间：{{pubdates[0]}}</p>
-          <p>片长：{{msg.photos_count}}分钟</p>
+          <p>片长：{{durations}}</p>
         </div>
         <div class="stars-zong">
           <p>豆瓣评分</p>
@@ -123,7 +123,8 @@ export default {
       reviews:{},
       fireT:false,
       au:false,
-      fa: true
+      fa: true,
+      durations:''
     }
   },
   methods: {
@@ -168,6 +169,7 @@ export default {
           this.directors = data.directors;
           this.casts = data.casts;
           this.reviews = data.popular_reviews;
+          this.durations = data.durations[0];
           if (this.rating.average == 0) {
             this.rating.average = '';
             this.flag = true,
@@ -180,8 +182,8 @@ export default {
           }else {
             this.fireT = false;
           }
-          // console.log('movexiangqingye打印');
-          // console.log(this.msg);
+          console.log('movexiangqingye打印');
+          console.log(this.msg);
           // 传值
           databus.$emit('alldata',this.msg);
         }
