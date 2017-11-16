@@ -125,7 +125,6 @@ export default {
           this.dat1.stars[x] = this.data1.subjects[x].rating.stars
           this.dat1.fen[x] = this.data1.subjects[x].rating.average
           this.dat1.ping[x] = this.data1.subjects[x].collect_count
-          console.log(data.subjects[x].id);
           this.dat1.id[x] = data.subjects[x].id
 
         }

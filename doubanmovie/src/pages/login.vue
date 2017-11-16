@@ -76,8 +76,19 @@ export default {
       //     document.cookie="u=8";
       //     // document.cookie="pas=1";
       // }
-      this.setCookie('user',this.$refs.loginUserName.value,30)
-      this.setCookie('pwd',this.$refs.loginPassWord.value,30)
+
+
+      this.JSONP('http://localhost:8888?user='+this.$refs.loginUserName.value + '&pwd=' + this.$refs.loginPassWord.value,(err, data)=>{
+        data = JSON.parse(data)
+        if (data.status == 1) {
+          this.setCookie('user',this.$refs.loginUserName.value,30)
+          this.setCookie('pwd',this.$refs.loginPassWord.value,30)
+          console.log('登陆成功')
+        }else {
+          console.log('登陆失败')
+        }
+      })
+
     },
     ll(){
       console.log(this.getCookie('user'));

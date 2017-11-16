@@ -30,8 +30,6 @@ export default {
         let inde = city.match(cityRex).index;
         let newCity = city.substr(0, inde)
         this.localCity = newCity;
-      }else{
-        console.log(false);
       }
     })
   }
