@@ -10,21 +10,17 @@
       <div class="succ login" v-else>
         <img class="loginImg" src="../../static/men.jpg" alt="">
         <span id="loginSpan">{{user}}</span>
+         <div v-if="myfiles" class="myfiles" @click="myfil()"> <img src="../../static/myfile.png" alt="">我的电影票</div>
       </div>
     </div>
-
-
       <div class="Sees">
-        <router-link :class="{'router-link-active':ok}"   class="  See" to='/Mine/wantSee'>想看</router-link>
+        <router-link :class="{'router-link-active':ok}"   class="See" to='/Mine/wantSee'>想看</router-link>
         <router-link class="See" to="/Mine/nowSee">在看</router-link>
         <router-link class="See" to="/Mine/sew">看过</router-link>
         <router-link class="See" to="/Mine/seeSpeak">影评</router-link>
         <router-link class="See" to="/Mine/movieMen">影人</router-link>
       </div>
       <router-view></router-view>
-
-
-
 </div>
 </template>
 
@@ -35,7 +31,8 @@
       return {
         bol:false,
         ok:true,
-        user:''
+        user:'',
+        myfiles:false
       }
   },
   methods:{
@@ -50,6 +47,9 @@
       exdate.setDate(exdate.getDate()+expiredays)
       document.cookie=c_name+ "=" +escape(value)+
       ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    },
+  myfil(){
+      this.$router.push({path:'/myfil'})
     },
     getCookie(c_name){
     if (document.cookie.length>0)
@@ -80,7 +80,8 @@
     created(){
       if (this.getCookie('user')!='') {
         this.bol = true,
-        this.user = this.getCookie('user')
+        this.user = this.getCookie('userId'),
+        this.myfiles = true
       }
     }
 
@@ -102,12 +103,22 @@
     background:url('../../static/dbminebg.png')  no-repeat;
     background-size: 100% 3rem;
   }
+  .myfiles{
+    margin-left: 1.2rem;
+    margin-top: -.2rem;
+    padding-top: .1rem;
+    color: #fff;
+    border-top: .03rem  solid #fff;
+    font-size:.2rem;
+    width: 40%;
+    display: inline-block;
+  }
   .login{
     padding:.8rem;
   }
   .loginImg{
-    width:.8rem;
-    height:.8rem;
+    width:1.2rem;
+    height:.1.2rem;
     vertical-align:middle;
     border-radius: 50%
   }

@@ -1,10 +1,10 @@
 <template>
-<div>
+<div id="swiper">
 <swiper :options="swiperOption" ref="mySwiperA">
   <swiper-slide class="slide0"></swiper-slide>
   <swiper-slide class="slide1"></swiper-slide>
   <swiper-slide class="slide2"></swiper-slide>
-  <div class="swiper-pagination" slot="pagination"></div>
+  <div class="swiper-pagination" slot="pagination"><span></span><span></span><span></span></div>
 </swiper>
 </div>
 </template>
@@ -18,7 +18,8 @@ require('swiper/dist/css/swiper.css')
           autoplayDisableOnInteraction : false,
           direction : 'horizontal',
           pagination : '.swiper-pagination',
-          loop:true
+          loop : true,
+          paginationClickable :true
       }
     }
   }

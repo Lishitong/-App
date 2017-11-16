@@ -1,7 +1,7 @@
 <template>
   <div id="not">
     <h1>404</h1>
-    <h3 @click="inde">返回首页</h3>
+    <h3 @click="inde">返回</h3>
   </div>
 
 </template>
@@ -10,9 +10,7 @@
   export default {
     methods:{
       inde(){
-        this.$router.replace({
-          path:'/HotPlay'
-        })
+        this.$router.back()
       }
     }
   }

@@ -2,7 +2,7 @@
     <div class="out">
       <swiper />
       <div class="wrap">
-        <router-link to="/HotPlay/nowing" :class="{'router-link-active' : ok }">正在热映</router-link>
+        <router-link to="/HotPlay/nowing" :class="{'router-link-active':ok}">正在热映</router-link>
         <router-link to="/HotPlay/loading">即将上映</router-link>
       </div>
         <router-view/>
@@ -15,15 +15,15 @@ export default {
   name:'now',
   data(){
     return {
-      ok : true
+      ok:true
     }
   },
   components:{
     swiper
   },
   watch:{
-    '$route'(a, b){
-        this.ok = false
+    '$route'(newValue,oldValue){
+          this.ok=false;
     }
   }
 }
