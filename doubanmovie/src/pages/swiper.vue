@@ -4,7 +4,7 @@
   <swiper-slide class="slide0"></swiper-slide>
   <swiper-slide class="slide1"></swiper-slide>
   <swiper-slide class="slide2"></swiper-slide>
-  <div class="swiper-pagination" slot="pagination"><span></span><span></span><span></span></div>
+  <div class="swiper-pagination" slot="pagination"></div>
 </swiper>
 </div>
 </template>

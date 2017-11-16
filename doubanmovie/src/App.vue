@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <TabBar />
+    <keep-alive><TabBar /></keep-alive>
   </div>
 </template>
 
