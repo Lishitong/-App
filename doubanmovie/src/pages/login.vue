@@ -1,37 +1,41 @@
 <template lang="html">
-    <div class=" all">
+    <div class=" all" @click="show()">
       <nav>
           <img src="../../static/loginback.png" @click="back" alt="">
           <span v-if="logindb">登录豆瓣</span>
       </nav>
+      <transition name="bounce">
+        <p v-if="shows" ref="pleasePut" class="pleasePut">{{msg}}</p>
+      </transition>
 
       <main>
         <p class='welcomedb' v-show="welcome">欢迎来到豆瓣</p>
-        <input ref="loginUserName"  @click="anim()" @blur="show()" id='loginUserName' type="text" name="user" value="" placeholder="手机 / 邮箱">
-        <input ref="loginPassWord" @click="anim()" @blur="show()" id ="loginPassWord" type="password" name="pwd" value="" placeholder="密码">
-        <button type="button"  @click="loginOn()" class="loginin" name="button">登录</button>
+        <input ref="loginUserName"  @click.stop="anim()" id='loginUserName' type="text" name="user" value="" placeholder="手机 / 邮箱">
+        <input ref="loginPassWord" @click.stop="anim()"  id ="loginPassWord" type="password" name="pwd" value="" placeholder="密码">
+        <button type="button"  @click.stop="loginOn()" class="loginin" name="button">登录</button>
         <div class="enroll">
-          <span @click="ll()">注册豆瓣</span>
+          <span @click="register('register')">注册豆瓣</span>
           <span>|</span>
-          <span>忘记密码</span>
+          <span @click="losepassword('losepassword')">忘记密码</span>
         </div>
 
       </main>
       <footer>
 
           <img src="../../static/weibo.png" alt="">
-          <span>微博登录</span>
+          <span @click.stop="ulogin" >微博登录</span>
 
 
         <span>|</span>
 
           <img src="../../static/weixin.png" alt="">
-          <span>微信登录</span>
+          <span @click.stop="ulogin">微信登录</span>
 
 
       </footer>
+      <p class="unlogin" v-if="unlogin">该登录接口暂未开放，敬请期待！</p>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -40,7 +44,10 @@ export default {
     return {
       logindb:false,
       welcome:true,
-      footer:true
+      footer:true,
+      unlogin:false,
+      shows:false,
+      msg:'请输入用户名密码'
     }
   },
   methods:{
@@ -67,20 +74,36 @@ export default {
         }
       return ""
     },
-    loginOn(){
+    loginOn(Mine){
+      console.log(this.$refs);
+      let rm = /^[a-zA-Z0-9_-]{4,16}$/;
+          if(this.$refs.loginUserName.value ==""){
+            this.msg ="请输入账号";
+          }
+        
+          else if(this.$refs.loginPassWord.value ==""){
+          this.msg ="请输入密码";
+          }
+          else if( !rm.test(this.$refs.loginPassWord.value)){
+            this.msg="请输入正确的密码";
+          }
+          else {
+            this.msg="登录成功"
+            this.$router.push({path:'/Mine'})
 
-      //   console.log(this.$refs.loginUserName.value)
-      // if(this.$refs.loginUserName.value=="douer"&&this.$refs.loginPassWord.value=="go"){
-      //   // alert('fafafa')
-      //     this.$router.push({path:'/Mine'});
-      //     document.cookie="u=8";
-      //     // document.cookie="pas=1";
-      // }
+
+          }
+
+
+      this.shows =true;
+      setTimeout(()=>{
+        this.shows = false;
+      },1500)
       this.setCookie('user',this.$refs.loginUserName.value,30)
       this.setCookie('pwd',this.$refs.loginPassWord.value,30)
     },
-    ll(){
-      console.log(this.getCookie('user'));
+    register(register){
+      this.$router.push({path:"/register"});
 
     },
     anim(){
@@ -92,6 +115,15 @@ export default {
       this.welcome=true;
       this.logindb=false;
 
+    },
+    ulogin(){
+          this.unlogin = true;
+          setTimeout(()=>{
+            this.unlogin = false;
+          },1500)
+    },
+    losepassword(losepassword){
+      this.$router.push({path:'/losepassword'})
     }
   }
 }
@@ -122,11 +154,42 @@ export default {
     vertical-align: bottom;
     display: inline-block;
   }
+  .pleasePut{
+    width: 40%;
+    margin-left: 30%;
+    height: .5rem;
+    text-align: center;
+    line-height:.5rem;
+    background-color: #F66028;
+    color: #fff;
+    border-radius: .4rem;
+    position: absolute;
+    left: 0;
+    top: 10%;
+  }
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
   main{
     width: 90%;
     margin-left: 5%;
     text-align: center;
     height: 8rem;
+    margin-top: 1rem;
 
   }
   main .welcomedb{
@@ -197,6 +260,22 @@ export default {
     width: .34rem;
     height: .34rem;
 
+  }
+  .unlogin{
+    position: absolute;
+    left: 50%;
+    margin-left: -2.5rem;
+    top: 50%;
+    margin-top: -3rem;
+    width: 3rem;
+    height: 2rem;
+    padding: 1rem;
+    background-color: #F9F9F9;
+    border-radius: .4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: .26rem;
   }
 
 </style>

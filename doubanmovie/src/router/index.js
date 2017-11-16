@@ -25,7 +25,9 @@ import login from '../pages/login'
 import zhuantiremen from '../pages/zhuantiremen'
 import suggest from '../pages/suggest'
 import howSee from '../pages/howSee'
-
+import register from '../pages/register'
+import losePassword from '../pages/losePassword'
+import myfil from '../pages/myfil'
 import why from '../pages/why'
 import howWatch from '../pages/howWatch'
 import feedBack from '../pages/feedBack'
@@ -35,6 +37,7 @@ import whyOpendb from '../pages/whyOpendb'
 import Search from '../pages/Search'
 import LocalCity from '../pages/LocalCity'
 import Citys from '../components/Citys'
+
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Router)
@@ -79,7 +82,7 @@ const routes = [
         path: '/Mine',
         component: Mine,
         children: [
-            { path: '/', component: wantSee },
+            { path: '/Mine', component: wantSee },
             { path: '/Mine/wantSee', component: wantSee },
             { path: '/Mine/nowSee', component: nowSee },
             { path: '/Mine/sew', component: sew },
@@ -100,6 +103,10 @@ const routes = [
     { path: '/zhuantiremen', component: zhuantiremen },
     { path: '/suggest', component: suggest },
     { path: '/howSee', component: howSee },
+    { path: '/register', component: register },
+    { path: '/losePassword', component: losePassword },
+    { path: '/myfil', component:myfil},
+
 
 
 
