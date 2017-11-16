@@ -11,7 +11,6 @@
     </main>
     <footer>
       <p @click="whyOpendb(whyOpendb)">开源许可</p>
-
     </footer>
   </div>
 
@@ -25,7 +24,12 @@ export default {
       history.back()
   },
   whyOpendb(whyOpendb){
-    this.$router.push({path:'/whyOpendb'})
+    this.$router.push(
+      {
+        path:'/whyOpendb',
+        component: resolve => require(['../pages/whyOpendb.vue'], resolve)
+      }
+    )
   }
   }
 }

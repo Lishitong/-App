@@ -1,14 +1,14 @@
 <template lang="html">
 
   <div class="interested">
-    <h5>你可能感兴趣的</h5>
+    <h5>{{ fan }}</h5>
     <h3 v-if="bol" class="load">(◕ᴗ◕✿)</h3>
     <ul v-else>
-      <li v-for="itemarr in arrbox">
+      <li v-for="(itemarr, index) in arrbox" :key="index">
         <interestedcon :message="itemarr"></interestedcon>
       </li>
     </ul>
-    <p class="wait" v-if="wait" @scroll="menu()">O(∩_∩)O哈哈~</p>
+    <p class="wait" v-if="wait" >O(∩_∩)O哈哈~</p>
     <div class="footer" v-if="footer">
       <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p>
     </div>
@@ -33,7 +33,8 @@ export default {
       start:0,
       scroll:0,
       wait:true,
-      footer:false
+      footer:false,
+      fan:'你可能感兴趣的'
     }      
   },
   components:{
@@ -45,14 +46,14 @@ export default {
           this.JSONP('https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&count=8&start='+this.start+'&client=somemessage&udid=dddddddddddddddddddddd', null, (err, data)=>{ 
                 
             if (err) {      
-              console.error(err.message);      
+              // console.error(err.message);      
             } else {
               console.log(data);
               var a=data.subjects;
-              this.a=data.subjects;
+              // this.a=data.subjects;
 
               for (var i = 0; i < a.length; i++) {
-                this.obj.push(a[i]);
+                this.obj. push(a[i]);
                 this.obj.sort(function(){
                   return Math.random()-0.5
                 })

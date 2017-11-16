@@ -1,18 +1,18 @@
 <template lang="html">
-    <div class="xq">
+    <div class="xq" :class="{'au':au}">
       <div class="xq-box">
         <div class="xq-top">
           <h1 class="lastpage" @click="back"></h1>
-          <div class="fire">
+          <div class="fire" :class="{'firexian':fireT}">
             <img src="../../static/img/fire.png" alt="">
             <span><label>{{ msg.reviews_count }}</label>人正在热议 ></span>
           </div>
           <div class="baomihua">
             <img src="../../static/img/baomihua.png" alt="">电影
           </div>
-          <h1 class="zhuanfa"></h1>
+          <h1 class="zhuanfa" @click="zhuanfa"></h1>
         </div>
-        <img :src="getImage(images.medium)" alt="">
+        <img v-lazy="getImage(images.medium)" alt="">
       </div>
       <div id="xq-text">
         <div class="xq-text">
@@ -54,13 +54,13 @@
         <h1>影人</h1>
         <div class="yingimg">
            <div class="yingbig">
-             <div class="yinbox" v-for="item of directors">
-               <img  :src="getImage(item.avatars.large)" alt="">
+             <div class="yinbox" v-for="item of directors" @click="pushperson(item.id)">
+               <img  v-lazy="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>导演</p>
              </div>
-             <div class="yinbox"  v-for="item of casts">
-               <img :src="getImage(item.avatars.large)" alt="">
+             <div class="yinbox"  v-for="item of casts" @click="pushperson(item.id)">
+               <img v-lazy="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>英文名：{{item.name_en}}</p>
              </div>
@@ -72,7 +72,7 @@
          <div class="juzhaoimg">
            <div class="juzhaobox">
              <div class="jz" v-for="item of msg.photos">
-               <img :src="getImage(item.image)" alt="">
+               <img v-lazy="getImage(item.image)" alt="">
              </div>
            </div>
          </div>
@@ -91,16 +91,21 @@
         </div>
         <h2  @click="ying(id)">全部影评{{msg.reviews_count}}条</h2>
       </div>
-      <div class="footer">
+      <div class="foo1">
           <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p >
       </div>
+      <goTop></goTop>
     </div>
 </template>
 
 <script>
+import goTop from './gotop'
 let jsonp = require('jsonp')
 export default {
   name: 'movxiangqing',
+  components:{
+    goTop
+  },
   data() {
     return { // 在数据中接收
       id: this.$route.params.id,
@@ -115,7 +120,10 @@ export default {
       kai:'展开',
       directors:{},
       casts:{},
-      reviews:{}
+      reviews:{},
+      fireT:false,
+      au:false,
+      fa: true
     }
   },
   methods: {
@@ -123,6 +131,11 @@ export default {
       if (url !== undefined) {
         return url.replace('http://', 'https://images.weserv.nl/?url=');
       }
+    },
+    pushperson(item) {
+      this.$router.push({
+        path:'/per/' + item
+      })
     },
     ying(item) {
       this.$router.push({
@@ -132,11 +145,21 @@ export default {
     back() {
       history.back()
     },
+    zhuanfa() {
+      if(this.fa) {
+        this.fa = false;
+        this.au = true;
+      }else {
+        this.fa = true;
+        this.au = false;
+      }
+    },
     getData() {
       jsonp("http://api.douban.com/v2/movie/subject/" + this.id + "?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
         if (err) {
           console.error(err);
         } else {
+          console.log(data);
           this.msg = data;
           this.images = data.images;
           this.countries = data.countries;
@@ -149,6 +172,13 @@ export default {
             this.rating.average = '';
             this.flag = true,
             this.flag1 = false;
+          }
+          // 正在热议
+          // this.msg.reviews_count = 0
+          if (this.msg.reviews_count == 0) {
+            this.fireT = true;
+          }else {
+            this.fireT = false;
           }
           // console.log('movexiangqingye打印');
           // console.log(this.msg);
@@ -185,7 +215,7 @@ export default {
   }
 }
 </script>
-<style lang="css">
+<style lang="css" >
 .xq-box{
   width: 100%;
   height: 7rem;
@@ -208,6 +238,7 @@ export default {
 .baomihua {
   font-size: .3rem;
   font-weight: 900;
+  color: #fff;
 }
 .baomihua img {
   width: .4rem;
@@ -424,6 +455,7 @@ export default {
 }
 .yinbox {
   width: 2.2rem;
+  margin-left: .04rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -510,15 +542,25 @@ export default {
   line-height: 1rem;
   border-bottom: .01rem solid lightgray;
 }
-.footer {
+.foo1 {
   width: 100%;
   height: 2rem;
 }
-.footer p {
+.foo1 p {
   width: 100%;
   text-align: center;
   line-height: 1rem;
   font-size: .3rem;
   font-weight: 900;
+}
+.firexian {
+  display: none;
+}
+.au {
+  overflow: hidden;
+  height: 10rem;
+}
+.fa {
+  display: none;
 }
 </style>

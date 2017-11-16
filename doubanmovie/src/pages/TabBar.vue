@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="tabBar">
-    <div v-if="show" class="show">
-      <div class="tabtop">
-        <div class="city" v-if="showIn" :class="{'a' : a}">
-          <p @click="local('Local')">{{ city }}</p>
+      <div class="tabtop"  v-if="this.$route.meta.showTop">
+        <div class="city" v-if="showIn" :class="{'a' : a}" @click="local('Local')">
+          <p>{{ city }}</p>
           <span></span>
         </div>
         <div v-if="showOn" class="tabtop-search tabtop-search-inputX"  @click="push()">
@@ -19,23 +18,22 @@
           </router-link>
         </div>
       </div>
-    </div>
 
-    <div class="tabbar" v-if="tabbarShow">
-      <router-link to="/HotPlay"  @click.native="click(true, true)" :class="{'router-link-active' : ok }">
+    <div class="tabbar" v-if="this.$route.meta.showBar" >
+      <router-link to="/HotPlay"  @click.native="click(true)" :class="{'router-link-active' : ok }">
         <p class="icon-i_pishafahuli" ></p>
         热映
       </router-link>
-      <router-link to="/FindMovie" @click.native="click(true, false)">
+      <router-link to="/FindMovie" @click.native="click(false)">
         <p class="icon-eye"></p>
         找片
       </router-link>
-      <router-link to="/Mine"  @click.native="click(false, false)">
+      <router-link to="/Mine"  @click.native="click(false)">
         <p class="icon-wode"></p>
         我的
       </router-link>
     </div>
-    <router-view></router-view>
+      <router-view ></router-view>
   </div>
 </template>
 
@@ -45,18 +43,16 @@
     name : "tabbar",
     data () {
       return {
-        show : true,
         showIn : true,
         showOn : false,
         ok : false,
         tabbarShow : true,
-        city : '北京',
+        city : '',
         a:false
       }
     },
     methods : {
-      click(show, showIn){
-        this.show = show;
+      click(showIn){
         this.showIn = showIn;
       },
       local(tag){
@@ -66,13 +62,27 @@
       },
       push() {
         this.$router.push({
-          path:'Search'
+          path:'/Search'
         })
+      },
+      getlocalcity(){
+        this.axios.get('http://restapi.amap.com/v3/ip?key=148a6ac1aab164f21da77728fc893368').then(data=>{
+            let city = data.data.city;
+            let cityRex = /['省'|'市']$/
+            if (cityRex.test(city)) {
+              let inde = city.match(cityRex).index;
+              let newCity = city.substr(0, inde)
+              this.city = newCity;
+            }else{
+              console.log(false);
+            }
+          })
       }
-
     },
     watch : {
       '$route'(newValue, oldValue){
+        console.log(newValue)
+        console.log(oldValue)
         if(newValue.path == '/HotPlay'){
           this.showOn = false;
         }else if(newValue.path == '/FindMovie'){
@@ -84,6 +94,7 @@
         if (newValue.path == '/Local') {
           this.tabbarShow = false;
           this.show = false;
+
         }else {
           this.tabbarShow = true;
           this.show = true;
@@ -104,6 +115,11 @@
               this.a = false;
             }
           }
+        }
+        if (this.$route.query.city) {
+         this.city = this.$route.query.city;
+        }else{
+          this.getlocalcity()
         }
       }
     },

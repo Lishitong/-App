@@ -14,7 +14,7 @@
       </div>
     </div>
       <div class="Sees">
-        <router-link :class="{'router-link-active':ok}" @click="wants"   class="See" to='/Mine/wantSee'>想看</router-link>
+        <router-link :class="{'router-link-active':ok}"   class="See" to='/Mine/wantSee'>想看</router-link>
         <router-link class="See" to="/Mine/nowSee">在看</router-link>
         <router-link class="See" to="/Mine/sew">看过</router-link>
         <router-link class="See" to="/Mine/seeSpeak">影评</router-link>

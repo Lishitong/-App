@@ -1,15 +1,9 @@
 <template lang="html">
-  <div @scroll="asd()" class="zhuantiremen">
-    <div class="zh-top">
-      <div>
-        <img @click="back" src="./../../static/arrow.png" alt="">
-        <span>豆瓣热门</span>
-      </div>
-      <img src="./../../static/share.png" alt="">
-    </div>
+  <div class="zhuantiremen">
+    <back :title="'豆瓣热门'"></back>
     <div class="zh-bottom">
       <ul>
-        <li v-for="(x,index) in data.length">
+        <li v-for="(x,index) in data.length" @click="push(data.id[index])">
           <img v-lazy="getImage(data.url[index])" alt="">
           <div class="">
             <h2>{{data.title[index]}}</h2>
@@ -30,6 +24,7 @@
 </template>
 
 <script>
+import back from './../components/back.vue'
 export default {
   name:'zhuantiremen',
   data(){
@@ -43,15 +38,15 @@ export default {
         fen:[],
         dao:[],
         act:[],
-        length:0
+        length:0,
+        id:[]
       },
     }
   },
+  components:{
+    back
+  },
   methods:{
-    asd(){console.log('asd');},
-    back(){
-      history.back();
-    },
     reStar(in1,in2){
       if (in2*10<in1-5) {
         return "../../static/star1.png"
@@ -64,13 +59,20 @@ export default {
           return url.replace('https://','https://images.weserv.nl/?url=');
       }
     },
+    push(item) {
+      this.$router.push({
+        path:'/movxiangqing/' + item
+      })
+    },
     getdata(start){
       this.JSONP('https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start='+start+'&count=5&client=somemessage&udid=dddddddddddddddddddddd',null,(err,data) => {
         this.bol = false;
         this.data.length += data.subjects.length
         let i = this.data.start
+        console.log(this.data.id);
         for (; i < this.data.start + 5; i++) {
           if (i<data.total) {
+            this.data.id[i]=data.subjects[i-this.data.start].id;
             this.data.url[i] = data.subjects[i-this.data.start].images.small
             this.data.title[i] = data.subjects[i-this.data.start].title
             this.data.stars[i] = data.subjects[i-this.data.start].rating.stars
@@ -112,29 +114,11 @@ export default {
 
 <style lang="less" scoped>
   .zhuantiremen{
-    .zh-top{
-      background-color:#fff;
-      width: 100%;
-      position: fixed;
-      z-index:2;
-      top: 0;
-      height: .8rem;
-      border-bottom:1px solid #ccc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      div{
-        display: flex;
-        align-items: center;
-      }
-      span{
-        font-size: .25rem;
-      }
-      img{
-        width: .3rem;
-        height: .3rem;
-        margin: 0 .2rem;
-      }
+    padding:.8rem 0;
+    .star{
+      float: left;
+      width: .27rem;
+      height: .27rem;
     }
     .zh-bottom{
       h2{
@@ -172,7 +156,6 @@ export default {
   }
   .aa{
     height: 2rem;
-    padding: 2rem 0;
     border-top: 1px solid #ccc;
     background-color: #fff;
     text-align: center;

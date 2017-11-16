@@ -2,7 +2,7 @@
   <div class="nowing">
     <div class="each-movie" v-for="item of msg">
       <div class="movie-img">
-        <img :src="getImage(item.images.large)" alt=""  @click="push(item.id)">
+        <img v-lazy="getImage(item.images.large)" alt=""  @click="push(item.id)">
       </div>
       <div class="movie-text"  @click="push(item.id)">
         <!-- 标题 -->
@@ -35,13 +35,15 @@
         <div class="btn">{{ item.shop }}</div>
       </div>
     </div>
-    <div class="footer">
+    <div class="foo">
         <p>(｡◕ˇ∀ˇ◕)</p >
     </div>
+    <goTop></goTop>
   </div>
 </template>
 
 <script>
+import goTop from '../components/gotop'
 let jsonp = require('jsonp')
 export default {
   name: 'Nowing',
@@ -50,6 +52,9 @@ export default {
       msg: {},
       flag:true
     }
+  },
+  components:{
+    goTop
   },
   methods: {
     getHero() {
@@ -92,7 +97,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .each-movie {
   position: relative;
   width:100%;
@@ -182,11 +187,11 @@ export default {
   position:absolute;
   height: .2rem;
 }
-.nowing .footer {
+.nowing .foo {
   width: 100%;
   height: 2rem;
 }
-.nowing .footer p {
+.nowing .foo p {
   width: 100%;
   text-align: center;
   line-height: 1rem;

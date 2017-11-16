@@ -57,7 +57,11 @@ export default {
       }
     },
     turnzt(data){
-        this.$router.push('/zhuantiremen')
+        this.$router.push({
+          path : '/zhuantiremen',
+          component: resolve => require(['../pages/zhuantiremen.vue'], resolve)
+
+        })
     }
   },
   computed:{
@@ -129,6 +133,9 @@ export default {
       font-size: .23rem;
     }
     .star{
+      float: left;
+      width: .27rem;
+      height: .27rem;
       img{
         width: .27rem;
         height: .27rem;

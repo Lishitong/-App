@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
 .movieTV{
   width: 100%;
   overflow:hidden;
@@ -61,6 +61,7 @@ export default {
   display:flex;
   justify-content: space-around;
   border-bottom:1px solid #eee;
+  margin-top: 1rem;
   h2{
     font-size: .3rem;
     font-weight: 700;

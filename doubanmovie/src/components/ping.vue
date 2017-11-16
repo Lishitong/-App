@@ -4,7 +4,7 @@
      <div class="perping" v-for="item of popular">
       <h2>
         <h3>
-          <img :src="getImage(item.author.avatar)" alt="">
+          <img v-lazy="getImage(item.author.avatar)" alt="">
           <span>{{item.author.name}}</span>
           <div class="stars" >
               <img src="../../static/img/gray.png" alt="">
@@ -14,7 +14,7 @@
           </div>
         </h3>
         <h4>
-          <img src="../../static/img/zan.png" alt="">
+          <img src="../../static/img/zan.png" alt="" @click="zan">
           <label>{{item.useful_count}}</label>
         </h4>
      </h2>
@@ -58,6 +58,11 @@ export default {
     pushping(item) {
       this.$router.push({
         path:'/pingpage/' + item
+      })
+    },
+    zan() {
+      this.$router.push({
+        path:'/login'
       })
     }
   },
