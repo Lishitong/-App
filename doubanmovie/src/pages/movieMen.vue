@@ -15,7 +15,7 @@ export default {
   width: 100%;
   background: url('../../static/wait.png') center center no-repeat;
   background-color: #F7F7F7;
-  height: 6rem;
+  height: 9rem;
   text-align: center;
   line-height: 3rem;
   font-size: .3rem;

@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="xq">
+    <div class="xq" :class="{'au':au}">
       <div class="xq-box">
         <div class="xq-top">
           <h1 class="lastpage" @click="back"></h1>
@@ -10,7 +10,7 @@
           <div class="baomihua">
             <img src="../../static/img/baomihua.png" alt="">电影
           </div>
-          <h1 class="zhuanfa"></h1>
+          <h1 class="zhuanfa" @click="zhuanfa"></h1>
         </div>
         <img v-lazy="getImage(images.medium)" alt="">
       </div>
@@ -54,12 +54,12 @@
         <h1>影人</h1>
         <div class="yingimg">
            <div class="yingbig">
-             <div class="yinbox" v-for="item of directors">
+             <div class="yinbox" v-for="item of directors" @click="pushperson(item.id)">
                <img  v-lazy="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>导演</p>
              </div>
-             <div class="yinbox"  v-for="item of casts">
+             <div class="yinbox"  v-for="item of casts" @click="pushperson(item.id)">
                <img v-lazy="getImage(item.avatars.large)" alt="">
                <p>{{item.name}}</p>
                <p>英文名：{{item.name_en}}</p>
@@ -121,7 +121,9 @@ export default {
       directors:{},
       casts:{},
       reviews:{},
-      fireT:false
+      fireT:false,
+      au:false,
+      fa: true
     }
   },
   methods: {
@@ -129,6 +131,11 @@ export default {
       if (url !== undefined) {
         return url.replace('http://', 'https://images.weserv.nl/?url=');
       }
+    },
+    pushperson(item) {
+      this.$router.push({
+        path:'/per/' + item
+      })
     },
     ying(item) {
       this.$router.push({
@@ -138,11 +145,21 @@ export default {
     back() {
       history.back()
     },
+    zhuanfa() {
+      if(this.fa) {
+        this.fa = false;
+        this.au = true;
+      }else {
+        this.fa = true;
+        this.au = false;
+      }
+    },
     getData() {
       jsonp("http://api.douban.com/v2/movie/subject/" + this.id + "?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
         if (err) {
           console.error(err);
         } else {
+          console.log(data);
           this.msg = data;
           this.images = data.images;
           this.countries = data.countries;
@@ -157,6 +174,7 @@ export default {
             this.flag1 = false;
           }
           // 正在热议
+          // this.msg.reviews_count = 0
           if (this.msg.reviews_count == 0) {
             this.fireT = true;
           }else {
@@ -536,6 +554,13 @@ export default {
   font-weight: 900;
 }
 .firexian {
+  display: none;
+}
+.au {
+  overflow: hidden;
+  height: 10rem;
+}
+.fa {
   display: none;
 }
 </style>
