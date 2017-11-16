@@ -12,16 +12,28 @@
             <img v-lazy="getImage(avatars.large)" alt="">
           </div>
           <div class="little">
-            <img v-lazy="getImage(photos[0])" alt="">
-            <img v-lazy="getImage(photos[1])" alt="">
+            <div>
+              <img v-lazy="getImage(photos[0])" alt="">
+            </div>
+            <div>
+              <img v-lazy="getImage(photos[1])" alt="">
+            </div>
           </div>
           <div class="little">
-            <img v-lazy="getImage(photos[2])" alt="">
-            <img v-lazy="getImage(photos[3])" alt="">
+            <div>
+              <img v-lazy="getImage(photos[2])" alt="">
+            </div>
+            <div>
+              <img v-lazy="getImage(photos[3])" alt="">
+            </div>
           </div>
           <div class="little">
-            <img v-lazy="getImage(photos[4])" alt="">
-            <img v-lazy="getImage(photos[5])" alt="">
+            <div>
+              <img v-lazy="getImage(photos[4])" alt="">
+            </div>
+            <div>
+              <img v-lazy="getImage(photos[5])" alt="">
+            </div>
           </div>
           <div class="little">
             <img v-lazy="getImage(photos[6])" alt="">

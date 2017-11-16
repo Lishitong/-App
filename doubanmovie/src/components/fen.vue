@@ -52,21 +52,23 @@ export default {
   font-size: .2rem;
 }
 .fentop {
+  padding-top: .5rem;
+  padding-bottom: .3rem;
   width: 100%;
-  height: 2rem;
-  margin-top: .2rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  text-align: center;
   border-bottom: .01rem solid #ddd;
 }
 .fentop .f {
+  display: inline-block;
+  width: 1.5rem;
   height: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
   color: gray;
+}
+.fentop .f p {
+  width: 1.5rem;
+  height: .7rem;
+  line-height: .7rem;
+  text-align: center;
 }
 .fentop .f img {
   border: .01rem solid #ddd;
