@@ -4,24 +4,36 @@
       <div class="per-top">
         <h1 class="lastpage" @click="back"></h1>
         <div class="per-top-text">影人</div>
-        <h1 class="zhuanfa"></h1>
+        <h1 class="zhuanfa" @click="zhuanfa"></h1>
       </div>
       <div class="per-img">
-        <div class="big">
+        <div class="big" :class="{'aul':au}">
           <div class="big-img">
             <img v-lazy="getImage(avatars.large)" alt="">
           </div>
           <div class="little">
-            <img v-lazy="getImage(photos[0])" alt="">
-            <img v-lazy="getImage(photos[1])" alt="">
+            <div>
+              <img v-lazy="getImage(photos[0])" alt="">
+            </div>
+            <div>
+              <img v-lazy="getImage(photos[1])" alt="">
+            </div>
           </div>
           <div class="little">
-            <img v-lazy="getImage(photos[2])" alt="">
-            <img v-lazy="getImage(photos[3])" alt="">
+            <div>
+              <img v-lazy="getImage(photos[2])" alt="">
+            </div>
+            <div>
+              <img v-lazy="getImage(photos[3])" alt="">
+            </div>
           </div>
           <div class="little">
-            <img v-lazy="getImage(photos[4])" alt="">
-            <img v-lazy="getImage(photos[5])" alt="">
+            <div>
+              <img v-lazy="getImage(photos[4])" alt="">
+            </div>
+            <div>
+              <img v-lazy="getImage(photos[5])" alt="">
+            </div>
           </div>
           <div class="little">
             <img v-lazy="getImage(photos[6])" alt="">
@@ -48,20 +60,18 @@
       <p :class="{'zhankai':flag2}">{{msg.summary}}</p>
       <p class="green"><span @click="zhankai">{{ kai }}</span></p>
     </div>
-    <div class="perimg">
-      <div class="perb">
-        <!-- <h1>代表作品</h1> -->
-        <div class="peri">
-          <div class="">
-
-          </div>
-        </div>
-      </div>
+    <div id="xiang1" :class="{'fa':fa}">
+      <fen></fen>
+      <h1  @click="auto">取消</h1>
+    </div>
+    <div class="foo3">
+        <p>(｡◕ˇ∀ˇ◕)</p>
     </div>
   </div>
 </template>
 
 <script>
+import fen from './fen'
 import goTop from './gotop'
 let jsonp = require('jsonp')
 export default {
@@ -73,17 +83,31 @@ export default {
       photos:[],
       num:0,
       flag2:true,
-      kai:'展开'
+      kai:'展开',
+      au:false,
+      fa: true
     }
   },
   components:{
-    goTop
+    goTop,fen
   },
   methods: {
     getImage(url) {
       if (url !== undefined) {
         return url.replace('http://', 'https://images.weserv.nl/?url=');
       }
+    },
+    zhuanfa() {
+      if(this.fa) {
+        this.fa = false;
+        this.au = true;
+      }else {
+        this.fa = true;
+        this.au = false;
+      }
+    },
+    auto() {
+      this.zhuanfa()
     },
     zhankai() {
       if (this.flag2) {
@@ -142,7 +166,7 @@ export default {
 <style lang="css">
 .pertop{
   width: 100%;
-  height: 6rem;
+  height: 7rem;
   font-size: .2rem;
 }
 .per-top-text {
@@ -170,7 +194,7 @@ export default {
   margin-right: .2rem;
 }
 .big {
-  margin-top: .2rem;
+  margin-top: .5rem;
   margin-left: .2rem;
   margin-right: .2rem;
   overflow: auto;
@@ -180,8 +204,8 @@ export default {
 }
 .big-img img {
   margin-top: .05rem;
-  width: 3rem;
-  height: 4.1rem;
+  width: 3.5rem;
+  height: 5.1rem;
 }
 .little {
   margin-left: .1rem;
@@ -194,8 +218,8 @@ export default {
 }
 .little img ,.little-box{
   margin-top: .1rem;
-  width: 2.2rem;
-  height: 2rem;
+  width: 2.7rem;
+  height: 2.5rem;
 }
 .little-box {
   background: #007;
@@ -252,6 +276,39 @@ export default {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+.aul {
+  overflow: hidden;
+}
+.fa {
+  display: none;
+}
+#xiang1 {
+  width: 100%;
+  height: 6rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+#xiang1 h1 {
+  background: #ffe;
+  width: 100%;
+  height: 2rem;
+  font-size: .25rem;
+  font-weight: 900;
+  line-height: 1rem;
+  text-align: center;
+}
+.foo3 {
+  width: 100%;
+  height: 1rem;
+}
+.foo3 p {
+  width: 100%;
+  text-align: center;
+  line-height: 1rem;
+  font-size: .3rem;
+  font-weight: 900;
 }
 
 </style>
