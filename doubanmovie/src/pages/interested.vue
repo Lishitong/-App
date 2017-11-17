@@ -79,7 +79,7 @@ export default {
       },
 
     menu() {
-    this.scroll =document.body.scrollTop|| document.documentElement.scrollTop;
+    this.scroll =document.body.scrollTop||window.pageYOffset ||  document.documentElement.scrollTop;
     // console.log(this.scroll);
     // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
     if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {

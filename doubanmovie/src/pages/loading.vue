@@ -3,13 +3,13 @@
     <div class="nav">
       <p class="navleft">
         <span @click.stop="all()" :class="{active:flagClass1}">全部</span>
-        <span @click.stop="one()" :class="{active:flagClass2}">11月</span>
-        <span @click.stop="two()" :class="{active:flagClass3}">12月</span>
-        <span @click.stop="three()" :class="{active:flagClass4}">1月</span>
+        <span @click.stop="one()" :class="{active:flagClass2}">{{nowmonth}}月</span>
+        <span @click.stop="two()" :class="{active:flagClass3}">{{nowmonth1}}月</span>
+        <span @click.stop="three()" :class="{active:flagClass4}">{{nowmonth2}}月</span>
       </p>
       <p class="navright">
-        <span>时间</span>
-        <span>热度</span>
+        <span @click="time()" :class="{active:flagtime}">时间</span>
+        <span @click="hot()" :class="{active:flaghot}">热度</span>
       </p>
 
     </div>
@@ -43,7 +43,12 @@ export default {
       flagClass1:false,
       flagClass2:false,
       flagClass3:false,
-      flagClass4:false
+      flagClass4:false,
+      flaghot:false,
+      flagtime:true,
+      nowmonth:'',
+      nowmonth1:'',
+      nowmonth2:''
 
     }
   },
@@ -51,6 +56,21 @@ export default {
     loadingli,goTop
   },
   methods: {
+    now(){
+      var now=new Date();
+      var month=now.getMonth()+1;
+      console.log(month);
+      this.nowmonth=month;
+      this.nowmonth1=month+1;
+      this.nowmonth2=this.nowmonth1+1;
+      if (month==11) {
+        this.nowmonth2=1
+      }
+      if (month==12) {
+        this.nowmonth1=1
+        this.nowmonth2=2
+      }
+    },
     getHero() {
       this.JSONP('https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd', null, (err, data) => {      
         if (err) {      
@@ -62,6 +82,18 @@ export default {
         }  
       })
     },
+    compare(){
+      if (this.flaghot==true) {
+        function compare(property){
+          return function(a,b){
+            var value1 = a[property];
+            var value2 = b[property];
+            return value2 - value1;
+          }
+        }
+        this.obj=this.obj.sort(compare('collect_count'))
+      }
+    },
 
     all(){
       this.flagClass1=true;
@@ -72,10 +104,11 @@ export default {
       setTimeout(()=>{
         this.flagLi=false;
         this.obj=this.objDate;
+        if (this.flaghot==true) {
+          this.compare()
+        }
       },600);
       this.flagLi=true;
-
-
     },
     one(){
       this.flagClass1=false;
@@ -88,13 +121,17 @@ export default {
       setTimeout(()=>{
         this.flagLi=false;
         for (let i = 0; i < one.length; i++) {
-          console.log(one[i].pubdates[0]);
+          // console.log(one[i].pubdates[0]);
           let pubdates=one[i].pubdates[0];
           if (pubdates.substring(5,7)=='11') {
             this.objStr.push(one[i]);
           }
         }
         this.obj=this.objStr;
+        console.log(this.obj);
+        if (this.flaghot==true) {
+          this.compare()
+        }
       },600);
       this.flagLi=true;
 
@@ -118,6 +155,9 @@ export default {
           }
         }
         this.obj=this.objStr;
+        if (this.flaghot==true) {
+          this.compare()
+        }
       },600);
       this.flagLi=true;
 
@@ -140,15 +180,29 @@ export default {
           }
         }
         this.obj=this.objStr;
+        if (this.flaghot==true) {
+          this.compare()
+        }
       },600);
       this.flagLi=true;
 
 
+    },
+    time(){
+      this.flagtime=true;
+      this.flaghot=false;
+    },
+    hot(){
+      this.flagtime=false;
+      this.flaghot=true;
+      this.compare()
     }
 
   },
   created() {
-    this.getHero()
+    this.getHero();
+    this.now()
+
   }
 }
 </script>
