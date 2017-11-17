@@ -151,14 +151,26 @@ export default {
       });
     },
     xiang() {
-      this.$router.push({
-        path:'/xiang'
-      })
+      if(!this.$store.getters.IS_LOGIN) {
+        this.$router.push({
+          path: "/login"
+        });
+      }else{
+        this.$router.push({
+          path:'/xiang'
+        })
+      }
     },
     xiang1() {
-      this.$router.push({
-        path:'/xiang1'
-      })
+      if(!this.$store.getters.IS_LOGIN) {
+        this.$router.push({
+          path: "/login"
+        });
+      }else{
+        this.$router.push({
+         path:'/xiang1'
+       })
+     }
     },
     back() {
       history.back();
