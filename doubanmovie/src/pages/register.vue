@@ -40,7 +40,7 @@ export default {
       this.$router.back();
     },
     loginOn(){
-      this.JSONP("http://10.0.156.254:8888/register?user=" +
+      this.JSONP("http://192.168.43.134:8888/register?user=" +
             this.$refs.loginUserName.value +
             "&pwd=" +
             this.$refs.loginPassWord.value + '&userId=' + this.$refs.loginUser.value,{name : 'callback'},
