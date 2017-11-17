@@ -36,8 +36,8 @@
           </div>
         </div>
         <div class="xiangkan">
-          <h1>想看</h1>
-          <h2>看过<img src="../../static/img/s.png"/><img src="../../static/img/s.png"/><img src="../../static/img/s.png"/><img src="../../static/img/s.png"/><img src="../../static/img/s.png"/></h2>
+          <h1 @click="xiang">想看</h1>
+          <h2 @click="xiang1">看过<img src="../../static/img/s.png"/><img src="../../static/img/s.png"/><img src="../../static/img/s.png"/><img src="../../static/img/s.png"/><img src="../../static/img/s.png"/></h2>
         </div>
         <div class="xuanzuo">
           <h1><img src="../../static/img/movepiao.png" alt="">选组购票</h1>
@@ -149,6 +149,28 @@ export default {
       this.$router.push({
         path: "/ying/" + item
       });
+    },
+    xiang() {
+      if(!this.$store.getters.IS_LOGIN) {
+        this.$router.push({
+          path: "/login"
+        });
+      }else{
+        this.$router.push({
+          path:'/xiang'
+        })
+      }
+    },
+    xiang1() {
+      if(!this.$store.getters.IS_LOGIN) {
+        this.$router.push({
+          path: "/login"
+        });
+      }else{
+        this.$router.push({
+         path:'/xiang1'
+       })
+     }
     },
     back() {
       history.back();

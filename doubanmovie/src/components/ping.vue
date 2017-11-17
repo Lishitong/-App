@@ -62,9 +62,11 @@ export default {
       });
     },
     zan() {
-      this.$router.push({
-        path: "/login"
-      });
+      if(!this.$store.getters.IS_LOGIN) {
+        this.$router.push({
+          path: "/login"
+        });
+      }
     }
   },
   created() {
@@ -153,4 +155,5 @@ export default {
   position: absolute;
   height: 0.2rem;
 }
+
 </style>
