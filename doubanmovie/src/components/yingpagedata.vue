@@ -28,48 +28,48 @@
 
 <script>
 export default {
-  props:['yingpagedata'],
+  props: ["yingpagedata"],
   data() {
     return {
-      kai:'展开',
-      flag:true
-    }
+      kai: "展开",
+      flag: true
+    };
   },
   methods: {
     zan() {
       this.$router.push({
-        path:'/login'
-      })
+        path: "/login"
+      });
     },
     getImage(url) {
       if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
+        return url.replace("https://", "https://images.weserv.nl/?url=");
       }
     },
     zhankai() {
       if (this.flag) {
         this.flag = false;
-        this.kai = '收起';
-      }else {
+        this.kai = "收起";
+      } else {
         this.flag = true;
-        this.kai = '展开';
+        this.kai = "展开";
       }
     }
   }
-}
+};
 </script>
 <style lang="css" scoped>
 .yingpage-img img {
   margin-top: 1rem;
-  width: .5rem;
-  height: .5rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
 }
 .yingpage-all {
   margin: 0 auto;
   width: 90%;
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 .yingpage-text {
@@ -86,40 +86,40 @@ export default {
 }
 
 .stars {
-  height: .2rem;
-  line-height: .2rem;
-  width:1rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  width: 1rem;
   position: relative;
   display: inline-block;
 }
-.starsbox{
+.starsbox {
   overflow: hidden;
-  position:absolute;
-  height: .35rem;
+  position: absolute;
+  height: 0.35rem;
 }
-.stars img{
+.stars img {
   width: 1rem;
-  position:absolute;
-  height: .2rem;
+  position: absolute;
+  height: 0.2rem;
 }
 .zan img {
-  width: .3rem;
-  height: .3rem;
+  width: 0.3rem;
+  height: 0.3rem;
 }
-.yingpage-text>h1 {
+.yingpage-text > h1 {
   width: 90%;
   height: 1rem;
   line-height: 1rem;
   font-weight: 900;
-  font-size: .26rem;
+  font-size: 0.26rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.yingpage-text>p {
+.yingpage-text > p {
   width: 94%;
-  margin-bottom: .5rem;
-  line-height: .7rem;
+  margin-bottom: 0.5rem;
+  line-height: 0.7rem;
 }
 .zhankai {
   overflow: hidden;
@@ -131,11 +131,10 @@ export default {
 .yingpage-text h6 {
   width: 94%;
   margin: 0 auto;
-  line-height: .8rem;
-  height: .8rem;
+  line-height: 0.8rem;
+  height: 0.8rem;
   text-align: right;
   color: green;
   font-weight: 900;
 }
-
 </style>

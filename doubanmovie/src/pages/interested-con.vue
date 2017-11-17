@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import interestedLiCon from './interestedLiCon'
+import interestedLiCon from "./interestedLiCon";
 export default {
-  props:['message'],
+  props: ["message"],
   data() {
     return {      
       articles: {} ,
@@ -44,7 +44,7 @@ export default {
       flagJudge:true
     }
   },
-  components:{
+  components: {
     interestedLiCon
   },
   created(){
@@ -69,39 +69,33 @@ export default {
             console.log(that.flag);
           }
           return false;
-
-        }
+        };
         console.log(this.flag);
       }
-
     },
     deleteFn(el, e) {
-      if (this.flagJudge==true) {
-        this.flagJudge=false
+      if (this.flagJudge == true) {
+        this.flagJudge = false;
       }
-
     }
   }
-
-
-}
-
+};
 </script>
 
 <style lang="css" scoped>
-.delete{
-  width:1.5rem;
-  height:0.5rem;
+.delete {
+  width: 1.5rem;
+  height: 0.5rem;
   position: absolute;
-  right:0.55rem;
+  right: 0.55rem;
   top: 0.6rem;
   text-align: center;
   line-height: 0.5rem;
-  border:0.01rem solid lightgray;
-  background:white;
-  color:gray;
+  border: 0.01rem solid lightgray;
+  background: white;
+  color: gray;
 }
-#point{
+#point {
   float: right;
   width:0.2rem;
   height:0.55rem;
@@ -123,17 +117,17 @@ export default {
  color:white;
  position:relative;
 }
-.judge>img{
+.judge > img {
   float: right;
-  width:2rem;
-  height:2.5rem;
+  width: 2rem;
+  height: 2.5rem;
   margin-top: 0.2rem;
 }
-.judgeStr{
-  width:55%;
+.judgeStr {
+  width: 55%;
   display: inline-block;
 }
-.judgeStr h6{
+.judgeStr h6 {
   margin-top: 0.3rem;
   border-top: 0.01rem solid lightgray;
 }

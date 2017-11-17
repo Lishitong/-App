@@ -17,35 +17,45 @@
 </template>
 
 <script>
-import goTop from './gotop'
-import yingpagedata from './yingpagedata'
-let jsonp = require('jsonp')
+import goTop from "./gotop";
+import yingpagedata from "./yingpagedata";
+let jsonp = require("jsonp");
 export default {
-  name: 'yingpage',
+  name: "yingpage",
   data() {
-    return { // 在数据中接收
+    return {
+      // 在数据中接收
       id: this.$route.params.id,
       msg: {},
-      start:0,
-      num:0
-    }
+      start: 0,
+      num: 0
+    };
   },
-  components:{
-    yingpagedata,goTop
+  components: {
+    yingpagedata,
+    goTop
   },
   methods: {
     yingback() {
-      history.back()
+      history.back();
     },
     getData() {
-      jsonp("https://api.douban.com/v2/movie/subject/" + this.id + "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start="+this.start+"&count=1000000&client=something&udid=dddddddddddddddddddddd", null, (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          this.msg = data;
-          this.num = data.reviews.length;
+      jsonp(
+        "https://api.douban.com/v2/movie/subject/" +
+          this.id +
+          "/reviews?apikey=0b2bdeda43b5688921839c8ecb20399b&start=" +
+          this.start +
+          "&count=1000000&client=something&udid=dddddddddddddddddddddd",
+        null,
+        (err, data) => {
+          if (err) {
+            console.error(err);
+          } else {
+            this.msg = data;
+            this.num = data.reviews.length;
+          }
         }
-      })
+      );
     }
   },
   created() {
@@ -54,11 +64,11 @@ export default {
     }
   },
   watch: {
-    '$route'(newdata,olddata) {
+    $route(newdata, olddata) {
       this.id = newdata.params.id;
     }
   }
-}
+};
 </script>
 <style lang="css">
 .yingpage-head {
@@ -72,26 +82,26 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #EEEFF1;
-  font-size: .3rem;
+  background: #eeeff1;
+  font-size: 0.3rem;
   font-weight: 900;
 }
 .yingpage-head div img {
-  width: .5rem;
-  height: .4rem;
+  width: 0.5rem;
+  height: 0.4rem;
 }
 .yingpage-head div h1 {
-  width: .8rem;
-  height: .5rem;
-  line-height: .5rem;
+  width: 0.8rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
   text-align: center;
-  border: .01rem solid lightgray;
-  border-radius: .04rem;
-  margin-right: .2rem;
-  font-size: .2rem;
+  border: 0.01rem solid lightgray;
+  border-radius: 0.04rem;
+  margin-right: 0.2rem;
+  font-size: 0.2rem;
   color: gray;
 }
-.yingpage>h1 {
+.yingpage > h1 {
   width: 90%;
   height: 1rem;
   margin: 0 auto;
@@ -107,7 +117,7 @@ export default {
   width: 100%;
   text-align: center;
   line-height: 1rem;
-  font-size: .3rem;
+  font-size: 0.3rem;
   font-weight: 900;
 }
 </style>

@@ -21,42 +21,40 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-        bol:false,
-        footer:false
-    }
-
+      bol: false,
+      footer: false
+    };
   },
-  methods:{
+  methods: {
     shezhiback() {
-      history.back()
-  },
-  hotPlay(){
-    this.$router.push({path:'/HotPlaydss'})
+      history.back();
+    },
+    hotPlay() {
+      this.$router.push({ path: "/HotPlaydss" });
+    }
   }
-
-  }
-}
+};
 </script>
 
 <style lang="css" scoped>
-.bg{
-  background-color:#FDFDFD;
+.bg {
+  background-color: #fdfdfd;
   width: 100%;
   height: 9rem;
 }
-.wrap{
+.wrap {
   width: 100%;
   height: 100%;
-  background-color: rgba(200,200,200,.4);
+  background-color: rgba(200, 200, 200, 0.4);
   position: fixed;
-  top: .8rem;
+  top: 0.8rem;
   bottom: 0;
   left: 0;
   right: 0;
 }
-.alertbox{
+.alertbox {
   position: absolute;
   left: 50%;
   margin-left: -2.5rem;
@@ -66,64 +64,63 @@ export default {
   height: 2rem;
   padding: 1rem;
   background-color: #fff;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.alertbox>p{
+.alertbox > p {
   width: 100%;
   text-align: center;
-  font-size: .4rem;
-  margin-top: .3rem;
+  font-size: 0.4rem;
+  margin-top: 0.3rem;
 }
-.alertbox>button{
-  width: .8rem;
-  height: .6rem;
-  margin-top: .3rem;
-  border-radius: .1rem;
+.alertbox > button {
+  width: 0.8rem;
+  height: 0.6rem;
+  margin-top: 0.3rem;
+  border-radius: 0.1rem;
 }
-.bgTop{
-  background-color:white;
+.bgTop {
+  background-color: white;
   width: 100%;
-  height:.8rem;
-  line-height: .8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   text-align: center;
-  font-size: .3rem;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .8rem;
+  font-size: 0.3rem;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.8rem;
 }
-.bgTop img{
-  width: .4rem;
-  height: .4rem;
+.bgTop img {
+  width: 0.4rem;
+  height: 0.4rem;
   float: left;
-  margin-top: .2rem;
-  margin-left: .2rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
 }
-main{
-  background-color: #FDFDFD;
+main {
+  background-color: #fdfdfd;
   text-align: center;
 }
-main p:nth-of-type(1){
-  color:black;
-  font-size: .3rem;
-  margin-bottom: .3rem;
+main p:nth-of-type(1) {
+  color: black;
+  font-size: 0.3rem;
+  margin-bottom: 0.3rem;
 }
-main p:nth-of-type(2){
-  color:#BEBEBE;
-  font-size: .2rem;
-  margin-bottom: .3rem;
+main p:nth-of-type(2) {
+  color: #bebebe;
+  font-size: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
-main img{
+main img {
   width: 50%;
-
 }
-main button{
-  border: .01rem solid #0abe25;
-  background-color:#FDFDFD;
-  padding: .2rem .4rem;
+main button {
+  border: 0.01rem solid #0abe25;
+  background-color: #fdfdfd;
+  padding: 0.2rem 0.4rem;
   color: #0abe25;
-  border-radius: .2rem ;
+  border-radius: 0.2rem;
 }
 </style>

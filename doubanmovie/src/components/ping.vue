@@ -27,43 +27,44 @@
 </template>
 
 <script>
-let jsonp = require('jsonp')
+let jsonp = require("jsonp");
 export default {
-  name: 'ping',
+  name: "ping",
   data() {
-    return { // 在数据中接收
+    return {
+      // 在数据中接收
       id: this.$route.params.id,
       msg: {},
-      popular:{},
-      counts:'',
-      rating:{}
-    }
+      popular: {},
+      counts: "",
+      rating: {}
+    };
   },
   methods: {
     getImage(url) {
       if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
+        return url.replace("https://", "https://images.weserv.nl/?url=");
       }
     },
     getData() {
-      databus.$on('alldata',(data)=>{
+      databus.$on("alldata", data => {
         this.msg = data;
         this.popular = data.popular_comments;
         this.counts = data.comments_count;
         this.rating = data.rating;
         // console.log('热门短评，bus传值');
         // console.log(this.msg);
-      })
+      });
     },
     pushping(item) {
       this.$router.push({
-        path:'/pingpage/' + item
-      })
+        path: "/pingpage/" + item
+      });
     },
     zan() {
       this.$router.push({
-        path:'/login'
-      })
+        path: "/login"
+      });
     }
   },
   created() {
@@ -72,32 +73,32 @@ export default {
     }
   },
   watch: {
-    '$route'(newdata,olddata) {
+    $route(newdata, olddata) {
       this.id = newdata.params.id;
     }
   }
-}
+};
 </script>
 <style lang="css">
 .ping h1 {
   width: 90%;
-  height: .9rem;
-  line-height: .9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
   color: #000;
   margin: 0 auto;
-  font-size: .3rem;
+  font-size: 0.3rem;
 }
 .ping h1 label {
-   float: right;
-   margin-top: .2rem;
-   font-size: .15rem;
-   text-align: center;
-   color: green;
-   width: .8rem;
-   height: .4rem;
-   line-height: .4rem;
-   border: .01rem solid green;
-   border-radius: .04rem;
+  float: right;
+  margin-top: 0.2rem;
+  font-size: 0.15rem;
+  text-align: center;
+  color: green;
+  width: 0.8rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border: 0.01rem solid green;
+  border-radius: 0.04rem;
 }
 .ping h2 {
   width: 90%;
@@ -105,50 +106,51 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  line-height: .8rem;
+  line-height: 0.8rem;
 }
-.ping h2 h3>img ,.ping h2 h4 img {
-  width: .5rem;
-  height: .5rem;
+.ping h2 h3 > img,
+.ping h2 h4 img {
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   vertical-align: middle;
 }
 .ping h2 h4 img {
-  width: .35rem;
-  height: .35rem;
+  width: 0.35rem;
+  height: 0.35rem;
 }
 .ping p {
   width: 90%;
-  line-height: .5rem;
+  line-height: 0.5rem;
   margin: 0 auto;
 }
 .allping {
   width: 100%;
   text-align: center;
   color: green;
-  font-size: .25rem;
+  font-size: 0.25rem;
   font-weight: 900;
   line-height: 1rem;
-  border-bottom: .01rem solid lightgray;
+  border-bottom: 0.01rem solid lightgray;
 }
 .perping h2 h3 span {
   font-weight: 900;
 }
 .stars {
-  height: .2rem;
-  line-height: .2rem;
-  width:1rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  width: 1rem;
   position: relative;
   display: inline-block;
 }
-.starsbox{
+.starsbox {
   overflow: hidden;
-  position:absolute;
-  height: .35rem;
+  position: absolute;
+  height: 0.35rem;
 }
-.stars img{
+.stars img {
   width: 1rem;
-  position:absolute;
-  height: .2rem;
+  position: absolute;
+  height: 0.2rem;
 }
 </style>

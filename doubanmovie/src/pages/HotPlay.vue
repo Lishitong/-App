@@ -12,23 +12,64 @@
 </template>
 
 <script>
-import swiper from './swiper'
+import swiper from "./swiper";
 export default {
-  name:'now',
-  data(){
+  name: "now",
+  data() {
     return {
-      ok:true
+      ok:true,
+      isLogin:false
     }
   },
-  components:{
+  components: {
     swiper
   },
-  watch:{
-    '$route'(newValue,oldValue){
-          this.ok=false;
+  watch: {
+    $route(newValue, oldValue) {
+      this.ok = false;
     }
+  },
+  methods:{
+    getCookie(c_name) {
+      if (document.cookie.length > 0) {
+        var c_start = document.cookie.indexOf(c_name + "=")
+        if (c_start != -1) {
+          c_start = c_start + c_name.length + 1
+          var c_end = document.cookie.indexOf(";", c_start)
+          if (c_end == -1) c_end = document.cookie.length
+          return unescape(document.cookie.substring(c_start, c_end))
+        }
+      }
+      return ""
+    },
+    clearCookie(){
+      let keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+      if (keys) {
+        for (var i = keys.length; i--;){
+          document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString();
+        }
+      }
+    }
+  },
+  created(){
+    this.JSONP(
+      "http://10.0.156.183:8888/login?user=" +
+        this.getCookie('user') +
+        "&pwd=" +
+        this.getCookie('pwd'),{name : 'callback'},
+      (err, data) => {
+        data = JSON.parse(data);
+        if (data.status == 1) {
+          this.$store.commit('inLogin', true);
+          return true;
+        }else{
+          this.clearCookie();
+          this.$store.commit('inLogin', false);
+        }
+      }
+    );
   }
-}
+};
 </script>
 
 <style scoped>
@@ -42,11 +83,11 @@ export default {
   background: white;
   z-index:2;*/
 }
-.wrap a{
+.wrap a {
   float: left;
   width: 50%;
-  font-size: .3rem;
-  color: #4C4C4C;
+  font-size: 0.3rem;
+  color: #4c4c4c;
   height: 1rem;
   line-height: 1rem;
   text-align: center;
@@ -55,5 +96,4 @@ export default {
   border-bottom: 0.02rem solid #123;
   color: #123;
 }
-
 </style>
