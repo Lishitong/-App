@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name:"movieTv",
   data(){
     return {
       user:'未登录',

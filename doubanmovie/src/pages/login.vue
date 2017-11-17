@@ -86,7 +86,7 @@ export default {
         this.msg = "请输入正确的密码";
       } else {
         this.JSONP(
-          "http://10.0.156.254:8888/login?user=" +
+          "http://192.168.43.134:8888/login?user=" +
             this.$refs.loginUserName.value +
             "&pwd=" +
             this.$refs.loginPassWord.value,{name : 'callback'},

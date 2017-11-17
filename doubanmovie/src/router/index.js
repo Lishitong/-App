@@ -9,6 +9,8 @@ const Mine = () =>
     import ( /* webpackChunkName: "Mine" */ '../pages/Mine.vue')
 const Nowing = () =>
     import ( /* webpackChunkName: "HotPlay" */ '../pages/nowing.vue')
+const goupiao = () =>
+        import ( /* webpackChunkName: "goupiao" */ '../pages/goupiao.vue')
 const Loading = () =>
     import ( /* webpackChunkName: "HotPlay" */ '../pages/loading.vue')
 const movxiangqing = () =>
@@ -91,6 +93,7 @@ const routes = [{
             { path: '/movxiangqing/lun/:id', component: lun }
         ]
     },
+    { path: '/goupiao', component: goupiao },
     { path: '/per/:id', component: per },
     { path: '/pingpage/:id', component: pingpage },
     { path: '/ying/:id', component: ying },
