@@ -129,13 +129,13 @@ export default {
           console.log(localStorage.historyItems);
           arr=localStorage.historyItems;
           console.log(this.value.length);
-          if (this.value.length>8) {
-            console.log('//');
-            var index=arr.lastIndexOf('|');
-            console.log(index);
-            arr=arr.substring(0,index);
-            console.log(arr);
-          }
+          // if (this.value.length>=8) {
+          //   console.log('//');
+          //   var index=arr.lastIndexOf('|');
+          //   console.log(index);
+          //   arr=arr.substring(0,index);
+          //   console.log(arr);
+          // }
           if (arr) {
             this.value=arr.split('|');
           }

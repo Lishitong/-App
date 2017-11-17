@@ -60,7 +60,7 @@ export default {
     now(){
       var now=new Date();
       var month=now.getMonth()+1;
-      console.log(month);
+      // console.log(month);
       this.nowmonth=month;
       this.nowmonth1=month+1;
       this.nowmonth2=this.nowmonth1+1;
@@ -81,25 +81,25 @@ export default {
             console.error(err.message);
           } else {
             this.obj = data.subjects;
-            this.objDate = data.subjects;
+            this.objDate =
+             data.subjects;
             this.flagLi = false;
           }
         }
       );
     },
-    compare(){
-      if (this.flaghot==true) {
-        function compare(property){
+    compareArr(){
+      // if (this.flaghot==true) {
+      console.log('22');
+      function compare(property){
           return function(a,b){
             var value1 = a[property];
             var value2 = b[property];
             return value2 - value1;
           }
-        }
-        this.obj=this.obj.sort(compare('collect_count'))
       }
+      this.obj=this.obj.sort(compare('collect_count'))
     },
-
     all(){
       this.flagClass1=true;
       this.flagClass2=false;
@@ -107,10 +107,12 @@ export default {
       this.flagClass4=false;
       this.obj='';
       setTimeout(()=>{
+        console.log('33');
         this.flagLi=false;
         this.obj=this.objDate;
         if (this.flaghot==true) {
-          this.compare()
+          console.log('aa');
+          this.compareArr()
         }
       },600);
       this.flagLi=true;
@@ -133,9 +135,9 @@ export default {
           }
         }
         this.obj=this.objStr;
-        console.log(this.obj);
+        // console.log(this.obj);
         if (this.flaghot==true) {
-          this.compare()
+          this.compareArr()
         }
       },600);
       this.flagLi=true;
@@ -153,20 +155,21 @@ export default {
       setTimeout(() => {
         this.flagLi = false;
         for (let i = 0; i < one.length; i++) {
-          console.log(one[i].pubdates[0]);
+          // console.log(one[i].pubdates[0]);
           let pubdates = one[i].pubdates[0];
           if (pubdates.substring(5, 7) == "12") {
             this.objStr.push(one[i]);
+            console.log('>');
+            console.log(this.flaghot);
           }
         }
         this.obj=this.objStr;
         if (this.flaghot==true) {
-          this.compare()
+          console.log('??');
+          this.compareArr()
         }
       },600);
       this.flagLi=true;
-
-
     },
     three() {
       this.flagClass1 = false;
@@ -186,7 +189,7 @@ export default {
         }
         this.obj=this.objStr;
         if (this.flaghot==true) {
-          this.compare()
+          this.compareArr()
         }
       },600);
       this.flagLi=true;
@@ -200,7 +203,7 @@ export default {
     hot(){
       this.flagtime=false;
       this.flaghot=true;
-      this.compare()
+      this.compareArr()
     }
   },
   created() {
@@ -208,7 +211,7 @@ export default {
     this.now()
 
   }
-};
+}
 </script>
 
 <style lang="css" scoped>
