@@ -25,16 +25,20 @@
           <img src="../../static/shezhigo.png" alt="">
       </div>
       </main>
-      <div class="footer" v-if="footer" >
-        <p>退出登录</p>
+      <div class="footer" v-if="foote" >
+        <p @click="clearLog()">退出登录</p>
       </div>
     </div>
+
     <div class="wrap" v-if="bol">
       <div class="alertbox">
         <p>是否清除缓存</p>
         <button type="button" name="button1" @click="clearCookie()">是</button>
         <button type="button" name="button2" @click="closeBox()">否</button>
       </div>
+    </div>
+    <div class="">
+
     </div>
   </div>
 
@@ -45,7 +49,8 @@ export default {
   data(){
     return {
         bol:false,
-        footer:false
+        foote:false,
+        closeLogin:false
     }
 
   },
@@ -65,8 +70,19 @@ export default {
   closeBox(){
     this.bol = false
   },
+
+  clearLog(){
+    this.setCookie('user','',-1)
+    this.setCookie('pwd','',-1)
+    this.closeLogin =true;
+    setTimeout(()=>{
+      this.closeLogin =false;
+    },1500);
+    this.$router.push({path:'/Mine'})
+  },
   clearCookie(){
     this.setCookie('user','',-1)
+    this.setCookie('pwd','',-1)
     this.bol = false;
   },
   suggest(suggest){
@@ -75,7 +91,13 @@ export default {
   aboutdb(aboutdb){
     this.$router.push({path:'/'+aboutdb})
   }
-  }
+},
+  created(){
+    if(document.cookie.length>0){
+      console.log(document.cookie)
+      this.foote = true;
+    }
+  },
 }
 </script>
 
