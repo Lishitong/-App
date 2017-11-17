@@ -7,6 +7,7 @@
     <div v-else class="loginin">
       <span>0部</span>
       <span @click="timpeShow()">标签筛选</span>
+      <wantlook></wantlook>
     </div>
     <div v-if="timpe" class="timpe">
       <p @click="timpeClose()">X</p>
@@ -16,30 +17,31 @@
 </template>
 
 <script>
+import wantlook from './../components/wantlook'
 export default {
-
   data(){
     return{
       showlogin:1,
       timpe:0
     }
-      },
-      methods:{
-        timpeShow(){
-          this.timpe = 1;
-        },
-      timpeClose(){
-          this.timpe = 0;
-      }
-      },
-    created(){
-
+  },
+  methods:{
+    timpeShow(){
+      this.timpe = 1;
+    },
+    timpeClose(){
+      this.timpe = 0;
+    }
+  },
+  created(){
       if(document.cookie.length>0){
         this.showlogin =0
           console.log(document.cookie);
       }
-
-    }
+    },
+  components:{
+    wantlook
+  }
 
 
 }
