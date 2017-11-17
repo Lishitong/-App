@@ -32,11 +32,11 @@ export default {
     return {
       nowpage:0,
       swiperOption: {
-          notNextTick: true,
-          autoplay: false,
-          observer:true,//修改swiper自己或子元素时，自动初始化swiper
-          observeParents:true,//修改swiper的父元素时，自动初始化swiper
-          onSlideChangeEnd:(swiper) => {
+        notNextTick: true,
+        observer: true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents: true,//修改swiper的父元素时，自动初始化swiper
+        onSlideChangeEnd:(swiper) => {
+            swiper.update();
             if(swiper.activeIndex == 0){
               this.title.title = this.dat1.tit;
               this.title.bu = this.dat1.bu;
@@ -166,6 +166,9 @@ export default {
   #top250{
     width: 100%;
     padding-bottom:1rem;
+    &>div{
+      width: 100%;
+    }
     &>div>p{
       text-align: center;
       height: 1rem;
@@ -182,7 +185,7 @@ export default {
       height: .7rem;
       line-height:.7rem;
       margin:0 0 .2rem .2rem;
-      overflow: hidden;
+      // overflow: hidden;
     }
   }
   #box{
