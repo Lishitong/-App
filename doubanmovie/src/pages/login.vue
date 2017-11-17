@@ -102,7 +102,8 @@ export default {
           "http://10.0.156.183:8888/login?user=" +
             this.$refs.loginUserName.value +
             "&pwd=" +
-            this.$refs.loginPassWord.value,{name : 'callback'},
+            this.$refs.loginPassWord.value,
+          { name: "callback" },
           (err, data) => {
             data = JSON.parse(data);
             if (data.status == 1) {
@@ -112,7 +113,10 @@ export default {
               this.msg = "登录成功";
               this.l=true;
               setTimeout(() => {
-                this.$router.push({ path: "/Mine" , query : {userId :data.userId } });
+                this.$router.push({
+                  path: "/Mine",
+                  query: { userId: data.userId }
+                });
               }, 2000);
             }
           }

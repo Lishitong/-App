@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       l:false,
       shows: 0,
@@ -41,8 +41,8 @@ export default {
       msg:'请输入'
     }
   },
-  methods:{
-    back(){
+  methods: {
+    back() {
       this.$router.back();
     },
     inputL(){
@@ -120,23 +120,22 @@ export default {
 
     },
 
-
-    seePassword(){
-       if(this.$refs.seePassword.src="../../../static/nopass.png" &&this.$refs.loginPassWord.type=="password" ){
-      console.log(this.$refs.seePassword.src)
-      this.$refs.seePassword.src="../../../static/seepass.png";
-      this.show=false;
-    }else{
-        this.$refs.seePassword.src="../../../static/nopass.png";
-        this.show=true;
+    seePassword() {
+      if (
+        (this.$refs.seePassword.src =
+          "../../../static/nopass.png" &&
+          this.$refs.loginPassWord.type == "password")
+      ) {
+        console.log(this.$refs.seePassword.src);
+        this.$refs.seePassword.src = "../../../static/seepass.png";
+        this.show = false;
+      } else {
+        this.$refs.seePassword.src = "../../../static/nopass.png";
+        this.show = true;
+      }
     }
-    }
-
-
-
-
   }
-}
+};
 </script>
 
 <style lang="css"  scoped>
@@ -274,5 +273,86 @@ export default {
 
   }
 
+nav .img {
+  margin-left: 0.2rem;
+  float: left;
+  vertical-align: bottom;
+}
+nav span {
+  /*margin-top: 3%;*/
+  vertical-align: bottom;
+  display: inline-block;
+}
+main {
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+  height: 8rem;
+}
+main .welcomedb {
+  font-size: 0.7rem;
+  color: #3fbc53;
+  height: 0.7rem;
+  text-align: center;
+  margin: 0.6rem 0;
+  transition: display 3s;
+}
+main input {
+  border: 0.01rem solid #c2c2c2;
+  display: block;
+  border-radius: 0.03rem;
+  width: 80%;
+  margin-left: 10%;
+  height: 0.6rem;
+  padding-left: 0.2rem;
+  font-size: 0.22rem;
+  /*color: #C8C8CE;*/
+}
+.loginPassWord {
+  border: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+.mima img {
+  position: absolute;
+  right: 0;
+  top: 5%;
+}
+.mima {
+  width: 80%;
+  margin-left: 10%;
+  border-left: 0.01rem solid #c2c2c2;
+  border-right: 0.01rem solid #c2c2c2;
+  padding-left: 0.2rem;
+  position: relative;
+}
+main input:nth-of-type(2) {
+  /*border-top: 0;*/
+  margin-bottom: 0.3rem;
+}
+.loginin {
+  width: 83%;
+  margin-left: 10%;
+  height: 0.6rem;
+  background-color: #3fbc53;
+  border-radius: 0.13rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.26rem;
+  display: block;
+}
+.enroll {
+  margin-top: 0.3rem;
+  font-size: 0.26rem;
+  font-weight: 400;
+  color: #747474;
+}
 
+.enroll span:nth-of-type(1) {
+  color: #3fbc53;
+}
+.enroll span:nth-of-type(2) {
+  margin: 0 2%;
+  color: #c1c1c1;
+}
 </style>

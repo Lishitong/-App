@@ -34,120 +34,114 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-        footer:true
-    }
-
+      footer: true
+    };
   },
-  methods:{
+  methods: {
     shezhiback() {
-      history.back()
-  },
-  howSee(howSee){
-    this.$router.push({path:'/'+howSee})
-  },
-  why(why){
-    this.$router.push({path:'/'+why})
-  },
-  howWatch(howWatch){
-    this.$router.push({path:'/'+howWatch})
-  },
-  feedBack(feedBack){
-    this.$router.push({path:'/'+feedBack})
+      history.back();
+    },
+    howSee(howSee) {
+      this.$router.push({ path: "/" + howSee });
+    },
+    why(why) {
+      this.$router.push({ path: "/" + why });
+    },
+    howWatch(howWatch) {
+      this.$router.push({ path: "/" + howWatch });
+    },
+    feedBack(feedBack) {
+      this.$router.push({ path: "/" + feedBack });
+    }
   }
-}
-}
+};
 </script>
 
 <style lang="css" scoped>
-.bg{
-  background-color:#F6F6F6;
+.bg {
+  background-color: #f6f6f6;
   width: 100%;
   height: 9rem;
 }
-.bgTop{
-  background-color:white;
+.bgTop {
+  background-color: white;
   width: 100%;
-  height:.8rem;
-  line-height: .8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   text-align: center;
-  font-size: .3rem;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .2rem;
-    font-weight:700;
-
-
-
+  font-size: 0.3rem;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
 }
-.bgTop p{
-
+.bgTop p {
 }
-.bgTop img{
-  width: .4rem;
-  height: .4rem;
+.bgTop img {
+  width: 0.4rem;
+  height: 0.4rem;
   float: left;
-  margin-top: .2rem;
-  margin-left: .2rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
 }
-.question{
-  height:.6rem;
-  line-height: .6rem;
+.question {
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: left;
-  font-size: .16rem;
-  color:#70706D;
-
+  font-size: 0.16rem;
+  color: #70706d;
 }
-main{
+main {
   overflow: hidden;
   background-color: white;
-  border-top: .01rem solid #C6C7C7;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .5rem;
+  border-top: 0.01rem solid #c6c7c7;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.5rem;
 }
 .bgconter {
   /*background-color:white;*/
   width: 95%;
-  margin-left:5%;
-  height:.6rem;
-  line-height: .6rem;
+  margin-left: 5%;
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: center;
-  font-size: .3rem;
-  border-bottom: .01rem solid #C6C7C7;
+  font-size: 0.3rem;
+  border-bottom: 0.01rem solid #c6c7c7;
 
   /*float: right;*/
 }
 /*.first {
     border-top:.01rem solid #C6C7C7;
 }*/
-.last{
-  border-bottom: .0003rem solid #C6C7C7;
+.last {
+  border-bottom: 0.0003rem solid #c6c7c7;
 }
-.bgconter img{
-  width: .3rem;
-  height: .3rem;
+.bgconter img {
+  width: 0.3rem;
+  height: 0.3rem;
   float: right;
-  margin-top: .15rem;
-  margin-right: .1rem;
+  margin-top: 0.15rem;
+  margin-right: 0.1rem;
 }
-.bgconter span{
+.bgconter span {
   float: left;
-  margin-left: .1rem;
-  font-size: .26rem;
-  color:#030302;
+  margin-left: 0.1rem;
+  font-size: 0.26rem;
+  color: #030302;
 }
-.footer{
+.footer {
   width: 100%;
-  height:.6rem;
-  line-height: .6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: center;
-  font-size: .3rem;
-  background-color:white;
-  border-bottom: .01rem solid #C6C7C7;
-  border-top: .003rem solid #C6C7C7;
+  font-size: 0.3rem;
+  background-color: white;
+  border-bottom: 0.01rem solid #c6c7c7;
+  border-top: 0.003rem solid #c6c7c7;
 }
-.footer img{
-  width: .4rem;
-  height: .4rem;
+.footer img {
+  width: 0.4rem;
+  height: 0.4rem;
 }
 </style>

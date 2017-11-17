@@ -38,144 +38,144 @@
 </template>
 
 <script>
-
-  export default {
-    name : "tabbar",
-    data () {
-      return {
-        showIn : true,
-        showOn : false,
-        ok : false,
-        tabbarShow : true,
-        city : '',
-        a:false
-      }
+export default {
+  name: "tabbar",
+  data() {
+    return {
+      showIn: true,
+      showOn: false,
+      ok: false,
+      tabbarShow: true,
+      city: "",
+      a: false
+    };
+  },
+  methods: {
+    click(showIn) {
+      this.showIn = showIn;
     },
-    methods : {
-      click(showIn){
-        this.showIn = showIn;
-      },
-      local(tag){
-        this.$router.push({
-          path : '/' + tag
-        })
-      },
-      push() {
-        this.$router.push({
-          path:'/Search'
-        })
-      },
-      getlocalcity(){
-        this.axios.get('http://restapi.amap.com/v3/ip?key=148a6ac1aab164f21da77728fc893368').then(data=>{
-            let city = data.data.city;
-            let cityRex = /['省'|'市']$/
-            if (cityRex.test(city)) {
-              let inde = city.match(cityRex).index;
-              let newCity = city.substr(0, inde)
-              this.city = newCity;
-            }else{
-              console.log(false);
-            }
-          })
-      }
+    local(tag) {
+      this.$router.push({
+        path: "/" + tag
+      });
     },
-    watch : {
-      '$route'(newValue, oldValue){
-        console.log(newValue)
-        console.log(oldValue)
-        if(newValue.path == '/HotPlay'){
-          this.showOn = false;
-        }else if(newValue.path == '/FindMovie'){
-          this.showOn = true;
-          this.showIn = false;
-        }
-
-        if (newValue.path != '/'){
-          this.ok = false;
-        }
-
-        let rex = /\/Mine/;
-        if (rex.test(this.$route.path)) {
-          this.show = false;
-          this.showIn = false;
-        }
-
-
-        let city = /\/Citys/;
-        let local = /\/Local/;
-        if (city.test(oldValue.path) || local.test(oldValue.path)) {
-          if (newValue.query.city) {
-            this.city = newValue.query.city;
-            if (this.city.length > 2) {
-              this.a = true;
-            }else{
-              this.a = false;
-            }
+    push() {
+      this.$router.push({
+        path: "/Search"
+      });
+    },
+    getlocalcity() {
+      this.axios
+        .get(
+          "http://restapi.amap.com/v3/ip?key=148a6ac1aab164f21da77728fc893368"
+        )
+        .then(data => {
+          let city = data.data.city;
+          let cityRex = /['省'|'市']$/;
+          if (cityRex.test(city)) {
+            let inde = city.match(cityRex).index;
+            let newCity = city.substr(0, inde);
+            this.city = newCity;
+          } else {
+            console.log(false);
           }
-        }
-
-        if (newValue.query.city) {
-         this.city = newValue.query.city;
-        }else{
-          if (!this.city) {
-            this.getlocalcity()
-          }
-        }
+        });
+    }
+  },
+  watch: {
+    $route(newValue, oldValue) {
+      console.log(newValue);
+      console.log(oldValue);
+      if (newValue.path == "/HotPlay") {
+        this.showOn = false;
+      } else if (newValue.path == "/FindMovie") {
+        this.showOn = true;
+        this.showIn = false;
       }
-    },
-    components : {
-    },
-    created () {
+
+      if (newValue.path != "/") {
+        this.ok = false;
+      }
+
       let rex = /\/Mine/;
       if (rex.test(this.$route.path)) {
         this.show = false;
         this.showIn = false;
       }
 
-      if(this.$route.path == '/FindMovie') {
-        this.showOn = true;
-        this.showIn = false;
+      let city = /\/Citys/;
+      let local = /\/Local/;
+      if (city.test(oldValue.path) || local.test(oldValue.path)) {
+        if (newValue.query.city) {
+          this.city = newValue.query.city;
+          if (this.city.length > 2) {
+            this.a = true;
+          } else {
+            this.a = false;
+          }
+        }
       }
 
-      if (this.$route.path == '/') {
-        this.ok = true;
+      if (newValue.query.city) {
+        this.city = newValue.query.city;
+      } else {
+        if (!this.city) {
+          this.getlocalcity();
+        }
       }
     }
+  },
+  components: {},
+  created() {
+    let rex = /\/Mine/;
+    if (rex.test(this.$route.path)) {
+      this.show = false;
+      this.showIn = false;
+    }
+
+    if (this.$route.path == "/FindMovie") {
+      this.showOn = true;
+      this.showIn = false;
+    }
+
+    if (this.$route.path == "/") {
+      this.ok = true;
+    }
   }
+};
 </script>
 
 <style lang="less" scoped>
-@fixed :  fixed ;
+@fixed : fixed;
 @ab : #ababab;
-@h08: .8rem;
+@h08: 0.8rem;
 
 .show {
   width: 100%;
   height: 100%;
 }
 
-.fixed-bottom(){
-  position : @fixed;
+.fixed-bottom() {
+  position: @fixed;
   bottom: 0;
-  left : 0;
+  left: 0;
   background-color: #fff;
-  z-index:2;
+  z-index: 2;
 }
-.fixed-top(){
+.fixed-top() {
   position: @fixed;
   top: 0;
   left: 0;
   background-color: #fff;
-  z-index:2;
+  z-index: 2;
 }
 
-.flex-config(){
+.flex-config() {
   width: 100%;
   height: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
-
 }
 
 .show {
@@ -191,44 +191,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: .3rem;
+    font-size: 0.3rem;
   }
-  .city>p {
-    margin-right: .03rem;
+  .city > p {
+    margin-right: 0.03rem;
   }
-  .city>span {
+  .city > span {
     position: relative;
-    width: .4rem;
-    height: .2rem;
+    width: 0.4rem;
+    height: 0.2rem;
     overflow: hidden;
     line-height: 0;
-    top: .05rem;
+    top: 0.05rem;
   }
-  .city>span:after {
-    content: '◇';
-    font-size: .4rem;
+  .city > span:after {
+    content: "◇";
+    font-size: 0.4rem;
     position: absolute;
     top: 0;
   }
   .tabtop-search {
-    background: url(../../static/search.png) no-repeat .8rem center;
-    background-size: .3rem;
+    background: url(../../static/search.png) no-repeat 0.8rem center;
+    background-size: 0.3rem;
     background-color: #f5f5f5;
     width: 5.6rem;
     height: @h08;
-    font-size: .3rem;
-    border-radius: .2rem;
+    font-size: 0.3rem;
+    border-radius: 0.2rem;
     text-align: center;
     line-height: @h08;
-    color:#ccc;
+    color: #ccc;
   }
 }
 
 .a {
   width: 1.7rem !important;
 }
-
-
 
 .tabtop-search-inputX {
   width: 7rem !important;
@@ -237,7 +235,7 @@
 
 .tabtop-search-inputY {
   width: 5.6rem !important;
-  background-position-x: .8rem !important;
+  background-position-x: 0.8rem !important;
 }
 
 .b {
@@ -249,13 +247,13 @@
   .flex-config();
   border-top: 1px solid #f0f0f0;
   a {
-    width:2rem;
-    font-size: .2rem;
+    width: 2rem;
+    font-size: 0.2rem;
     text-align: center;
     color: @ab;
   }
 }
 .router-link-active {
-    color : #494949 !important;
+  color: #494949 !important;
 }
 </style>

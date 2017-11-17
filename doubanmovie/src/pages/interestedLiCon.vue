@@ -47,12 +47,12 @@
 
 <script>
 export default {
-  props: ['item'],
-  data() {     
-    return {      
-      articles: {} ,
-      msg: '最近值得看的热门电影',
-      pointUrl: '../../static/point.png',
+  props: ["item"],
+  data() {
+    return {
+      articles: {},
+      msg: "最近值得看的热门电影",
+      pointUrl: "../../static/point.png",
       arr: [],
       arrbox: [],
       flag: false,
@@ -64,13 +64,13 @@ export default {
   methods: {
     getImage(url) {
       if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
-      }      
+        return url.replace("https://", "https://images.weserv.nl/?url=");
+      }
     },
     push(item) {
       this.$router.push({
-        path:'/movxiangqing/' + item
-      })
+        path: "/movxiangqing/" + item
+      });
     },
     show() {
       var that;
@@ -84,108 +84,98 @@ export default {
             console.log(that.flag);
           }
           return false;
-
-        }
+        };
         console.log(this.flag);
       }
-
     },
     deleteFn() {
-      this.flagLi=false;
+      this.flagLi = false;
     }
-
-
-
   },
-  updated() {
-
-  }
-
-}
+  updated() {}
+};
 </script>
 
 <style lang="css" scoped>
-.delete{
-  width:1.5rem;
-  height:0.5rem;
+.delete {
+  width: 1.5rem;
+  height: 0.5rem;
   position: absolute;
-  right:0.45rem;
+  right: 0.45rem;
   top: 0.4rem;
   text-align: center;
   line-height: 0.5rem;
-  border:0.01rem solid lightgray;
-  background:white;
+  border: 0.01rem solid lightgray;
+  background: white;
 }
-ul{
-  list-style:none;
+ul {
+  list-style: none;
 }
-.li{
+.li {
   position: relative;
 }
-.div{
-  height:4.3rem;
-  padding:0.4rem 0 0 0.3rem;
+.div {
+  height: 4.3rem;
+  padding: 0.4rem 0 0 0.3rem;
   border-bottom: 1px solid #e9e9e9;
 }
-.img-box{
-  width:2.8rem;
-  height:3.9rem;
+.img-box {
+  width: 2.8rem;
+  height: 3.9rem;
   display: inline-block;
   box-shadow: 0.1px -0.1px 5 gray;
 }
 
-.img-box img{
-  width:2.8rem;
-  height:3.9rem;
+.img-box img {
+  width: 2.8rem;
+  height: 3.9rem;
 }
-.interested-info{
-  width:55%;
+.interested-info {
+  width: 55%;
   display: inline-block;
   float: right;
 }
-.interested-info h1{
+.interested-info h1 {
   font-size: 0.4rem;
-  margin:0.2rem 0 0.3rem 0;
+  margin: 0.2rem 0 0.3rem 0;
 }
-.interested-info .director{
+.interested-info .director {
   margin-right: 0.3rem;
   padding:0 0rem 0.2rem 0;
   font-size: 0.2rem;
-  color:gray;
+  color: gray;
 
   border-bottom: 1px solid #f2f2f2;
 }
-.interested-info span{
-  font-weight:10;
+.interested-info span {
+  font-weight: 10;
 }
-.interested-info h6{
+.interested-info h6 {
   padding-top: 0.3rem;
   font-size: 0.25rem;
-  color:gray;
+  color: gray;
   font-weight: 100;
 }
-#point{
+#point {
   float: right;
-  width:0.4rem;
-  height:0.55rem;
+  width: 0.4rem;
+  height: 0.55rem;
   margin-right: 0.15rem;
 }
 .director .stars {
-  height: .3rem;
-  width:2rem;
+  height: 0.3rem;
+  width: 2rem;
   position: relative;
   display: inline-block;
 }
-.starsbox{
+.starsbox {
   overflow: hidden;
-  position:absolute;
-  height: .35rem;
+  position: absolute;
+  height: 0.35rem;
 }
-.stars img{
-  position:absolute;
-  height: .35rem;
-  width:2rem;
+.stars img {
+  position: absolute;
+  height: 0.35rem;
+  width: 2rem;
 }
-
-
 </style>

@@ -12,21 +12,21 @@
 </template>
 
 <script>
-import swiper from './swiper'
+import swiper from "./swiper";
 export default {
-  name:'now',
-  data(){
+  name: "now",
+  data() {
     return {
       ok:true,
       isLogin:false
     }
   },
-  components:{
+  components: {
     swiper
   },
-  watch:{
-    '$route'(newValue,oldValue){
-          this.ok=false;
+  watch: {
+    $route(newValue, oldValue) {
+      this.ok = false;
     }
   },
   methods:{
@@ -52,10 +52,6 @@ export default {
     }
   },
   created(){
-    this.$store.commit('inLogin',true);
-    console.log(this.$store.getters.IS_LOGIN);
-    this.isLogin = this.$store.getters.IS_LOGIN;
-    console.log(this.isLogin)
     this.JSONP(
       "http://10.0.156.183:8888/login?user=" +
         this.getCookie('user') +
@@ -64,14 +60,16 @@ export default {
       (err, data) => {
         data = JSON.parse(data);
         if (data.status == 1) {
+          this.$store.commit('inLogin', true);
           return true;
         }else{
           this.clearCookie();
+          this.$store.commit('inLogin', false);
         }
       }
     );
   }
-}
+};
 </script>
 
 <style scoped>
@@ -85,11 +83,11 @@ export default {
   background: white;
   z-index:2;*/
 }
-.wrap a{
+.wrap a {
   float: left;
   width: 50%;
-  font-size: .3rem;
-  color: #4C4C4C;
+  font-size: 0.3rem;
+  color: #4c4c4c;
   height: 1rem;
   line-height: 1rem;
   text-align: center;
@@ -98,5 +96,4 @@ export default {
   border-bottom: 0.02rem solid #123;
   color: #123;
 }
-
 </style>

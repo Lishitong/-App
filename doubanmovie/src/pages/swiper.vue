@@ -9,43 +9,43 @@
 </div>
 </template>
 <script>
-require('swiper/dist/css/swiper.css')
-  export default{
-    data(){
-      return {
-        swiperOption: {
-          autoplay: 2000,
-          autoplayDisableOnInteraction : false,
-          direction : 'horizontal',
-          pagination : '.swiper-pagination',
-          loop : true,
-          paginationClickable :true
+require("swiper/dist/css/swiper.css");
+export default {
+  data() {
+    return {
+      swiperOption: {
+        autoplay: 2000,
+        autoplayDisableOnInteraction: false,
+        direction: "horizontal",
+        pagination: ".swiper-pagination",
+        loop: true,
+        paginationClickable: true
       }
-    }
+    };
   }
-}
+};
 </script>
 <style media="screen" scoped>
-.swiper-container{
-  height:2rem;
+.swiper-container {
+  height: 2rem;
 }
-.swiper-slide{
+.swiper-slide {
   width: 100%;
-  height:2rem;
+  height: 2rem;
 }
-.swiper-container-horizontal>.swiper-pagination-bullets{
+.swiper-container-horizontal > .swiper-pagination-bullets {
   text-align: right;
-  bottom: .01rem;
+  bottom: 0.01rem;
 }
-.swiper-pagination-bullet{
-  width: .1rem;
-  height: .1rem;
+.swiper-pagination-bullet {
+  width: 0.1rem;
+  height: 0.1rem;
 }
 .swiper-pagination-bullet-active{
   background: lightgray
 }
 /*轮播图片*/
-.slide0{
+.slide0 {
   background: url(../../static/img/lunbo0.jpg) no-repeat top/100% 100%;
 }
 .slide1 {

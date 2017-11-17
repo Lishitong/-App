@@ -25,181 +25,172 @@
 </template>
 
 <script>
-import goTop from '../components/gotop'
-import loadingli from './loading-li'
+import goTop from "../components/gotop";
+import loadingli from "./loading-li";
 export default {
   data() {
     return {
       obj: {},
-      obj1:{},
-      obj2:{},
-      obj3:{},
-      obj4:{},
-      objStr:[],
-      objDate:[],
+      obj1: {},
+      obj2: {},
+      obj3: {},
+      obj4: {},
+      objStr: [],
+      objDate: [],
       flagLi: true,
       flagAver: true,
       director: [],
-      flagClass1:false,
-      flagClass2:false,
-      flagClass3:false,
-      flagClass4:false
-
-    }
+      flagClass1: false,
+      flagClass2: false,
+      flagClass3: false,
+      flagClass4: false
+      };
   },
-  components:{
-    loadingli,goTop
+  components: {
+    loadingli,
+    goTop
   },
   methods: {
     getHero() {
-      this.JSONP('https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd', null, (err, data) => {      
-        if (err) {      
-          console.error(err.message);      
-        } else {
-          this.obj = data.subjects;
-          this.objDate=data.subjects;
-          this.flagLi=false;
-        }  
-      })
+      this.JSONP(
+        "https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd",
+        null,
+        (err, data) => {
+          if (err) {
+            console.error(err.message);
+          } else {
+            this.obj = data.subjects;
+            this.objDate = data.subjects;
+            this.flagLi = false;
+          }
+        }
+      );
     },
 
-    all(){
-      this.flagClass1=true;
-      this.flagClass2=false;
-      this.flagClass3=false;
-      this.flagClass4=false;
-      this.obj='';
-      setTimeout(()=>{
-        this.flagLi=false;
-        this.obj=this.objDate;
-      },600);
-      this.flagLi=true;
-
-
+    all() {
+      this.flagClass1 = true;
+      this.flagClass2 = false;
+      this.flagClass3 = false;
+      this.flagClass4 = false;
+      this.obj = "";
+      setTimeout(() => {
+        this.flagLi = false;
+        this.obj = this.objDate;
+      }, 600);
+      this.flagLi = true;
     },
-    one(){
-      this.flagClass1=false;
-      this.flagClass2=true;
-      this.flagClass3=false;
-      this.flagClass4=false;
-      let one=this.objDate;
-      this.objStr=[];
-      this.obj='';
-      setTimeout(()=>{
-        this.flagLi=false;
+    one() {
+      this.flagClass1 = false;
+      this.flagClass2 = true;
+      this.flagClass3 = false;
+      this.flagClass4 = false;
+      let one = this.objDate;
+      this.objStr = [];
+      this.obj = "";
+      setTimeout(() => {
+        this.flagLi = false;
         for (let i = 0; i < one.length; i++) {
           console.log(one[i].pubdates[0]);
-          let pubdates=one[i].pubdates[0];
-          if (pubdates.substring(5,7)=='11') {
+          let pubdates = one[i].pubdates[0];
+          if (pubdates.substring(5, 7) == "11") {
             this.objStr.push(one[i]);
           }
         }
-        this.obj=this.objStr;
-      },600);
-      this.flagLi=true;
-
-
+        this.obj = this.objStr;
+      }, 600);
+      this.flagLi = true;
     },
-    two(){
-      this.flagClass1=false;
-      this.flagClass2=false;
-      this.flagClass3=true;
-      this.flagClass4=false;
-      let one=this.objDate;
-      this.objStr=[];
-      this.obj='';
-      setTimeout(()=>{
-        this.flagLi=false;
+    two() {
+      this.flagClass1 = false;
+      this.flagClass2 = false;
+      this.flagClass3 = true;
+      this.flagClass4 = false;
+      let one = this.objDate;
+      this.objStr = [];
+      this.obj = "";
+      setTimeout(() => {
+        this.flagLi = false;
         for (let i = 0; i < one.length; i++) {
           console.log(one[i].pubdates[0]);
-          let pubdates=one[i].pubdates[0];
-          if (pubdates.substring(5,7)=='12') {
+          let pubdates = one[i].pubdates[0];
+          if (pubdates.substring(5, 7) == "12") {
             this.objStr.push(one[i]);
           }
         }
-        this.obj=this.objStr;
-      },600);
-      this.flagLi=true;
-
-
+        this.obj = this.objStr;
+      }, 600);
+      this.flagLi = true;
     },
-    three(){
-      this.flagClass1=false;
-      this.flagClass2=false;
-      this.flagClass3=false;
-      this.flagClass4=true;
-      let one=this.objDate;
-      this.objStr=[];
-      this.obj='';
-      setTimeout(()=>{
-        this.flagLi=false;
+    three() {
+      this.flagClass1 = false;
+      this.flagClass2 = false;
+      this.flagClass3 = false;
+      this.flagClass4 = true;
+      let one = this.objDate;
+      this.objStr = [];
+      this.obj = "";
+      setTimeout(() => {
+        this.flagLi = false;
         for (let i = 0; i < one.length; i++) {
-          let pubdates=one[i].pubdates[0];
-          if (pubdates.substring(5,7)=='01') {
+          let pubdates = one[i].pubdates[0];
+          if (pubdates.substring(5, 7) == "01") {
             this.objStr.push(one[i]);
           }
         }
-        this.obj=this.objStr;
-      },600);
-      this.flagLi=true;
-
-
+        this.obj = this.objStr;
+      }, 600);
+      this.flagLi = true;
     }
-
   },
   created() {
-    this.getHero()
+    this.getHero();
   }
-}
+};
 </script>
 
 <style lang="css" scoped>
-.loading{
+.loading {
   margin-top: 0.02rem;
 }
-.active{
-  color:black;
+.active {
+  color: black;
 }
-.nav{
-  line-height:0.6rem;
-  border:0.001rem lightgray solid;
+.nav {
+  line-height: 0.6rem;
+  border: 0.001rem lightgray solid;
   border-left: none;
   border-right: none;
-  color:gray;
-  background:white;
-  padding:0 0.4rem;
+  color: gray;
+  background: white;
+  padding: 0 0.4rem;
   font-size: 0.2rem;
-
 }
-.nav p{
+.nav p {
   display: inline-block;
 }
-.navleft{
-  width:70%;
-  height:0.6rem;
-  line-height:0.6rem;
+.navleft {
+  width: 70%;
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
-.navright{
-  height:0.4rem;
-  line-height:0.4rem;
+.navright {
+  height: 0.4rem;
+  line-height: 0.4rem;
   text-align: right;
-  border-left:0.005rem lightgray solid;
+  border-left: 0.005rem lightgray solid;
 }
-.navleft span:nth-of-type(1){
-  margin:0;
+.navleft span:nth-of-type(1) {
+  margin: 0;
 }
-.nav span{
+.nav span {
   display: inline-block;
-  margin-left:0.2rem;
+  margin-left: 0.2rem;
 }
 
-.load{
-  font-size: .5rem;
+.load {
+  font-size: 0.5rem;
   text-align: center;
   margin: 1rem 0 0rem 0;
-  color:gray;
+  color: gray;
 }
-
-
-
 </style>

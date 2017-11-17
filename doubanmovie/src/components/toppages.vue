@@ -7,19 +7,19 @@
 </template>
 
 <script>
-
 export default {
-  props:['arr'],
-  methods:{
-    getImage(url){
+  props: ["arr"],
+  methods: {
+    getImage(url) {
       console.log(url);
-      if(url !== undefined){
-          return url.replace('https://','https://images.weserv.nl/?url=');
+      if (url !== undefined) {
+        return url.replace("https://", "https://images.weserv.nl/?url=");
       }
-    },
-  },
-}
+    }
+  }
+};
 </script>
 
 <style lang="css" scoped>
+
 </style>

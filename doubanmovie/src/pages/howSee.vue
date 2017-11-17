@@ -18,71 +18,70 @@
 </template>
 
 <script>
-import shareAL from '../components/shareALL'
+import shareAL from "../components/shareALL";
 export default {
-  name:"sharesAL",
-  components:{
+  name: "sharesAL",
+  components: {
     shareAL
   },
-  data(){
-    return{
-      Share:false
-    }
+  data() {
+    return {
+      Share: false
+    };
   },
-  methods:{
-    shezhiback(){
+  methods: {
+    shezhiback() {
       history.back();
     },
-    s(){
-      this.Share=true;
+    s() {
+      this.Share = true;
     },
-    Shares(a){
+    Shares(a) {
       console.log(a);
       this.Share = a;
     }
   }
-}
+};
 </script>
 
 <style lang="css" scoped="scoped">
-.bg{
+.bg {
   height: 13rem;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
-.bgTop{
-  background-color:white;
+.bgTop {
+  background-color: white;
   /*width: 100%;*/
-  height:.8rem;
-  line-height: .8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   /*text-align: center;*/
-  font-size: .3rem;
-  font-weight:700;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .2rem;
+  font-size: 0.3rem;
+  font-weight: 700;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.2rem;
   display: flex;
   justify-content: space-around;
 }
-.bgTop img{
-  width: .3rem;
-  height: .3rem;
-  margin-top: .25rem;
+.bgTop img {
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-top: 0.25rem;
 }
-p{
-    font-size: .3rem;
-    margin-left: 5%;
-    line-height: .6rem;
-    margin-bottom: .2rem;
+p {
+  font-size: 0.3rem;
+  margin-left: 5%;
+  line-height: 0.6rem;
+  margin-bottom: 0.2rem;
 }
-p:nth-of-type(1){
-  font-weight:800;
+p:nth-of-type(1) {
+  font-weight: 800;
 }
-p:nth-of-type(3){
-  font-weight:800;
-  font-size: .26rem;
+p:nth-of-type(3) {
+  font-weight: 800;
+  font-size: 0.26rem;
 }
-.howSee{
+.howSee {
   width: 90%;
-  margin: 5%
+  margin: 5%;
 }
-
 </style>

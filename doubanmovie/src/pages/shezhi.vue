@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
         bol:false,
         foote:false,
@@ -57,7 +57,7 @@ export default {
     }
 
   },
-  methods:{
+  methods: {
     shezhiback() {
       history.back()
   },
@@ -97,36 +97,33 @@ export default {
   suggest(suggest){
     this.$router.push({path:'/'+suggest})
   },
-  aboutdb(aboutdb){
-    this.$router.push({path:'/'+aboutdb})
-  }
-},
-  created(){
-    if(document.cookie.length>0){
-      console.log(document.cookie)
+  created() {
+    if (document.cookie.length > 0) {
+      console.log(document.cookie);
       this.foote = true;
     }
-  },
+   }
+  }
 }
 </script>
 
 <style lang="css" scoped>
-.bg{
-  background-color:#F6F6F6;
+.bg {
+  background-color: #f6f6f6;
   width: 100%;
   height: 9rem;
 }
-.wrap{
+.wrap {
   width: 100%;
   height: 100%;
-  background-color: rgba(200,200,200,.4);
+  background-color: rgba(200, 200, 200, 0.4);
   position: fixed;
-  top: .8rem;
+  top: 0.8rem;
   bottom: 0;
   left: 0;
   right: 0;
 }
-.alertbox{
+.alertbox {
   position: absolute;
   left: 50%;
   margin-left: -2.5rem;
@@ -136,87 +133,87 @@ export default {
   height: 2rem;
   padding: 1rem;
   background-color: #fff;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.alertbox>p{
+.alertbox > p {
   width: 100%;
   text-align: center;
-  font-size: .4rem;
-  margin-top: .3rem;
+  font-size: 0.4rem;
+  margin-top: 0.3rem;
 }
-.alertbox>button{
-  width: .8rem;
-  height: .6rem;
-  margin-top: .3rem;
-  border-radius: .1rem;
+.alertbox > button {
+  width: 0.8rem;
+  height: 0.6rem;
+  margin-top: 0.3rem;
+  border-radius: 0.1rem;
 }
-.bgTop{
-  background-color:white;
+.bgTop {
+  background-color: white;
   width: 100%;
-  height:.8rem;
-  line-height: .8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   text-align: center;
-  font-size: .3rem;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .8rem;
+  font-size: 0.3rem;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.8rem;
 }
-.bgTop img{
-  width: .4rem;
-  height: .4rem;
+.bgTop img {
+  width: 0.4rem;
+  height: 0.4rem;
   float: left;
-  margin-top: .2rem;
-  margin-left: .2rem;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
 }
-main{
+main {
   overflow: hidden;
   background-color: white;
-  border-top: .01rem solid #C6C7C7;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .5rem;
+  border-top: 0.01rem solid #c6c7c7;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.5rem;
 }
 .bgconter {
   /*background-color:white;*/
   width: 95%;
-  margin-left:5%;
-  height:.6rem;
-  line-height: .6rem;
+  margin-left: 5%;
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: center;
-  font-size: .3rem;
-  border-bottom: .01rem solid #C6C7C7;
+  font-size: 0.3rem;
+  border-bottom: 0.01rem solid #c6c7c7;
 
   /*float: right;*/
 }
 /*.first {
     border-top:.01rem solid #C6C7C7;
 }*/
-.last{
-  border-bottom: .00000003rem solid #C6C7C7;
+.last {
+  border-bottom: 0.00000003rem solid #c6c7c7;
 }
-.bgconter img{
-  width: .3rem;
-  height: .3rem;
+.bgconter img {
+  width: 0.3rem;
+  height: 0.3rem;
   float: right;
-  margin-top: .15rem;
-  margin-right: .1rem;
+  margin-top: 0.15rem;
+  margin-right: 0.1rem;
 }
-.bgconter span{
+.bgconter span {
   float: left;
-  margin-left: .1rem;
-  font-size: .26rem;
-  color:#030302;
+  margin-left: 0.1rem;
+  font-size: 0.26rem;
+  color: #030302;
 }
-.footer{
+.footer {
   width: 100%;
-  height:.6rem;
-  line-height: .6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: center;
-  font-size: .3rem;
-  background-color:white;
-  border-bottom: .01rem solid #C6C7C7;
-  border-top: .003rem solid #C6C7C7;
+  font-size: 0.3rem;
+  background-color: white;
+  border-bottom: 0.01rem solid #c6c7c7;
+  border-top: 0.003rem solid #c6c7c7;
 }
 .unlogin {
   position: absolute;

@@ -19,52 +19,50 @@
 
 <script>
 export default {
-  methods:{
+  methods: {
     shezhiback() {
-      history.back()
-  },
-  whyOpendb(whyOpendb){
-    this.$router.push(
-      {
-        path:'/whyOpendb',
-        component: resolve => require(['../pages/whyOpendb.vue'], resolve)
-      }
-    )
+      history.back();
+    },
+    whyOpendb(whyOpendb) {
+      this.$router.push({
+        path: "/whyOpendb",
+        component: resolve => require(["../pages/whyOpendb.vue"], resolve)
+      });
+    }
   }
-  }
-}
+};
 </script>
 
 <style lang="css" scoped>
-.bg{
-  background-color:#F6F6F6;
+.bg {
+  background-color: #f6f6f6;
   width: 100%;
   height: 12rem;
 }
-.bgTop{
-  background-color:white;
+.bgTop {
+  background-color: white;
   width: 100%;
-  height:.8rem;
-  line-height: .8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   text-align: center;
-  font-size: .3rem;
-  border-bottom: .01rem solid #C6C7C7;
-  margin-bottom: .2rem;
-  font-weight:700;
+  font-size: 0.3rem;
+  border-bottom: 0.01rem solid #c6c7c7;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
 }
-.bgTop img{
+.bgTop img {
   float: left;
-  width: .4rem;
-  height: .4rem;
-  margin: .2rem 0 0.2rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin: 0.2rem 0 0.2rem;
 }
-main{
+main {
   text-align: center;
   margin-top: 1rem;
 }
 footer {
   text-align: center;
   margin-top: 4rem;
-  color: #12851B;
+  color: #12851b;
 }
 </style>

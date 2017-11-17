@@ -19,8 +19,8 @@
 
 <script>
 export default {
-  name: 'ping'
-}
+  name: "ping"
+};
 </script>
 <style lang="css" scoped>
 .lun ul {
@@ -28,42 +28,43 @@ export default {
 }
 .lun h1 {
   width: 90%;
-  height: .9rem;
-  line-height: .9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
   color: #000;
   margin: 0 auto;
-  font-size: .3rem;
+  font-size: 0.3rem;
 }
 .lun h1 label {
-   float: right;
-   margin-top: .2rem;
-   font-size: .15rem;
-   text-align: center;
-   color: green;
-   width: .8rem;
-   height: .4rem;
-   line-height: .4rem;
-   border: .01rem solid green;
-   border-radius: .04rem;
+  float: right;
+  margin-top: 0.2rem;
+  font-size: 0.15rem;
+  text-align: center;
+  color: green;
+  width: 0.8rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border: 0.01rem solid green;
+  border-radius: 0.04rem;
 }
 .lun ul > li {
-  line-height: .7rem;
+  line-height: 0.7rem;
   font-weight: 900;
-  font-size: .25rem;
+  font-size: 0.25rem;
 }
 .lun ul {
   width: 90%;
   margin: 0 auto;
 }
 .lun li img {
-  width: .35rem;
-  height: .35rem;
+  width: 0.35rem;
+  height: 0.35rem;
   vertical-align: text-bottom;
-  margin-right: .02rem;
+  margin-right: 0.02rem;
 }
-.lun ul li span,.lun ul li label {
+.lun ul li span,
+.lun ul li label {
   font-weight: normal;
-  font-size: .2rem;
+  font-size: 0.2rem;
   color: gray;
 }
 .lun ul li span {
@@ -72,7 +73,7 @@ export default {
 .lastli {
   text-align: center;
   color: green;
-  font-size: .2rem;
+  font-size: 0.2rem;
   font-weight: normal;
 }
 </style>
