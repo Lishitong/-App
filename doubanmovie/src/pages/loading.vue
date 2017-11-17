@@ -15,7 +15,8 @@
     </div>
 
     <div class="load" v-if="flagLi">
-      (◕ᴗ◕✿)
+      <!-- (◕ᴗ◕✿) -->
+      <img src="./../../static/loading.gif" alt="">
     </div>
     <loadingli :objdate="obj" v-else></loadingli>
     <goTop></goTop>

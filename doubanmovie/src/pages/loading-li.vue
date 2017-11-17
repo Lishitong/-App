@@ -26,7 +26,7 @@
         </div>
         <div class="text-right">
           <p>{{ item.collect_count }}人看过</p>
-          <div class="btn">想看</div>
+          <div class="btn" @click.stop="change()">想看</div>
         </div>
       </div>
     </div>
@@ -63,8 +63,15 @@ export default {
       this.$router.push({
         path:'/movxiangqing/' + item
       })
+    },
+    change(){
+        this.$router.push({
+          path:'/login'
+        })
     }
   }
+
+
 }
 </script>
 

@@ -3,8 +3,7 @@
       <div class="input-top">
         <div class="input">
           <img src="../../static/Search-search.png" alt="" >
-          <input type="text" name="val" value="" placeholder="搜索电影 / 电视剧 / 影人" ref="input1"  @keyup="search()"
-          @keyup.enter="enter()">
+          <input type="text" name="val" value="" placeholder="搜索电影 / 电视剧 / 影人" ref="input1" @keyup="search()" @keyup.enter="enter()">
           <img v-if="flagimg" class="del" src="../../static/del.png" alt="" @click="del()">
         </div>
         <span @click="back()">取消</span>
@@ -54,10 +53,7 @@
       <div class="" v-if="sear" >
 
         <interestedLiCon v-for='aa of obj' :item="aa">
-
         <!-- <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a"> -->
-
-
         </interestedLiCon>
       </div>
 
@@ -79,7 +75,9 @@ export default {
       flaghistory: true,
       ying:false,
       sear:false,
-      value:[]
+      value:[],
+      name:'',
+      count:0
     }
   },
   components: {
@@ -116,21 +114,41 @@ export default {
       this.flagimg = true;
       this.se();
       this.sear=true;
-      this.value.push(this.$refs.input1.value)
+      let { historyItems } = localStorage;
+      if (historyItems === undefined) {
+        localStorage.historyItems = this.$refs.input1.value;
+      } else {
+          historyItems = this.$refs.input1.value + '|' + historyItems.split('|').filter(e => e != this.$refs.input1.value).join('|');
+          localStorage.historyItems = historyItems;
+          console.log(localStorage.historyItems);
+          var arr=localStorage.historyItems;
+          console.log(this.value.length);
+          if (this.value.length>8) {
+            var index=arr.lastIndexOf('|');
+            console.log(index);
+            arr=arr.substring(0,index);
+            console.log(arr);
+          }
+          arr=localStorage.historyItems;
+          this.value=arr.split('|');
+      }
+
+      var mm=localStorage.historyItems
+      return mm
     },
     span(s){
-
-      // this.flagimg=false;
+      this.flagimg=false;
       console.log(s);
       this.$refs.input1.value=this.value[s];
+      this.se();
       this.flagHot=false;
       this.ying=false;
       this.flagimg = true;
-      this.se();
       this.sear=true;
     },
     delt(){
-      this.value=[]
+      localStorage.clear();
+      this.value=''
     },
     getImage(url) {
       if (url !== undefined) {
@@ -147,12 +165,18 @@ export default {
       history.back()
     }
   },
+  created(mm){
+    // var arr=localStorage.historyItems;
+    this.value=localStorage.historyItems.split('|');
+    console.log(this.value);
+  },
   updated(){
-    console.log(this.$refs.input1.value);
+    // console.log(this.$refs.input1.value);
     if (this.$refs.input1.value == false) {
       this.flagHot=true;
       this.flagimg=false;
     }
+
   }
 
 
