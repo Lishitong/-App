@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="local-city" >
+    <div class="local-city" >
     <div class="inOrout">
       <div id="chengshi">
         <transition name="slider">
@@ -85,7 +85,7 @@
         searchCity: false,
         wheight:0,
         msg:'没有这个地方哟，或者没有收录哟',
-        noneNull : false
+        noneNull : false,
       }
     },
     components:{
@@ -232,11 +232,6 @@
       }
     },
 
-    watch:{
-      '$route'(newValue, oldValue){
-        console.log(newValue)
-        console.log(oldValue)}
-    },
     created(){
       this.axios.get('../../static/China_Province.json').then(data=>{
         this.cities = data.data
@@ -245,7 +240,6 @@
         this.searchCitys = data.data;
       })
       this.wheight = window.innerHeight;
-      console.log(this.wheight)
       },
     updated () {
      if (this.$refs.inputSearch.value.length) {

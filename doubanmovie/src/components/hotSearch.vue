@@ -23,7 +23,6 @@ export default {
             if (err) {      
               console.error(err.message);      
             } else {
-              console.log(data);
               this.obj=data;
             }
           })

@@ -92,7 +92,6 @@ export default {
           this.id[i] = data.subjects[i].id
         }
       })
-      console.log(this.dat);
     },
     push(item) {
       this.$router.push({
@@ -115,7 +114,6 @@ export default {
       if (this.nowpage != e) {
         this.bol = false
         this.nowpage = e
-        console.log(e);
         this.getdata(this.start[e])
       }
     }
@@ -133,15 +131,11 @@ export default {
       this.JSONP('https://api.douban.com/v2/movie/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&', null, (err, data) => {
         this.bol = true
         this.title = data.title
-        console.log('mmmm');
-        console.log(data);
         for (let i = 0; i < data.subjects.length; i++) {
-          console.log(1);
           this.dat.sub[i] = data.subjects[i].subject
           this.dat.rank[i] = data.subjects[i].rank
           this.dat.delta[i] = data.subjects[i].delta
           this.id[i] = data.subjects[i].subject.id
-          console.log(this.dat.sub[i]);
         }
       })
     }
@@ -152,12 +146,18 @@ export default {
 
 <style lang="less">
 .zhuanti250 {
+    padding:1rem 0;
     width: 100%;
     .bar {
+        position:fixed;
+        background-color:#fff;
         width: 100%;
+        top:.8rem;
+        z-index:3;
         display: flex;
         justify-content: space-around;
         border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
         div {
             width: 12%;
             text-align: center;

@@ -33,7 +33,7 @@
         我的
       </router-link>
     </div>
-      <router-view ></router-view>
+       <router-view ></router-view>
   </div>
 </template>
 
@@ -87,23 +87,20 @@
           this.showOn = false;
         }else if(newValue.path == '/FindMovie'){
           this.showOn = true;
+          this.showIn = false;
         }
+
         if (newValue.path != '/'){
           this.ok = false;
         }
-        if (newValue.path == '/Local') {
-          this.tabbarShow = false;
-          this.show = false;
 
-        }else {
-          this.tabbarShow = true;
-          this.show = true;
-        }
         let rex = /\/Mine/;
         if (rex.test(this.$route.path)) {
           this.show = false;
           this.showIn = false;
         }
+
+
         let city = /\/Citys/;
         let local = /\/Local/;
         if (city.test(oldValue.path) || local.test(oldValue.path)) {
@@ -116,10 +113,13 @@
             }
           }
         }
-        if (this.$route.query.city) {
-         this.city = this.$route.query.city;
+
+        if (newValue.query.city) {
+         this.city = newValue.query.city;
         }else{
-          this.getlocalcity()
+          if (!this.city) {
+            this.getlocalcity()
+          }
         }
       }
     },

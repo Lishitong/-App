@@ -114,6 +114,7 @@ export default {
 
 <style lang="less" scoped>
   .zhuantiremen{
+    padding:.8rem 0;
     .star{
       float: left;
       width: .27rem;
@@ -155,7 +156,6 @@ export default {
   }
   .aa{
     height: 2rem;
-    padding: 2rem 0;
     border-top: 1px solid #ccc;
     background-color: #fff;
     text-align: center;
