@@ -82,17 +82,24 @@ export default {
     },
 
     menu() {
-    this.scroll =document.body.scrollTop||window.pageYOffset ||  document.documentElement.scrollTop;
-    // console.log(this.scroll);
-    // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
-    if (this.scroll ==(document.documentElement.scrollHeight-document.documentElement.clientHeight)&&this.start<88) {
-      // console.log(this.start);
-      this.start+=8;
-      // console.log(this.start);
-      this.getHero(this.start);
-    }else if (this.start==88) {
-      this.wait=false;
-      this.footer=true;
+      this.scroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      // console.log(this.scroll);
+      // console.log(document.documentElement.scrollHeight-document.documentElement.clientHeight);
+      if (
+        this.scroll ==
+          document.documentElement.scrollHeight -
+            document.documentElement.clientHeight &&
+        this.start < 88
+      ) {
+        // console.log(this.start);
+        this.start += 8;
+        // console.log(this.start);
+        this.getHero(this.start);
+      } else if (this.start == 88) {
+        this.wait = false;
+        this.footer = true;
+      }
     }
   },
   computed: {},
@@ -103,8 +110,7 @@ export default {
     window.addEventListener("scroll", this.menu);
   },
   updated() {}
-}
-}
+};
 </script>
 
 <style lang="css" scoped>

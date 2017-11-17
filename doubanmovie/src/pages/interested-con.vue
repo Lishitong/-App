@@ -2,24 +2,21 @@
   <div class="interested-con">
 
     <ul>
-      <li v-for="aa of message" :key="bb">
+      <li v-for="(aa, bb) in message" :key="bb">
       <interestedLiCon :item="aa"></interestedLiCon>
       </li>
-      <div v-if="flagJudge" class="judge" :style="{background:'url('+getImage(message[0].images.large)+')'}">
+      <div v-if="flagJudge" class="judge">
         <div class="delete" v-show="flag" @click.stop="deleteFn()" >
           不感兴趣
         </div>
-        <span id="point" @click.stop="show()"  alt="" >
-          <font></font>
-          <font></font>
-          <font></font>
-        </span>
-        <div class="judgeStr" >
+        <img id="point" @click.stop="show()" :src="pointUrl" alt="" >
+        <div class="judgeStr">
+          <img src="" alt="">
           <h3>越看越没趣</h3>
           <p>漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影电影</p>
           <h6>雪 评论《雷神3》</h6>
         </div>
-        <img :src="getImage(message[0].images.medium)" alt="">
+        <img :src="pp" alt="">
 
       </div>
     </ul>
@@ -31,32 +28,23 @@ import interestedLiCon from "./interestedLiCon";
 export default {
   props: ["message"],
   data() {
-    return {      
-      articles: {} ,
-      msg:'最近值得看的热门电影',
-      // pp:'getImage(message[0].images.large)',
-      // pp:'../../static/judgebg.jpg',
-      pointUrl:'../../static/point.png',
-      arr:[],
-      arrbox:[],
-      flag:false,
-      flagLi:true,
-      flagJudge:true
-    }
+    return {
+      articles: {},
+      msg: "最近值得看的热门电影",
+      pp: "../../static/judgebg.jpg",
+      pointUrl: "../../static/point.png",
+      arr: [],
+      arrbox: [],
+      flag: false,
+      flagLi: true,
+      flagJudge: true
+    };
   },
   components: {
     interestedLiCon
   },
-  created(){
-    console.log(this.message);
-
-  },
-  methods:{
-    getImage(url) {
-      if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
-      }      
-    },
+  updated() {},
+  methods: {
     show() {
       var that;
       if (this.flag == false) {
@@ -97,22 +85,14 @@ export default {
 }
 #point {
   float: right;
-  width:0.2rem;
-  height:0.55rem;
-  line-height:0.17rem;
-  margin:0 0.15rem;
-}
-#point font{
-  display: inline-block;
-  background:gray;
-  width:.1rem;
-  height:.1rem;
-  border-radius: .1rem;
+  width: 0.4rem;
+  height: 0.55rem;
+  margin-right: 0.15rem;
 }
 .judge{
  height:3rem;
  padding:0.4rem 0 0.4rem 0.4rem;
- /*background:url(../../static/judgebg.jpg);*/
+ background:url(../../static/judgebg.jpg);
  /*margin-top: -0.38rem;*/
  color:white;
  position:relative;
