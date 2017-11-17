@@ -49,7 +49,6 @@
             imgUrl : imgUrl,
             stars : stars,
             average :average
-
           }
           this.wantToSee = true;
           this.$store.commit('isWantToSee', this.dataList);

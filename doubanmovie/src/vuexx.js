@@ -14,6 +14,7 @@ const store = new Vuex.Store({
         },
         isWantToSee(state, think) {
             state.wantToSeeList.unshift(think);
+            console.log(think)
         }
     },
     getters: {
