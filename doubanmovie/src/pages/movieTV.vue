@@ -19,7 +19,8 @@
 
 <script>
 export default {
-  data() {
+  name:"movieTv",
+  data(){
     return {
       user: "未登录"
     };

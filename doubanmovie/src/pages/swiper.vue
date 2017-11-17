@@ -41,7 +41,9 @@ export default {
   width: 0.1rem;
   height: 0.1rem;
 }
-
+.swiper-pagination-bullet-active{
+  background: lightgray
+}
 /*轮播图片*/
 .slide0 {
   background: url(../../static/img/lunbo0.jpg) no-repeat top/100% 100%;

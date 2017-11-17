@@ -5,7 +5,9 @@
         <router-link to="/HotPlay/nowing" :class="{'router-link-active':ok}">正在热映</router-link>
         <router-link to="/HotPlay/loading">即将上映</router-link>
       </div>
+      <keep-alive>
         <router-view/>
+      </keep-alive>
     </div>
 </template>
 
