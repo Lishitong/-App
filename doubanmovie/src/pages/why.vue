@@ -60,7 +60,6 @@ export default {
       this.Share=true;
     },
     Shares(a){
-      console.log(a);
       this.Share = a;
     }
   }

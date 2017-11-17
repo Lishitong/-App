@@ -67,6 +67,8 @@ const losePassword = () =>
     import ( /* webpackChunkName: "login" */ '../pages/losePassword.vue')
 const myfil = () =>
     import ( /* webpackChunkName: "shezhi" */ '../pages/myfil.vue')
+const NotFoundComponent = () =>
+    import ( /* webpackChunkName: "HotPlay" */ '../components/NotFoundComponent.vue')
 Vue.use(Router)
 const routes = [{
         path: '/',
@@ -89,7 +91,7 @@ const routes = [{
             { path: '/movxiangqing/lun/:id', component: lun }
         ]
     },
-    { path: '/per/:id',component:per},
+    { path: '/per/:id', component: per },
     { path: '/pingpage/:id', component: pingpage },
     { path: '/ying/:id', component: ying },
     {
@@ -121,13 +123,14 @@ const routes = [{
     { path: '/howSee', component: howSee },
     { path: '/register', component: register },
     { path: '/losePassword', component: losePassword },
-    { path: '/myfil', component:myfil},
+    { path: '/myfil', component: myfil },
     { path: '/why', component: why },
     { path: '/howWatch', component: howWatch },
     { path: '/feedBack', component: feedBack },
     { path: '/aboutdb', component: aboutdb },
     { path: '/whyOpendb', component: whyOpendb },
     { path: '/zhuanti250/:id', component: zhuanti250 },
+    { path: '*', component: NotFoundComponent },
 
 
 ]

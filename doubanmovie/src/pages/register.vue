@@ -13,7 +13,7 @@
                   <input ref="loginPassWord" v-else  class="loginPassWord" type="text" name="pwd" value="" placeholder="密码(最少6位)">
                 <img src="../../static/nopass.png" ref="seePassword" @click="seePassword()" alt="">
         </div>
-  <input ref="loginUserName"   id='UserName' type="text" name="user" value="" placeholder="昵称">
+  <input ref="loginUser"   id='UserName' type="text" name="user" value="" placeholder="昵称">
 
         <button type="button"  @click="loginOn()" class="loginin" name="button">确定</button>
         <p>如果点击『确定』,代表你已经阅读并 <a href="#">同意用户使用协议</a></p>
@@ -37,10 +37,23 @@ export default {
   },
   methods:{
     back(){
-      history.back();
+      this.$router.back();
     },
     loginOn(){
-      alert('da');
+      this.JSONP("http://192.168.43.134:8888/register?user=" +
+            this.$refs.loginUserName.value +
+            "&pwd=" +
+            this.$refs.loginPassWord.value + '&userId=' + this.$refs.loginUser.value,{name : 'callback'},
+          (err, data) => {
+            data = JSON.parse(data);
+            console.log(data)
+            if (data.status == 0) {
+              console.log("注册失败");
+            } else {
+              console.log("注册成功");
+            }
+          }
+        )
     },
 
 

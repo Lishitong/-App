@@ -57,11 +57,8 @@ export default {
         } else {
           this.obj = data.subjects;
           this.objDate=data.subjects;
-          console.log(this.obj);
           this.flagLi=false;
-
         }  
-        console.log('??');    
       })
     },
 
@@ -96,7 +93,6 @@ export default {
             this.objStr.push(one[i]);
           }
         }
-        console.log(this.objStr);
         this.obj=this.objStr;
       },600);
       this.flagLi=true;
@@ -120,7 +116,6 @@ export default {
             this.objStr.push(one[i]);
           }
         }
-        console.log(this.objStr);
         this.obj=this.objStr;
       },600);
       this.flagLi=true;
@@ -138,13 +133,11 @@ export default {
       setTimeout(()=>{
         this.flagLi=false;
         for (let i = 0; i < one.length; i++) {
-          console.log(one[i].pubdates[0]);
           let pubdates=one[i].pubdates[0];
           if (pubdates.substring(5,7)=='01') {
             this.objStr.push(one[i]);
           }
         }
-        console.log(this.objStr);
         this.obj=this.objStr;
       },600);
       this.flagLi=true;

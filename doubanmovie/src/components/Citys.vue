@@ -1,16 +1,19 @@
 <template>
-  <div class="check-city">
-    <h1>
-      <span @click="back">&lt;</span>
-      <label>选择城市</label>
-    </h1>
-    <ol>
-      <li v-for="(city, index) in cities" :key= "index">
-        <h3>{{ index }}</h3>
-        <p v-for="cit of city" @click="inde(cit)" > {{ cit }}</p>
-      </li>
-    </ol>
-  </div>
+  <transition :name="opacityShow">
+    <div class="check-city">
+      <h1>
+        <span @click="back">&lt;</span>
+        <label>选择城市</label>
+      </h1>
+      <ol>
+        <li v-for="(city, index) in cities" :key= "index">
+          <h3>{{ index }}</h3>
+          <p v-for="cit of city" @click="inde(cit)" > {{ cit }}</p>
+        </li>
+      </ol>
+    </div>
+  </transition>
+
 </template>
 
 <script>
@@ -18,13 +21,13 @@
     data(){
       return {
           cities : {},
-          city:''
+          city:'',
+          opacityShow: 'opacityShow'
       }
     },
     methods:{
-      
+
       inde(cit){
-        console.log(cit)
        this.$router.push({
           path:'index',
           query:{
@@ -40,16 +43,16 @@
       this.axios.get('../../static/Chian_city.json').then(data=>{
         for(let city of data.data.provinces){
           if (this.$route.params.id == city.id) {
-            console.log(city.citys); 
-            this.cities = city.citys;    
+            this.cities = city.citys;
             if (!city.citys) {
+              this.opacityShow = '';
               this.$router.push({
                 path:'index',
                 query:{
                   'city':city.name
                 }
               })
-            }       
+            }
           }
         }
       })
@@ -92,5 +95,18 @@ h1 {
       border-bottom: .01rem solid #f4f4f4;
     }
   }
+
+.opacityShow-enter-active{
+    transition: all 1s;
+  }
+
+  .opacityShow-leave-active {
+    transition: none;
+  }
+
+.opacityShow-enter{
+  opacity: 0;
+}
+
 </style>
 
