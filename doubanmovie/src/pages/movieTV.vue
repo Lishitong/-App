@@ -28,6 +28,8 @@ export default {
     login(login){
       if (this.user == '未登录') {
         this.$router.push({path:'/'+login})
+      }else{
+        this.$router.push({path:'/Mine'})
       }
     },
     getCookie(c_name){
@@ -46,8 +48,9 @@ export default {
     }
   },
   created(){
-    if (this.getCookie('user')) {
-      this.user = this.getCookie('user')
+    if (this.getCookie('userId')) {
+      console.log(this.getCookie('userId'))
+      this.user = this.getCookie('userId')
     }
   }
 }
