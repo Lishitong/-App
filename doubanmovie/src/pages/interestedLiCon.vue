@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="interestedLiCon" @click="push(item.id)">
     <div  v-if="flagLi" class="li">
-      <div class="delete" v-show="flag" @click="deleteFn()" >
+      <div class="delete" v-show="flag" @click.stop="deleteFn()" >
         不感兴趣
       </div>
       <div class="div">
@@ -28,7 +28,7 @@
             </p>
             <p>
               <span>导演：</span>
-              <span>{{item.directors[0].name}}</span>
+              <span>{{item.directors.name}}</span>
             </p>
             <p>
               <span>演员：</span>
@@ -56,7 +56,8 @@ export default {
       arr: [],
       arrbox: [],
       flag: false,
-      flagLi: true
+      flagLi: true,
+      name:''
     }
   },
   created() {},
@@ -148,7 +149,7 @@ ul{
 }
 .interested-info .director{
   margin-right: 0.3rem;
-  padding:0 0.4rem 0.5rem 0;
+  padding:0 0rem 0.2rem 0;
   font-size: 0.2rem;
   color:gray;
 

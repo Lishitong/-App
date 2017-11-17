@@ -30,7 +30,7 @@
           </li>
         </ul>
       </div>
-      <div class="text-right">
+      <div class="text-right" @click="goupiao">
         <p>{{ item.collect_count }}人看过</p>
         <div class="btn">{{ item.shop }}</div>
       </div>
@@ -87,6 +87,11 @@ export default {
     push(item) {
       this.$router.push({
         path:'/movxiangqing/' + item
+      })
+    },
+    goupiao() {
+      this.$router.push({
+        path:'/goupiao'
       })
     },
 },

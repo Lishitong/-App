@@ -4,18 +4,21 @@
           <span class="img" @click="back">取消</span>
           <span >注册豆瓣</span>
       </nav>
-
+      <transition name="bounce">
+        <p v-if="shows" :class="{'greenshow':l}" ref="pleasePut" class="pleasePut">{{msg}}</p>
+      </transition>
       <main>
         <p class='welcomedb' >欢迎加入豆瓣</p>
-        <input ref="loginUserName"  id='loginUserName' type="text" name="user" value="" placeholder="手机 / 邮箱">
+
+        <input ref="loginUserName" @change="inputL()"  id='loginUserName' type="text" name="user" value="" placeholder="手机 / 邮箱">
         <div class="mima">
-                <input ref="loginPassWord" v-if="show"  class="loginPassWord" type="password" name="pwd" value="" placeholder="密码(最少6位)">
-                  <input ref="loginPassWord" v-else  class="loginPassWord" type="text" name="pwd" value="" placeholder="密码(最少6位)">
+                <input ref="loginPassWord" v-if="show"    class="loginPassWord" type="password" name="pwd" value="" placeholder="密码(最少6位)">
+                  <input ref="loginPassWord" v-else   class="loginPassWord" type="text" name="pwd" value="" placeholder="密码(最少6位)">
                 <img src="../../static/nopass.png" ref="seePassword" @click="seePassword()" alt="">
         </div>
-  <input ref="loginUser"   id='UserName' type="text" name="user" value="" placeholder="昵称">
+  <input ref="loginUser"   id='UserName' type="text" name="user" @change="inputN()" value="" placeholder="昵称(4-10个字)">
 
-        <button type="button"  @click="loginOn()" class="loginin" name="button">确定</button>
+        <button type="button"  @click="loginOn()" class="loginin" name="button">确定</button><br/>
         <p>如果点击『确定』,代表你已经阅读并 <a href="#">同意用户使用协议</a></p>
 
       </main>
@@ -28,32 +31,93 @@
 export default {
   data(){
     return {
+      l:false,
+      shows: 0,
       logindb:false,
       welcome:true,
       footer:true,
       unlogin:false,
-      show:true
+      show:true,
+      msg:'请输入'
     }
   },
   methods:{
     back(){
       this.$router.back();
     },
+    inputL(){
+      this.shows=1;
+      setTimeout(() => {
+        this.shows = false;
+      }, 1500);
+        let rm = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$|^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        if (!rm.test(this.$refs.loginUserName.value)) {
+         this.msg = "请输入正确的手机号或者邮箱";
+
+       }
+       console.log(1323)
+    },
+
+    inputN(){
+      this.shows=1;
+      setTimeout(() => {
+        this.shows = false;
+      }, 1500);
+      if(this.$refs.loginUser.value.length<4||this.$refs.loginUser.value.length>10){
+        this.msg = "请输入正确的昵称";
+      }
+    },
     loginOn(){
-      this.JSONP("http://192.168.43.134:8888/register?user=" +
-            this.$refs.loginUserName.value +
-            "&pwd=" +
-            this.$refs.loginPassWord.value + '&userId=' + this.$refs.loginUser.value,{name : 'callback'},
-          (err, data) => {
-            data = JSON.parse(data);
-            console.log(data)
-            if (data.status == 0) {
-              console.log("注册失败");
-            } else {
-              console.log("注册成功");
+        console.log(this.$refs.loginUser.value.length)
+
+      let rm = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$|^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      let mima = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Za-z0-9]).*$/;
+
+
+      if(this.$refs.loginUserName.value == "" && this.$refs.loginPassWord.value =="" && this.$refs.loginUser.value ==""){
+        this.msg = "请输入用户名、密码、昵称";
+      }
+      else if (this.$refs.loginUserName.value == "") {
+        this.msg = "请输入账号";
+      }
+      else if (this.$refs.loginPassWord.value == "") {
+        this.msg = "请输入密码";
+      }
+      else if (this.$refs.loginUser.value == "") {
+        this.msg = "请输入您的昵称";
+      }
+       else if (!rm.test(this.$refs.loginUserName.value)) {
+        this.msg = "请输入正确的手机号或者邮箱";
+      }
+      else if(!mima.test(this.$refs.loginPassWord.value)){
+        this.msg = "请输入正确的密码";
+      }
+      else if(this.$refs.loginUser.value.length<4||this.$refs.loginUser.value.length>10){
+        this.msg = "请输入正确的昵称";
+      }
+      else {
+        this.l=true;
+        this.msg="注册成功";
+        setTimeout(() => {
+          this.$router.push({ path: "/login" });
+        }, 2000);
+        this.JSONP("http://10.0.156.183:8888/register?user=" +
+              this.$refs.loginUserName.value +
+              "&pwd=" +
+              this.$refs.loginPassWord.value + '&userId=' + this.$refs.loginUser.value,{name : 'callback'},
+            (err, data) => {
+              data = JSON.parse(data);
+              console.log(data)
+              if (data.status == 0) {
+                console.log("注册失败");
+              } else {
+                console.log("注册成功");
+              }
             }
-          }
-        )
+          )
+
+      }
+
     },
 
 
@@ -114,6 +178,39 @@ export default {
     text-align: center;
     margin: .6rem 0;
     transition:display 3s;
+  }
+  .pleasePut {
+    width: 40%;
+    margin-left: 30%;
+    height: 0.5rem;
+    text-align: center;
+    line-height: 0.5rem;
+    background-color: #f66028;
+    color: #fff;
+    border-radius: 0.4rem;
+    position: absolute;
+    left: 0;
+    top: 24%;
+  }
+  .bounce-enter-active {
+    animation: bounce-in 0.5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .greenshow{
+    background:#3fbc53;
   }
   main input{
     border: .01rem solid #C2C2C2;

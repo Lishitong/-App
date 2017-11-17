@@ -13,7 +13,7 @@
         <img src="../../static/shezhigo.png" alt="">
       </div>
       <div class="bgconter">
-        <span>给应用评分</span>
+        <span @click="pingfen">给应用评分</span>
           <img src="../../static/shezhigo.png" alt="">
       </div>
       <div class="bgconter" @click="clear()">
@@ -38,8 +38,10 @@
       </div>
     </div>
     <div class="">
+        <p class="unlogin" v-if="unlogin">该APP用户体验满意度为100%,无需评分,谢谢！</p>
 
     </div>
+
   </div>
 
 </template>
@@ -50,7 +52,8 @@ export default {
     return {
         bol:false,
         foote:false,
-        closeLogin:false
+        closeLogin:false,
+        unlogin:false
     }
 
   },
@@ -58,6 +61,7 @@ export default {
     shezhiback() {
       history.back()
   },
+
   setCookie(c_name,value,expiredays){
     var exdate=new Date()
     exdate.setDate(exdate.getDate()+expiredays)
@@ -70,9 +74,14 @@ export default {
   closeBox(){
     this.bol = false
   },
+  pingfen(){
+    this.unlogin=1;
+  },
 
   clearLog(){
+    console.log(this.Cookie)
     this.setCookie('user','',-1)
+    this.setCookie('userId','',-1)
     this.setCookie('pwd','',-1)
     this.closeLogin =true;
     setTimeout(()=>{
@@ -208,5 +217,22 @@ main{
   background-color:white;
   border-bottom: .01rem solid #C6C7C7;
   border-top: .003rem solid #C6C7C7;
+}
+.unlogin {
+  position: absolute;
+  left: 50%;
+  margin-left: -2.5rem;
+  top: 50%;
+  margin-top: -3rem;
+  width: 3rem;
+  height: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 0.26rem;
+  border: 1px solid #c2c2c2;
 }
 </style>

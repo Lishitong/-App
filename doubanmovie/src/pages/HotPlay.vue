@@ -17,7 +17,8 @@ export default {
   name:'now',
   data(){
     return {
-      ok:true
+      ok:true,
+      isLogin:false
     }
   },
   components:{
@@ -27,6 +28,48 @@ export default {
     '$route'(newValue,oldValue){
           this.ok=false;
     }
+  },
+  methods:{
+    getCookie(c_name) {
+      if (document.cookie.length > 0) {
+        var c_start = document.cookie.indexOf(c_name + "=")
+        if (c_start != -1) {
+          c_start = c_start + c_name.length + 1
+          var c_end = document.cookie.indexOf(";", c_start)
+          if (c_end == -1) c_end = document.cookie.length
+          return unescape(document.cookie.substring(c_start, c_end))
+        }
+      }
+      return ""
+    },
+    clearCookie(){
+      let keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+      if (keys) {
+        for (var i = keys.length; i--;){
+          document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString();
+        }
+      }
+    }
+  },
+  created(){
+    this.$store.commit('inLogin',true);
+    console.log(this.$store.getters.IS_LOGIN);
+    this.isLogin = this.$store.getters.IS_LOGIN;
+    console.log(this.isLogin)
+    this.JSONP(
+      "http://10.0.156.183:8888/login?user=" +
+        this.getCookie('user') +
+        "&pwd=" +
+        this.getCookie('pwd'),{name : 'callback'},
+      (err, data) => {
+        data = JSON.parse(data);
+        if (data.status == 1) {
+          return true;
+        }else{
+          this.clearCookie();
+        }
+      }
+    );
   }
 }
 </script>
