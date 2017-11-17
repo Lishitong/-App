@@ -7,6 +7,7 @@
     <div v-else class="loginin">
       <span>0部</span>
       <span @click="timpeShow()">标签筛选</span>
+      <wantlook></wantlook>
     </div>
     <div v-if="timpe" class="timpe">
       <p @click="timpeClose()">X</p>
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import wantlook from './../components/wantlook'
 export default {
   data() {
     return {
@@ -37,6 +39,9 @@ export default {
       console.log(document.cookie);
     }
     console.log(this.$store.getters.IS_THINK)
+  },
+  components:{
+    wantlook
   }
 };
 </script>
