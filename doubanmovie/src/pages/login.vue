@@ -89,7 +89,8 @@ export default {
           "http://192.168.43.134:8888/login?user=" +
             this.$refs.loginUserName.value +
             "&pwd=" +
-            this.$refs.loginPassWord.value,{name : 'callback'},
+            this.$refs.loginPassWord.value,
+          { name: "callback" },
           (err, data) => {
             data = JSON.parse(data);
             if (data.status == 1) {
@@ -98,7 +99,10 @@ export default {
               this.setCookie("userId", data.userId, 30);
               this.msg = "登录成功";
               setTimeout(() => {
-                this.$router.push({ path: "/Mine" , query : {userId :data.userId } });
+                this.$router.push({
+                  path: "/Mine",
+                  query: { userId: data.userId }
+                });
               }, 2000);
             }
           }

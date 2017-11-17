@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="top250">
     <ul>
-      <li v-for="(x,index) in 4" @click="push(data.id[index])">
+      <li v-for="(x,index) in 4" :key="index" @click="push(data.id[index])">
         <span>{{index+1}}</span>
         <img v-lazy="data.url[index]" alt="">
         <p>{{data.title[index]}}</p>
         <p class="stars">
-            <span class="star" v-for="(y,index2) in 5">
+            <span class="star" v-for="(y,index2) in 5" :key="index2">
               <img :src="reStar(data.stars[index],index2)" alt="">
             </span>
             <span>{{data.fen[index]}}</span>
@@ -19,77 +19,76 @@
 
 <script>
 export default {
-  props:['data'],
-  methods:{
-    reStar(in1,in2){
-      if (in2*10<in1-5) {
-        return "../../static/star1.png"
-      }else {
-        return "../../static/star2.png"
+  props: ["data"],
+  methods: {
+    reStar(in1, in2) {
+      if (in2 * 10 < in1 - 5) {
+        return "../../static/star1.png";
+      } else {
+        return "../../static/star2.png";
       }
     },
     push(item) {
       this.$router.push({
-        path:'/movxiangqing/' + item
-      })
+        path: "/movxiangqing/" + item
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
-.top250{
+.top250 {
   width: 100%;
-  font-size: .32rem;
+  font-size: 0.32rem;
   float: left;
-  li{
-    margin-top:.26rem;
+  li {
+    margin-top: 0.26rem;
     text-align: center;
     width: 100%;
-    overflow:hidden;
+    overflow: hidden;
   }
-  p{
+  p {
     float: left;
     width: 70%;
-    height: .4rem;
-    margin: .1rem 0 0 .1rem;
-    text-align:left;
+    height: 0.4rem;
+    margin: 0.1rem 0 0 0.1rem;
+    text-align: left;
   }
-  span{
+  span {
     float: left;
-    margin:.1rem .25rem auto .25rem;
+    margin: 0.1rem 0.25rem auto 0.25rem;
   }
-  img{
-    width: .85rem;
+  img {
+    width: 0.85rem;
     float: left;
     height: 1.15rem;
   }
-  .stars{
-    margin-top:.2rem;
-    font-size: .22rem;
-    color:#cccccc;
+  .stars {
+    margin-top: 0.2rem;
+    font-size: 0.22rem;
+    color: #cccccc;
     border-bottom: 1px solid #ddd;
-    span{
+    span {
       float: left;
       height: 100%;
-      line-height:.3rem;
-      margin:0;
+      line-height: 0.3rem;
+      margin: 0;
     }
-    .star{
-      width: .27rem;
-      height: .27rem;
+    .star {
+      width: 0.27rem;
+      height: 0.27rem;
     }
-    span:nth-of-type(6){
-      margin-left:.1rem;
+    span:nth-of-type(6) {
+      margin-left: 0.1rem;
     }
-    span:nth-of-type(7){
-      margin-left:.2rem;
+    span:nth-of-type(7) {
+      margin-left: 0.2rem;
     }
-    img{
-      width: .27rem;
-      height: .27rem;
+    img {
+      width: 0.27rem;
+      height: 0.27rem;
       vertical-align: middle;
-
     }
   }
 }

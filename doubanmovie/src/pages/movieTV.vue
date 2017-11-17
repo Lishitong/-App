@@ -19,81 +19,79 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      user:'未登录',
-    }
+      user: "未登录"
+    };
   },
-  methods:{
-    login(login){
-      if (this.user == '未登录') {
-        this.$router.push({path:'/'+login})
+  methods: {
+    login(login) {
+      if (this.user == "未登录") {
+        this.$router.push({ path: "/" + login });
       }
     },
-    getCookie(c_name){
-    if (document.cookie.length>0)
-      {
-      var c_start=document.cookie.indexOf(c_name + "=")
-      if (c_start!=-1)
-      {
-      c_start=c_start + c_name.length+1
-      var c_end=document.cookie.indexOf(";",c_start)
-      if (c_end==-1) c_end=document.cookie.length
-      return unescape(document.cookie.substring(c_start,c_end))
+    getCookie(c_name) {
+      if (document.cookie.length > 0) {
+        var c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+          c_start = c_start + c_name.length + 1;
+          var c_end = document.cookie.indexOf(";", c_start);
+          if (c_end == -1) c_end = document.cookie.length;
+          return unescape(document.cookie.substring(c_start, c_end));
+        }
       }
-      }
-    return ""
+      return "";
     }
   },
-  created(){
-    if (this.getCookie('user')) {
-      this.user = this.getCookie('user')
+  created() {
+    if (this.getCookie("user")) {
+      this.user = this.getCookie("user");
     }
   }
-}
+};
 </script>
 
 <style lang="less" >
-.movieTV{
+.movieTV {
   width: 100%;
-  overflow:hidden;
-  padding: .3rem 0;
-  display:flex;
+  overflow: hidden;
+  padding: 0.3rem 0;
+  display: flex;
   justify-content: space-around;
-  border-bottom:1px solid #eee;
+  border-bottom: 1px solid #eee;
   margin-top: 1rem;
-  h2{
-    font-size: .3rem;
+  h2 {
+    font-size: 0.3rem;
     font-weight: 700;
-    padding:.05rem;
+    padding: 0.05rem;
   }
-  p{
-    padding:.05rem;
-    color:#ccc;
+  p {
+    padding: 0.05rem;
+    color: #ccc;
   }
-  img{
+  img {
     float: left;
-    width: .7rem;
-    height: .7rem;
-    margin-left: .2rem
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-left: 0.2rem;
   }
-  div{
+  div {
     float: left;
-    overflow:hidden;
-    padding:0 .2rem;
+    overflow: hidden;
+    padding: 0 0.2rem;
   }
-  .right{
-    border-left:1px solid #eee;
+  .right {
+    border-left: 1px solid #eee;
   }
-  .lis{
-    z-index:0;
+  .lis {
+    z-index: 0;
     position: relative;
-    &:after{
-      content:">";
+    &:after {
+      content: ">";
       position: absolute;
-      right:.1rem;
-      top:.2rem;
-      color:#ccc;
+      right: 0.1rem;
+      top: 0.2rem;
+      color: #ccc;
     }
   }
 }

@@ -10,23 +10,23 @@
 </template>
 
 <script>
-import swiper from './swiper'
+import swiper from "./swiper";
 export default {
-  name:'now',
-  data(){
+  name: "now",
+  data() {
     return {
-      ok:true
-    }
+      ok: true
+    };
   },
-  components:{
+  components: {
     swiper
   },
-  watch:{
-    '$route'(newValue,oldValue){
-          this.ok=false;
+  watch: {
+    $route(newValue, oldValue) {
+      this.ok = false;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -40,11 +40,11 @@ export default {
   background: white;
   z-index:2;*/
 }
-.wrap a{
+.wrap a {
   float: left;
   width: 50%;
-  font-size: .3rem;
-  color: #4C4C4C;
+  font-size: 0.3rem;
+  color: #4c4c4c;
   height: 1rem;
   line-height: 1rem;
   text-align: center;
@@ -53,5 +53,4 @@ export default {
   border-bottom: 0.02rem solid #123;
   color: #123;
 }
-
 </style>

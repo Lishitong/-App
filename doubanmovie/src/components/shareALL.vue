@@ -54,71 +54,68 @@
 
 <script>
 export default {
-  props:["share"],
-  data(){
-    return{
-      shareA:true
-    }
+  props: ["share"],
+  data() {
+    return {
+      shareA: true
+    };
   },
-  methods:{
-
-    closeShare(){
-      this.shareA=false;
+  methods: {
+    closeShare() {
+      this.shareA = false;
       this.share(this.shareA);
     }
   }
-}
+};
 </script>
 
 <style lang="css" scoped>
-.shareAll{
+.shareAll {
   border-top: 1px solid #eeeeee;
-  width:100%;
+  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 2313213;
   background-color: #fff;
 }
-.shareApp{
-  overflow:auto;
+.shareApp {
+  overflow: auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .shareApp div {
-  width: .8rem;
+  width: 0.8rem;
   text-align: center;
 
-    margin: .2rem 0;
+  margin: 0.2rem 0;
 }
-.shareApp div img{
-  width: .8rem;
-  height: .8rem;
+.shareApp div img {
+  width: 0.8rem;
+  height: 0.8rem;
   border: 1px solid #eeeeee;
-  border-radius: .1rem;
-
+  border-radius: 0.1rem;
 }
-.shareBrowser div{
-  margin: .2rem;
-  width: .8rem;
-
+.shareBrowser div {
+  margin: 0.2rem;
+  width: 0.8rem;
 }
-.shareBrowser img{
-  width: .8rem;
-  height: .8rem;
+.shareBrowser img {
+  width: 0.8rem;
+  height: 0.8rem;
 
   /*border: 1px solid #eeeeee;*/
   /*border-radius: .1rem;*/
 }
-.close{
+.close {
   width: 100%;
   text-align: center;
   height: 1rem;
   line-height: 1rem;
-  border-top: .01rem solid #eeeeee;
+  border-top: 0.01rem solid #eeeeee;
   padding: 0;
-  margin:0;
+  margin: 0;
   /*margin-bottom: 1rem;*/
 }
 </style>

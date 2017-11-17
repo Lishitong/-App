@@ -40,23 +40,21 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="css">
 .fen {
   width: 100%;
   background: #ffe;
-  font-size: .2rem;
+  font-size: 0.2rem;
 }
 .fentop {
-  padding-top: .5rem;
-  padding-bottom: .3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.3rem;
   width: 100%;
   text-align: center;
-  border-bottom: .01rem solid #ddd;
+  border-bottom: 0.01rem solid #ddd;
 }
 .fentop .f {
   display: inline-block;
@@ -66,13 +64,13 @@ export default {
 }
 .fentop .f p {
   width: 1.5rem;
-  height: .7rem;
-  line-height: .7rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
   text-align: center;
 }
 .fentop .f img {
-  border: .01rem solid #ddd;
-  border-radius: .1rem;
+  border: 0.01rem solid #ddd;
+  border-radius: 0.1rem;
   width: 1rem;
   height: 1rem;
 }

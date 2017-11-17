@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <div v-for="(item,del) in objdate"    class="li"  @click="push(item.id)">
+    <div v-for="(item,del) in objdate"  :key="del"  class="li"  @click="push(item.id)">
       <div class="div">
         <div class="img-box">
           <img v-lazy="getImage(item.images.large)" alt="">
@@ -35,102 +35,101 @@
 
 <script>
 export default {
-  props:['objdate'],
+  props: ["objdate"],
   data() {
     return {
       obj: {},
-      objStr:[],
-      objDate:[],
+      objStr: [],
+      objDate: [],
       flagLi: true,
       flagAver: true,
       director: [],
-      flagClass1:false,
-      flagClass2:false,
-      flagClass3:false,
-      flagClass4:false
-
-    }
+      flagClass1: false,
+      flagClass2: false,
+      flagClass3: false,
+      flagClass4: false
+    };
   },
-  methods:{
+  methods: {
     getImage(url) {
       // console.log(url);
       // 把现在的图片连接传进来，返回一个不受限制的路径
       if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
-      }      
+        return url.replace("https://", "https://images.weserv.nl/?url=");
+      }
     },
     push(item) {
       this.$router.push({
-        path:'/movxiangqing/' + item
-      })
+        path: "/movxiangqing/" + item
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="css" scoped>
-.li{
+.li {
   position: relative;
 }
-.div{
-  height:3.8rem;
-  padding:0.3rem 0 0rem 0.3rem;
+.div {
+  height: 3.8rem;
+  padding: 0.3rem 0 0rem 0.3rem;
   border-bottom: 1px solid #e9e9e9;
 }
-.img-box{
-  width:2.3rem;
-  height:3.3rem;
+.img-box {
+  width: 2.3rem;
+  height: 3.3rem;
   display: inline-block;
   float: left;
 }
 
-.img-box img{
-  width:2.3rem;
-  height:3.3rem;
+.img-box img {
+  width: 2.3rem;
+  height: 3.3rem;
 }
-.interested-info{
-  width:31%;
+.interested-info {
+  width: 31%;
   display: inline-block;
-  margin-left:0.4rem;
+  margin-left: 0.4rem;
 }
-.interested-info h1{
+.interested-info h1 {
   font-size: 0.4rem;
-  margin:0rem 0 0.2rem 0;
+  margin: 0rem 0 0.2rem 0;
   line-height: 0.45rem;
 }
-.interested-info .director{
+.interested-info .director {
   font-size: 0.2rem;
-  color:gray;
+  color: gray;
 }
-.interested-info span{
-  font-weight:10;
+.interested-info span {
+  font-weight: 10;
 }
-.interested-info h6{
+.interested-info h6 {
   padding-top: 0.3rem;
   font-size: 0.25rem;
-  color:gray;
+  color: gray;
   font-weight: 100;
 }
 .text-right {
-  width:1.5rem;
-  font-size: .25rem;
-  color: #F6B529;
+  width: 1.5rem;
+  font-size: 0.25rem;
+  color: #f6b529;
   font-weight: 900;
   text-align: center;
   float: right;
   margin: 0.4rem 0.3rem 0 0;
 }
 .text-right p {
-  font-size: .2rem;
-  height: .4rem;
-  line-height: .4rem;
+  font-size: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
 }
 .text-right .btn {
   width: 1.5rem;
-  height: .5rem;
-  line-height: .5rem;
-  border: 0.02rem solid #F6B529;
-  border-radius: .04rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  border: 0.02rem solid #f6b529;
+  border-radius: 0.04rem;
   text-align: center;
 }
 </style>

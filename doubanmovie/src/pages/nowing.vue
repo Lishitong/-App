@@ -43,93 +43,98 @@
 </template>
 
 <script>
-import goTop from '../components/gotop'
-let jsonp = require('jsonp')
+import goTop from "../components/gotop";
+let jsonp = require("jsonp");
 export default {
-  name: 'Nowing',
+  name: "Nowing",
   data() {
     return {
       msg: {},
-      flag:true
-    }
+      flag: true
+    };
   },
-  components:{
+  components: {
     goTop
   },
   methods: {
     getHero() {
-      jsonp("https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd", null, (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          this.msg = data.subjects;
-          for (let i = 0;i <this.msg.length;i ++) {
-            if (this.msg[i].rating.average == 0) {
-              this.flag = false;
-              this.msg[i].rating.average = "未评";
-              this.msg[i].shop = "预售"
-            }else {
-              this.flag = true;
-              this.msg[i].shop = "购票"
-              if (this.msg[i].collect_count >= 10000) {
-                this.msg[i].collect_count =(this.msg[i].collect_count / 10000).toFixed(1) +'万'
+      jsonp(
+        "https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd",
+        null,
+        (err, data) => {
+          if (err) {
+            console.error(err);
+          } else {
+            this.msg = data.subjects;
+            for (let i = 0; i < this.msg.length; i++) {
+              if (this.msg[i].rating.average == 0) {
+                this.flag = false;
+                this.msg[i].rating.average = "未评";
+                this.msg[i].shop = "预售";
+              } else {
+                this.flag = true;
+                this.msg[i].shop = "购票";
+                if (this.msg[i].collect_count >= 10000) {
+                  this.msg[i].collect_count =
+                    (this.msg[i].collect_count / 10000).toFixed(1) + "万";
+                }
               }
             }
           }
         }
-      })
+      );
     },
     getImage(url) {
       if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
+        return url.replace("https://", "https://images.weserv.nl/?url=");
       }
     },
     push(item) {
       this.$router.push({
-        path:'/movxiangqing/' + item
-      })
-    },
-},
+        path: "/movxiangqing/" + item
+      });
+    }
+  },
   created() {
     this.getHero();
   }
-}
+};
 </script>
 
 <style lang="css" scoped>
 .each-movie {
   position: relative;
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: .01rem solid #888;
+  border-top: 0.01rem solid #888;
 }
 
-.movie-img>img {
+.movie-img > img {
   width: 2.3rem;
   height: 3rem;
-  margin-top: .4rem;
-  margin-left: .4rem;
-  margin-bottom: .4rem;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 .movie-text {
   width: 60%;
   height: 3.4rem;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   text-align: left;
   color: gray;
-  font-size: .25rem;
+  font-size: 0.25rem;
 }
-.movie-text>h1 {
+.movie-text > h1 {
   color: #000;
-  font-size: .35rem;
-  line-height: .5rem;
+  font-size: 0.35rem;
+  line-height: 0.5rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.score{
+.score {
   width: 40%;
   display: flex;
   justify-content: space-around;
@@ -147,44 +152,44 @@ export default {
 }
 .text-right {
   position: absolute;
-  right: .3rem;
+  right: 0.3rem;
   top: 1.4rem;
-  font-size: .25rem;
+  font-size: 0.25rem;
   color: #ffaeb1;
   font-weight: 900;
 }
 .text-right p {
   text-align: right;
-  font-size: .2rem;
-  height: .4rem;
-  line-height: .4rem;
+  font-size: 0.2rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
 }
 .text-right .btn {
   width: 1rem;
-  height: .5rem;
-  line-height: .5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
   border: 0.02rem solid #ffaeb1;
-  border-radius: .04rem;
-  margin-left: .4rem;
+  border-radius: 0.04rem;
+  margin-left: 0.4rem;
   text-align: center;
 }
 /*星星等级*/
 .stars {
-  height: .2rem;
-  line-height: .2rem;
-  width:1rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  width: 1rem;
   position: relative;
   display: inline-block;
 }
-.starsbox{
+.starsbox {
   overflow: hidden;
-  position:absolute;
-  height: .35rem;
+  position: absolute;
+  height: 0.35rem;
 }
-.stars img{
+.stars img {
   width: 1rem;
-  position:absolute;
-  height: .2rem;
+  position: absolute;
+  height: 0.2rem;
 }
 .nowing .foo {
   width: 100%;
@@ -194,7 +199,7 @@ export default {
   width: 100%;
   text-align: center;
   line-height: 1rem;
-  font-size: .3rem;
+  font-size: 0.3rem;
   font-weight: 900;
 }
 </style>

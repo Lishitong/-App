@@ -71,77 +71,89 @@
 </template>
 
 <script>
-import fen from './fen'
-import goTop from './gotop'
-let jsonp = require('jsonp')
+import fen from "./fen";
+import goTop from "./gotop";
+let jsonp = require("jsonp");
 export default {
   data() {
     return {
-      id:this.$route.params.id,
-      msg:{},
-      avatars:{},
-      photos:[],
-      num:0,
-      flag2:true,
-      kai:'展开',
-      au:false,
+      id: this.$route.params.id,
+      msg: {},
+      avatars: {},
+      photos: [],
+      num: 0,
+      flag2: true,
+      kai: "展开",
+      au: false,
       fa: true
-    }
+    };
   },
-  components:{
-    goTop,fen
+  components: {
+    goTop,
+    fen
   },
   methods: {
     getImage(url) {
       if (url !== undefined) {
-        return url.replace('http://', 'https://images.weserv.nl/?url=');
+        return url.replace("http://", "https://images.weserv.nl/?url=");
       }
     },
     zhuanfa() {
-      if(this.fa) {
+      if (this.fa) {
         this.fa = false;
         this.au = true;
-      }else {
+      } else {
         this.fa = true;
         this.au = false;
       }
     },
     auto() {
-      this.zhuanfa()
+      this.zhuanfa();
     },
     zhankai() {
       if (this.flag2) {
         this.flag2 = false;
-        this.kai = '收起';
-      }else {
+        this.kai = "收起";
+      } else {
         this.flag2 = true;
-        this.kai = '展开';
+        this.kai = "展开";
       }
     },
-   back() {
-      history.back()
+    back() {
+      history.back();
     },
     rand(m, n) {
       return parseInt(Math.random() * (m - n) + n);
     },
     colors() {
       let color = "0123456789abcdef";
-      return '#' + color[this.rand(0, 15)] + color[this.rand(0, 15)] + color[this.rand(0, 15)]
+      return (
+        "#" +
+        color[this.rand(0, 15)] +
+        color[this.rand(0, 15)] +
+        color[this.rand(0, 15)]
+      );
     },
     getData() {
-      jsonp("http://api.douban.com/v2/movie/celebrity/" + this.id+"?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&client=something&udid=", null, (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          this.msg = data;
-          this.avatars = data.avatars;
-          for (let i = 0;i < data.photos.length; i ++) {
-            this.photos.push(data.photos[i].image);
+      jsonp(
+        "http://api.douban.com/v2/movie/celebrity/" +
+          this.id +
+          "?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&client=something&udid=",
+        null,
+        (err, data) => {
+          if (err) {
+            console.error(err);
+          } else {
+            this.msg = data;
+            this.avatars = data.avatars;
+            for (let i = 0; i < data.photos.length; i++) {
+              this.photos.push(data.photos[i].image);
+            }
+            this.num = this.photos.length;
+            console.log(this.msg);
           }
-          this.num = this.photos.length;
-          console.log(this.msg);
         }
-      })
+      );
     }
   },
   created() {
@@ -150,65 +162,66 @@ export default {
     }
   },
   updated() {
-    let p = document.querySelector('.pertop');
+    let p = document.querySelector(".pertop");
     if (p) {
       p.style.background = this.colors();
     }
   },
   watch: {
-    '$route'(newdata,olddata) {
+    $route(newdata, olddata) {
       this.id = newdata.params.id;
     }
   }
-}
+};
 </script>
 
 <style lang="css">
-.pertop{
+.pertop {
   width: 100%;
   height: 7rem;
-  font-size: .2rem;
+  font-size: 0.2rem;
 }
 .per-top-text {
   color: #fff;
   font-weight: 900;
-  font-size: .3rem;
+  font-size: 0.3rem;
 }
-.per-top{
+.per-top {
   width: 100%;
-  height: .8rem;
+  height: 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
-.lastpage,.zhuanfa {
-  width: .5rem;
-  height: .4rem;
+.lastpage,
+.zhuanfa {
+  width: 0.5rem;
+  height: 0.4rem;
   background: url(../../static/img/lastpage.png) no-repeat top/100% 100%;
-  margin-left: .1rem;
+  margin-left: 0.1rem;
 }
 .zhuanfa {
-  width: .4rem;
+  width: 0.4rem;
   background: url(../../static/img/zhuanfa.png) no-repeat top/100% 100%;
-  margin-right: .2rem;
+  margin-right: 0.2rem;
 }
 .big {
-  margin-top: .5rem;
-  margin-left: .2rem;
-  margin-right: .2rem;
+  margin-top: 0.5rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
   overflow: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .big-img img {
-  margin-top: .05rem;
+  margin-top: 0.05rem;
   width: 3.5rem;
   height: 5.1rem;
 }
 .little {
-  margin-left: .1rem;
+  margin-left: 0.1rem;
 }
 .little {
   display: flex;
@@ -216,8 +229,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.little img ,.little-box{
-  margin-top: .1rem;
+.little img,
+.little-box {
+  margin-top: 0.1rem;
   width: 2.7rem;
   height: 2.5rem;
 }
@@ -228,13 +242,13 @@ export default {
 .little-box p {
   margin: 0 auto;
   width: 60%;
-  height: .5rem;
-  line-height: .5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
   text-align: center;
 }
-.little-box p:nth-of-type(1){
-  margin-top: .3rem;
-  border-bottom: .01rem solid #fff;
+.little-box p:nth-of-type(1) {
+  margin-top: 0.3rem;
+  border-bottom: 0.01rem solid #fff;
 }
 .midd-top {
   height: 1.5rem;
@@ -243,25 +257,26 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: .3rem;
+  font-size: 0.3rem;
   font-weight: 900;
 }
 .gray {
   color: gray;
 }
 .border {
-  border-bottom: .01rem solid gray;
+  border-bottom: 0.01rem solid gray;
 }
-.midd-top h2 p{
-  font-size: .2rem;
+.midd-top h2 p {
+  font-size: 0.2rem;
 }
-.per-midd>h1,.per-midd>p {
+.per-midd > h1,
+.per-midd > p {
   width: 90%;
-  line-height: .5rem;
+  line-height: 0.5rem;
   margin: 0 auto;
   color: gray;
 }
-.per-midd>p {
+.per-midd > p {
   color: black;
 }
 .green {
@@ -294,7 +309,7 @@ export default {
   background: #ffe;
   width: 100%;
   height: 2rem;
-  font-size: .25rem;
+  font-size: 0.25rem;
   font-weight: 900;
   line-height: 1rem;
   text-align: center;
@@ -307,8 +322,7 @@ export default {
   width: 100%;
   text-align: center;
   line-height: 1rem;
-  font-size: .3rem;
+  font-size: 0.3rem;
   font-weight: 900;
 }
-
 </style>

@@ -53,9 +53,8 @@
       </div>
       <div class="" v-if="sear" >
 
-        <interestedLiCon v-for='aa of obj' :item="aa">
 
-        <!-- <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a"> -->
+        <interestedLiCon v-for='(aa, index) in obj' :key="index" :item="aa">
 
 
         </interestedLiCon>
@@ -67,8 +66,8 @@
 </template>
 
 <script>
-import hotsearch from '../components/hotSearch'
-import interestedLiCon from './interestedLiCon'
+import hotsearch from "../components/hotSearch";
+import interestedLiCon from "./interestedLiCon";
 export default {
   data() {
     return {
@@ -77,181 +76,178 @@ export default {
       flagimg: false,
       flagHot: true,
       flaghistory: true,
-      ying:false,
-      sear:false,
-      value:[]
-    }
+      ying: false,
+      sear: false,
+      value: []
+    };
   },
   components: {
     hotsearch,
     interestedLiCon
   },
   methods: {
-    se(){
-      this.JSONP('https://api.douban.com/v2/movie/search?q='+this.$refs.input1.value, null, (err, data) => {      
-        if (err) {      
-          console.error(err.message);      
-        } else {
-          // console.log(that);
-          this.flag = true;
-          console.log(data.subjects);
-          this.obj = data.subjects;
-
+    se() {
+      this.JSONP(
+        "https://api.douban.com/v2/movie/search?q=" + this.$refs.input1.value,
+        null,
+        (err, data) => {
+          if (err) {
+            console.error(err.message);
+          } else {
+            // console.log(that);
+            this.flag = true;
+            console.log(data.subjects);
+            this.obj = data.subjects;
+          }
         }
-      })
+      );
     },
     search() {
       this.flagimg = true;
       this.se();
-      this.flagHot=false;
-      this.ying=true;
-      this.sear=false;
+      this.flagHot = false;
+      this.ying = true;
+      this.sear = false;
       if (this.$refs.input1.value == false) {
-        this.flagHot=true;
-        this.flagimg=false;
+        this.flagHot = true;
+        this.flagimg = false;
       }
     },
-    enter(){
-      this.ying=false;
+    enter() {
+      this.ying = false;
       this.flagimg = true;
       this.se();
-      this.sear=true;
-      this.value.push(this.$refs.input1.value)
+      this.sear = true;
+      this.value.push(this.$refs.input1.value);
     },
-    span(s){
-
+    span(s) {
       // this.flagimg=false;
       console.log(s);
-      this.$refs.input1.value=this.value[s];
-      this.flagHot=false;
-      this.ying=false;
+      this.$refs.input1.value = this.value[s];
+      this.flagHot = false;
+      this.ying = false;
       this.flagimg = true;
       this.se();
-      this.sear=true;
+      this.sear = true;
     },
-    delt(){
-      this.value=[]
+    delt() {
+      this.value = [];
     },
     getImage(url) {
       if (url !== undefined) {
-        return url.replace('https://', 'https://images.weserv.nl/?url=');
-      }      
+        return url.replace("https://", "https://images.weserv.nl/?url=");
+      }
     },
     del() {
-      this.$refs.input1.value = ''
-      this.flagHot=true;
-      this.sear=false;
+      this.$refs.input1.value = "";
+      this.flagHot = true;
+      this.sear = false;
       console.log(this.value);
     },
     back() {
-      history.back()
+      history.back();
     }
   },
-  updated(){
+  updated() {
     console.log(this.$refs.input1.value);
     if (this.$refs.input1.value == false) {
-      this.flagHot=true;
-      this.flagimg=false;
+      this.flagHot = true;
+      this.flagimg = false;
     }
   }
-
-
-
-
-}
+};
 </script>
 
 
 <style lang="less" scoped>
 ul {
-    list-style: none;
+  list-style: none;
 }
 .ul li {
-    height: 1rem;
-    padding: 0.2rem;
+  height: 1rem;
+  padding: 0.2rem;
 }
 .ul li img {
-    width: 1.5rem;
-    height: 1.3rem;
+  width: 1.5rem;
+  height: 1.3rem;
 }
 .divright {
-    width: 75%;
-    height: 1rem;
-    float: right;
-    margin-top: 0.3rem;
-    display: inline-block;
+  width: 75%;
+  height: 1rem;
+  float: right;
+  margin-top: 0.3rem;
+  display: inline-block;
 }
 .ul p {
-    height: 0.1rem;
-    font-size: 0.3rem;
-    padding: 0.2rem;
-    color: #c7c7c7;
+  height: 0.1rem;
+  font-size: 0.3rem;
+  padding: 0.2rem;
+  color: #c7c7c7;
 }
 .ul li h1 {
-    font-size: 0.3rem;
-    font-weight: 600;
+  font-size: 0.3rem;
+  font-weight: 600;
 }
 .input-top {
-    height: 0.6rem;
-    background: #42BB54;
-    padding: 0.2rem 0.3rem;
+  height: 0.6rem;
+  background: #42bb54;
+  padding: 0.2rem 0.3rem;
 }
 .input-top .input {
-    width: 85%;
-    height: 0.6rem;
-    display: inline-block;
-    padding: 0 0 0 0.2rem;
-    border-radius: 0.1rem;
-    background: white;
+  width: 85%;
+  height: 0.6rem;
+  display: inline-block;
+  padding: 0 0 0 0.2rem;
+  border-radius: 0.1rem;
+  background: white;
 }
 .input-top > span {
-    color: white;
-    font-size: 0.33rem;
+  color: white;
+  font-size: 0.33rem;
 }
 .input-top input {
-    width: 80%;
-    height: 0.6rem;
-    color: black;
-    font-size: 0.3rem;
-    font-weight: 100;
+  width: 80%;
+  height: 0.6rem;
+  color: black;
+  font-size: 0.3rem;
+  font-weight: 100;
 }
-.del {}
+.del {
+}
 ::-webkit-input-placeholder {
-    color: #C7C7C7;
+  color: #c7c7c7;
 }
 :-moz-placeholder {
-    color: #C7C7C7;
+  color: #c7c7c7;
 }
 ::-moz-placeholder {
-    color: #C7C7C7;
+  color: #c7c7c7;
 }
 :-ms-input-placeholder {
-    color: #C7C7C7;
+  color: #c7c7c7;
 }
 .nav {
-    display: flex;
-    justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.nav p{
-  padding:.2rem;
-  font-size:.24rem;
+.nav p {
+  padding: 0.2rem;
+  font-size: 0.24rem;
 }
-.nav p:nth-of-type(1){
-  color:gray;
+.nav p:nth-of-type(1) {
+  color: gray;
 }
-.hot>p{
-  padding:.2rem;
-  font-size:.27rem;
-  color:gray;
+.hot > p {
+  padding: 0.2rem;
+  font-size: 0.27rem;
+  color: gray;
 }
-.historyDiv{
-  padding:.2rem;
+.historyDiv {
+  padding: 0.2rem;
 }
-.historyDiv span{
-  display:inline-block;
-  padding-right:.3rem;
-  font-size:.24rem;
+.historyDiv span {
+  display: inline-block;
+  padding-right: 0.3rem;
+  font-size: 0.24rem;
 }
-
-
 </style>
