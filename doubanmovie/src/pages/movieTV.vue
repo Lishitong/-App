@@ -25,10 +25,12 @@ export default {
       user: "未登录"
     };
   },
-  methods: {
-    login(login) {
-      if (this.user == "未登录") {
-        this.$router.push({ path: "/" + login });
+  methods:{
+    login(login){
+      if (this.user == '未登录') {
+        this.$router.push({path:'/'+login})
+      }else{
+        this.$router.push({path:'/Mine'})
       }
     },
     getCookie(c_name) {
@@ -44,9 +46,10 @@ export default {
       return "";
     }
   },
-  created() {
-    if (this.getCookie("user")) {
-      this.user = this.getCookie("user");
+  created(){
+    if (this.getCookie('userId')) {
+      console.log(this.getCookie('userId'))
+      this.user = this.getCookie('userId')
     }
   }
 };

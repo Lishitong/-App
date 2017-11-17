@@ -15,7 +15,8 @@
     </div>
 
     <div class="load" v-if="flagLi">
-      (◕ᴗ◕✿)
+      <!-- (◕ᴗ◕✿) -->
+      <img src="./../../static/loading.gif" alt="">
     </div>
     <loadingli :objdate="obj" v-else></loadingli>
     <goTop></goTop>
@@ -43,7 +44,7 @@ export default {
       flagClass2: false,
       flagClass3: false,
       flagClass4: false
-    };
+      };
   },
   components: {
     loadingli,

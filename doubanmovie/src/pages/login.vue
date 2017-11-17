@@ -5,7 +5,7 @@
           <span v-if="logindb">登录豆瓣</span>
       </nav>
       <transition name="bounce">
-        <p v-if="shows" ref="pleasePut" class="pleasePut">{{msg}}</p>
+        <p v-if="shows" :class="{'greenshow':l}" ref="pleasePut" class="pleasePut">{{msg}}</p>
       </transition>
 
       <main>
@@ -42,15 +42,17 @@
 export default {
   data() {
     return {
+      l:false,
+      shows: false,
       logindb: false,
       welcome: true,
       footer: true,
       unlogin: false,
-      shows: false,
       msg: "请输入正确的用户名密码"
     };
   },
   methods: {
+
     back() {
       history.back();
     },
@@ -77,16 +79,27 @@ export default {
     },
     loginOn(Mine) {
       console.log(this.$refs);
-      let rm = /^[a-zA-Z0-9_-]{4,16}$/;
-      if (this.$refs.loginUserName.value == "") {
+      let rm = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$|^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      let mima = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Za-z0-9]).*$/
+
+      if(this.$refs.loginUserName.value == "" && this.$refs.loginPassWord.value == ""){
+        this.msg = "请输入用户名和密码";
+      }
+      else if (this.$refs.loginUserName.value == "") {
         this.msg = "请输入账号";
-      } else if (this.$refs.loginPassWord.value == "") {
+      }
+      else if (this.$refs.loginPassWord.value == "") {
         this.msg = "请输入密码";
-      } else if (!rm.test(this.$refs.loginPassWord.value)) {
+      }
+      else if (!rm.test(this.$refs.loginUserName.value)) {
+        this.msg = "请输入正确的用户名";
+      }
+      else if(!mima.test(this.$refs.loginPassWord.value)){
         this.msg = "请输入正确的密码";
-      } else {
+      }
+      else {
         this.JSONP(
-          "http://192.168.43.134:8888/login?user=" +
+          "http://10.0.156.183:8888/login?user=" +
             this.$refs.loginUserName.value +
             "&pwd=" +
             this.$refs.loginPassWord.value,
@@ -98,6 +111,7 @@ export default {
               this.setCookie("pwd", this.$refs.loginPassWord.value, 30);
               this.setCookie("userId", data.userId, 30);
               this.msg = "登录成功";
+              this.l=true;
               setTimeout(() => {
                 this.$router.push({
                   path: "/Mine",
@@ -281,5 +295,9 @@ footer img {
   flex-wrap: wrap;
   justify-content: space-around;
   font-size: 0.26rem;
+  border: 1px solid #c2c2c2; 
+}
+.l{
+  background:#41b883;
 }
 </style>

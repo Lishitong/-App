@@ -11,7 +11,6 @@
 
           <div class="director">
             <p>
-
               <span v-if="flagAver">{{item.rating.average}}</span>
             </p>
             <p>
@@ -26,7 +25,7 @@
         </div>
         <div class="text-right">
           <p>{{ item.collect_count }}人看过</p>
-          <div class="btn">想看</div>
+          <LOOK :dataLi = "item"></LOOK>
         </div>
       </div>
     </div>
@@ -34,6 +33,8 @@
 </template>
 
 <script>
+import LOOK from '../components/wantToSeea'
+
 export default {
   props: ["objdate"],
   data() {
@@ -60,11 +61,14 @@ export default {
     },
     push(item) {
       this.$router.push({
-        path: "/movxiangqing/" + item
-      });
+        path:'/movxiangqing/' + item
+      })
     }
+  },
+  components:{
+    LOOK
   }
-};
+}
 </script>
 
 <style lang="css" scoped>
@@ -131,5 +135,10 @@ export default {
   border: 0.02rem solid #f6b529;
   border-radius: 0.04rem;
   text-align: center;
+}
+
+.text-right .haveLook {
+  color : #ccc;
+  border-color: #ccc;
 }
 </style>

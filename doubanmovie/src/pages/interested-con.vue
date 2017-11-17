@@ -13,7 +13,7 @@
         <div class="judgeStr">
           <img src="" alt="">
           <h3>越看越没趣</h3>
-          <p>漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影</p>
+          <p>漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影电影</p>
           <h6>雪 评论《雷神3》</h6>
         </div>
         <img :src="pp" alt="">
@@ -89,13 +89,13 @@ export default {
   height: 0.55rem;
   margin-right: 0.15rem;
 }
-.judge {
-  height: 3rem;
-  padding: 0.4rem 0 0.4rem 0.4rem;
-  background: url(../../static/judgebg.jpg);
-  margin-top: -0.38rem;
-  color: white;
-  position: relative;
+.judge{
+ height:3rem;
+ padding:0.4rem 0 0.4rem 0.4rem;
+ background:url(../../static/judgebg.jpg);
+ /*margin-top: -0.38rem;*/
+ color:white;
+ position:relative;
 }
 .judge > img {
   float: right;

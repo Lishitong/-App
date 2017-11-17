@@ -13,7 +13,7 @@
         <img src="../../static/shezhigo.png" alt="">
       </div>
       <div class="bgconter">
-        <span>给应用评分</span>
+        <span @click="pingfen">给应用评分</span>
           <img src="../../static/shezhigo.png" alt="">
       </div>
       <div class="bgconter" @click="clear()">
@@ -38,8 +38,10 @@
       </div>
     </div>
     <div class="">
+        <p class="unlogin" v-if="unlogin">该APP用户体验满意度为100%,无需评分,谢谢！</p>
 
     </div>
+
   </div>
 
 </template>
@@ -48,59 +50,61 @@
 export default {
   data() {
     return {
-      bol: false,
-      foote: false,
-      closeLogin: false
-    };
+        bol:false,
+        foote:false,
+        closeLogin:false,
+        unlogin:false
+    }
+
   },
   methods: {
     shezhiback() {
-      history.back();
-    },
-    setCookie(c_name, value, expiredays) {
-      var exdate = new Date();
-      exdate.setDate(exdate.getDate() + expiredays);
-      document.cookie =
-        c_name +
-        "=" +
-        escape(value) +
-        (expiredays == null ? "" : ";expires=" + exdate.toGMTString());
-    },
-    clear() {
-      this.bol = true;
-    },
-    closeBox() {
-      this.bol = false;
-    },
+      history.back()
+  },
 
-    clearLog() {
-      this.setCookie("user", "", -1);
-      this.setCookie("pwd", "", -1);
-      this.closeLogin = true;
-      setTimeout(() => {
-        this.closeLogin = false;
-      }, 1500);
-      this.$router.push({ path: "/Mine" });
-    },
-    clearCookie() {
-      this.setCookie("user", "", -1);
-      this.setCookie("pwd", "", -1);
-      this.bol = false;
-    },
-    suggest(suggest) {
-      this.$router.push({ path: "/" + suggest });
-    },
-    aboutdb(aboutdb) {
-      this.$router.push({ path: "/" + aboutdb });
-    }
+  setCookie(c_name,value,expiredays){
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+  },
+  clear(){
+    this.bol = true;
+  },
+  closeBox(){
+    this.bol = false
+  },
+  pingfen(){
+    this.unlogin=1;
+  },
+
+  clearLog(){
+    console.log(this.Cookie)
+    this.setCookie('user','',-1)
+    this.setCookie('userId','',-1)
+    this.setCookie('pwd','',-1)
+    this.closeLogin =true;
+    setTimeout(()=>{
+      this.closeLogin =false;
+    },1500);
+    this.$router.push({path:'/Mine'})
+  },
+  clearCookie(){
+    this.setCookie('user','',-1)
+    this.setCookie('pwd','',-1)
+    this.bol = false;
+  },
+  suggest(suggest){
+    this.$router.push({path:'/'+suggest})
   },
   created() {
     if (document.cookie.length > 0) {
       console.log(document.cookie);
       this.foote = true;
     }
+   }
   }
-};
+}
 </script>
 
 <style lang="css" scoped>
@@ -210,5 +214,22 @@ main {
   background-color: white;
   border-bottom: 0.01rem solid #c6c7c7;
   border-top: 0.003rem solid #c6c7c7;
+}
+.unlogin {
+  position: absolute;
+  left: 50%;
+  margin-left: -2.5rem;
+  top: 50%;
+  margin-top: -3rem;
+  width: 3rem;
+  height: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 0.26rem;
+  border: 1px solid #c2c2c2;
 }
 </style>

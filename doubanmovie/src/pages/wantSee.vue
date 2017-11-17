@@ -36,6 +36,7 @@ export default {
       this.showlogin = 0;
       console.log(document.cookie);
     }
+    console.log(this.$store.getters.IS_THINK)
   }
 };
 </script>

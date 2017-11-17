@@ -10,6 +10,7 @@ import router from './router'
 // swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueResource from 'vue-resource'
+import store from './vuexx'
 
 // databus
 window.databus = new Vue()
@@ -30,6 +31,7 @@ Vue.prototype.axios = axios
 const vm = new Vue({
     el: '#app',
     router,
+    store,
     template: '<App/>',
     components: { App }
 })
