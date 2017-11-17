@@ -56,7 +56,8 @@ export default {
       arr: [],
       arrbox: [],
       flag: false,
-      flagLi: true
+      flagLi: true,
+      name:''
     }
   },
   created() {},

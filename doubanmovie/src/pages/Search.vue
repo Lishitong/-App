@@ -54,10 +54,7 @@
       <div class="" v-if="sear" >
 
         <interestedLiCon v-for='aa of obj' :item="aa">
-
         <!-- <interestedLiCon v-for='(a, index) in obj' :key="index" :item="a"> -->
-
-
         </interestedLiCon>
       </div>
 
@@ -123,10 +120,11 @@ export default {
       // this.flagimg=false;
       console.log(s);
       this.$refs.input1.value=this.value[s];
+      this.se();
       this.flagHot=false;
       this.ying=false;
       this.flagimg = true;
-      this.se();
+
       this.sear=true;
     },
     delt(){

@@ -8,7 +8,10 @@
         <interestedcon :message="itemarr"></interestedcon>
       </li>
     </ul>
-    <p class="wait" v-if="wait" >O(∩_∩)O哈哈~</p>
+    <p class="wait" v-if="wait" >
+      <!-- O(∩_∩)O哈哈~ -->
+      <img src="./../../static/loading.gif" alt="">
+    </p>
     <div class="footer" v-if="footer">
       <p>(｡◕ˇ∀ˇ◕)翻完了，下次再来吧</p>
     </div>
