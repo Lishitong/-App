@@ -7,7 +7,7 @@
     <div v-else class="loginin">
       <span>0部</span>
       <span @click="timpeShow()">标签筛选</span>
-      <wantlook></wantlook>
+      <wantlook :list="list"></wantlook>
     </div>
     <div v-if="timpe" class="timpe">
       <p @click="timpeClose()">X</p>
@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       showlogin: 1,
-      timpe: 0
+      timpe: 0,
+      list:[]
     };
   },
   methods: {
@@ -38,7 +39,8 @@ export default {
       this.showlogin = 0;
       console.log(document.cookie);
     }
-    console.log(this.$store.getters.IS_THINK)
+    console.log(this.$store.getters.IS_THINK);
+    this.list = this.$store.getters.IS_THINK
   },
   components:{
     wantlook

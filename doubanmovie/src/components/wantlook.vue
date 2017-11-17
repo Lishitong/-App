@@ -1,37 +1,21 @@
 <template lang="html">
   <div class="wantlook">
-    <!-- <ul>
-      <li>
-        <img v-lazy="https://images.weserv.nl/?url=img3.doubanio.com/view/photo/s_ratio_poster/public/p2504027804.jpg" alt="">
-        <div class="">
-          <h2>正义联盟</h2>
-          <p class="stars">
-              <span class="star" v-for="(y,index2) in 5">
-                <img :src="reStar(data.stars[index],index2)" alt="">
-              </span>
-              <span>{{data.fen[index]}}</span>
-          </p>
-          <p>导演：{{data.dao[index]}}</p>
-          <p>演员：{{data.act[index]}}</p>
-        </div>
-        <span>2017-11-11</span>
-      </li>
-    </ul> -->
     <ul>
-      <li>
-        <img src="https://images.weserv.nl/?url=img3.doubanio.com/view/photo/s_ratio_poster/public/p2504027804.jpg" alt="">
+      <li v-for="(x,index) in list">
+        <img v-lazy="getImage(x.imgUrl)" alt="">
         <div class="">
-          <h2>正义联盟</h2>
+          <h2>{{x.title}}</h2>
           <p class="stars">
               <span class="star" v-for="(y,index2) in 5">
-                <img  alt="">
+                <img :src="reStar(x.stars,index2)" alt="">
               </span>
-              <span>8.5</span>
+              <span>{{x.average}}</span>
           </p>
-          <p>导演：wangyu</p>
-          <p>演员：lishitong</p>
+          <p>导演：{{x.directors[0]}}</p>
+          <p>演员：<span v-for="(l,index3) in x.casts" :key="index3">{{index3 | actname(l,x.casts.length)}} </span>
+          </p>
         </div>
-        <span class="timespan">2017-11-11</span>
+        <span class="timespan">{{x.date}}</span>
       </li>
     </ul>
   </div>
@@ -40,6 +24,7 @@
 <script>
 export default {
   name:'wantlook',
+  props:['list'],
   methods:{
     reStar(in1,in2){
       if (in2*10<in1-5) {
@@ -59,11 +44,21 @@ export default {
       })
     },
   },
+  filters: {
+    actname(index3, l, num) {
+      if (index3 != num - 1) {
+        return l + "/";
+      } else {
+        return l;
+      }
+    }
+  },
 }
 </script>
 
 <style lang="less">
 .wantlook{
+    padding-bottom: 1rem;
     h2{
       font-size: .35rem;
       margin-top: .2rem;
@@ -79,6 +74,7 @@ export default {
       margin-top: .2rem;
     }
     li{
+      position: relative;
       padding: .3rem;
       overflow: hidden;
       background-color: #fff;
@@ -101,7 +97,8 @@ export default {
     .timespan{
       position: absolute;
       right:0.3rem;
-      top: 1.4rem;
+      top: .4rem;
+      font-size: .2rem;
     }
 }
 </style>
