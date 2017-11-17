@@ -81,10 +81,10 @@ export default {
   //     this.ok = false;
   //   }
   // }
-  created() {
-    if (this.getCookie('user') != '') {
-      this.bol = true,
-        this.user = this.getCookie('user'),
+    created(){
+      if (this.getCookie('user')!='') {
+        this.bol = true,
+        this.user = this.getCookie('userId'),
         this.myfiles = true
     }
   }

@@ -33,7 +33,7 @@ export default {
       history.back()
   },
   hotPlay(){
-    this.$router.push({path:'/HotPlay'})
+    this.$router.push({path:'/HotPlaydss'})
   }
 
   }

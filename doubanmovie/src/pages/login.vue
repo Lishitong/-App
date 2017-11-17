@@ -40,242 +40,242 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      logindb:false,
-      welcome:true,
-      footer:true,
-      unlogin:false,
-      shows:false,
-      msg:'请输入用户名密码'
-    }
+      logindb: false,
+      welcome: true,
+      footer: true,
+      unlogin: false,
+      shows: false,
+      msg: "请输入正确的用户名密码"
+    };
   },
-  methods:{
-    back(){
+  methods: {
+    back() {
       history.back();
     },
-    setCookie(c_name,value,expiredays){
-      var exdate=new Date()
-      exdate.setDate(exdate.getDate()+expiredays)
-      document.cookie=c_name+ "=" +escape(value)+
-      ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    setCookie(c_name, value, expiredays) {
+      var exdate = new Date();
+      exdate.setDate(exdate.getDate() + expiredays);
+      document.cookie =
+        c_name +
+        "=" +
+        escape(value) +
+        (expiredays == null ? "" : ";expires=" + exdate.toGMTString());
     },
-    getCookie(c_name){
-      if (document.cookie.length>0)
-        {
-        var c_start=document.cookie.indexOf(c_name + "=")
-        if (c_start!=-1)
-        {
-        c_start=c_start + c_name.length+1
-        var c_end=document.cookie.indexOf(";",c_start)
-        if (c_end==-1) c_end=document.cookie.length
-        return unescape(document.cookie.substring(c_start,c_end))
+    getCookie(c_name) {
+      if (document.cookie.length > 0) {
+        var c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+          c_start = c_start + c_name.length + 1;
+          var c_end = document.cookie.indexOf(";", c_start);
+          if (c_end == -1) c_end = document.cookie.length;
+          return unescape(document.cookie.substring(c_start, c_end));
         }
-        }
-      return ""
+      }
+      return "";
     },
-    loginOn(Mine){
+    loginOn(Mine) {
       console.log(this.$refs);
       let rm = /^[a-zA-Z0-9_-]{4,16}$/;
-          if(this.$refs.loginUserName.value ==""){
-            this.msg ="请输入账号";
+      if (this.$refs.loginUserName.value == "") {
+        this.msg = "请输入账号";
+      } else if (this.$refs.loginPassWord.value == "") {
+        this.msg = "请输入密码";
+      } else if (!rm.test(this.$refs.loginPassWord.value)) {
+        this.msg = "请输入正确的密码";
+      } else {
+        this.JSONP(
+          "http://192.168.43.134:8888/login?user=" +
+            this.$refs.loginUserName.value +
+            "&pwd=" +
+            this.$refs.loginPassWord.value,{name : 'callback'},
+          (err, data) => {
+            data = JSON.parse(data);
+            if (data.status == 1) {
+              this.setCookie("user", this.$refs.loginUserName.value, 30);
+              this.setCookie("pwd", this.$refs.loginPassWord.value, 30);
+              this.setCookie("userId", data.userId, 30);
+              this.msg = "登录成功";
+              setTimeout(() => {
+                this.$router.push({ path: "/Mine" , query : {userId :data.userId } });
+              }, 2000);
+            }
           }
-        
-          else if(this.$refs.loginPassWord.value ==""){
-          this.msg ="请输入密码";
-          }
-          else if( !rm.test(this.$refs.loginPassWord.value)){
-            this.msg="请输入正确的密码";
-          }
-          else {
-            this.msg="登录成功"
-            this.$router.push({path:'/Mine'})
+        );
+      }
 
-
-          }
-
-
-      this.shows =true;
-      setTimeout(()=>{
+      this.shows = true;
+      setTimeout(() => {
         this.shows = false;
-      },1500)
-      this.setCookie('user',this.$refs.loginUserName.value,30)
-      this.setCookie('pwd',this.$refs.loginPassWord.value,30)
+      }, 1500);
     },
-    register(register){
-      this.$router.push({path:"/register"});
-
+    register(register) {
+      this.$router.push({ path: "/register" });
     },
-    anim(){
-      this.welcome=false;
-      this.logindb=true;
-
+    anim() {
+      this.welcome = false;
+      this.logindb = true;
     },
-    show(){
-      this.welcome=true;
-      this.logindb=false;
-
+    show() {
+      this.welcome = true;
+      this.logindb = false;
     },
-    ulogin(){
-          this.unlogin = true;
-          setTimeout(()=>{
-            this.unlogin = false;
-          },1500)
+    ulogin() {
+      this.unlogin = true;
+      setTimeout(() => {
+        this.unlogin = false;
+      }, 1500);
     },
-    losepassword(losepassword){
-      this.$router.push({path:'/losepassword'})
+    losepassword(losepassword) {
+      this.$router.push({ path: "/losepassword" });
     }
   }
-}
+};
 </script>
 
 <style lang="css"  scoped>
-  .all{
-    position: relative;
+.all {
+  position: relative;
+}
+nav {
+  width: 100%;
+  height: 1rem;
+  text-align: center;
+  overflow: hidden;
+  font-weight: normal;
+  font-size: 0.26rem;
+  line-height: 1rem;
+}
+nav img {
+  padding: 0.2rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  float: left;
+  vertical-align: bottom;
+}
+nav span {
+  /*margin-top: 3%;*/
+  vertical-align: bottom;
+  display: inline-block;
+}
+.pleasePut {
+  width: 40%;
+  margin-left: 30%;
+  height: 0.5rem;
+  text-align: center;
+  line-height: 0.5rem;
+  background-color: #f66028;
+  color: #fff;
+  border-radius: 0.4rem;
+  position: absolute;
+  left: 0;
+  top: 10%;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
   }
-  nav{
-    width: 100%;
-    height: 1rem;
-    text-align: center;
-    overflow: hidden;
-    font-weight: normal;
-    font-size: .26rem;
-    line-height: 1rem;
+  50% {
+    transform: scale(1.5);
   }
-  nav img{
-    padding: .2rem;
-    width: .4rem;
-    height: .4rem;
-    float: left;
-    vertical-align: bottom;
+  100% {
+    transform: scale(1);
   }
-  nav span{
-    /*margin-top: 3%;*/
-    vertical-align: bottom;
-    display: inline-block;
-  }
-  .pleasePut{
-    width: 40%;
-    margin-left: 30%;
-    height: .5rem;
-    text-align: center;
-    line-height:.5rem;
-    background-color: #F66028;
-    color: #fff;
-    border-radius: .4rem;
-    position: absolute;
-    left: 0;
-    top: 10%;
-  }
-  .bounce-enter-active {
-    animation: bounce-in .5s;
-  }
-  .bounce-leave-active {
-    animation: bounce-in .5s reverse;
-  }
-  @keyframes bounce-in {
-    0% {
-      transform: scale(0);
-    }
-    50% {
-      transform: scale(1.5);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  main{
-    width: 90%;
-    margin-left: 5%;
-    text-align: center;
-    height: 8rem;
-    margin-top: 1rem;
+}
+main {
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+  height: 8rem;
+  margin-top: 1rem;
+}
+main .welcomedb {
+  font-size: 0.7rem;
+  color: #3fbc53;
+  height: 0.7rem;
+  text-align: center;
+  margin: 0.6rem 0;
+  transition: display 3s;
+}
+main input {
+  border: 0.01rem solid #c2c2c2;
+  display: block;
+  border-radius: 0.03rem;
+  width: 80%;
+  margin-left: 10%;
+  height: 0.6rem;
+  padding-left: 0.2rem;
+  font-size: 0.22rem;
+  /*color: #C8C8CE;*/
+}
+main input:nth-of-type(2) {
+  border-top: 0;
+  margin-bottom: 0.3rem;
+}
+.loginin {
+  width: 83%;
+  margin-left: 10%;
+  height: 0.6rem;
+  background-color: #3fbc53;
+  border-radius: 0.13rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.26rem;
+  display: block;
+}
+.enroll {
+  margin-top: 0.3rem;
+  font-size: 0.26rem;
+  font-weight: 400;
+  color: #747474;
+}
 
-  }
-  main .welcomedb{
-    font-size: .7rem;
-    color: #3FBC53;
-    height: .7rem;
-    text-align: center;
-    margin: .6rem 0;
-    transition:display 3s;
-  }
-  main input{
-    border: .01rem solid #C2C2C2;
-    display:block;
-    border-radius: .03rem ;
-    width: 80%;
-    margin-left: 10%;
-    height: .6rem;
-    padding-left: .2rem;
-    font-size: .22rem;
-    /*color: #C8C8CE;*/
-  }
-  main input:nth-of-type(2){
-    border-top: 0;
-    margin-bottom: .3rem;
-  }
-  .loginin{
-    width: 83%;
-    margin-left: 10%;
-    height: .6rem;
-    background-color: #3FBC53;
-    border-radius: .13rem;
-    color: white;
-    font-weight: 600;
-    font-size: .26rem;
-    display: block;
-  }
-  .enroll{
-    margin-top: .3rem;
-    font-size: .26rem;
-    font-weight: 400;
-    color: #747474;
-  }
-
-  .enroll span:nth-of-type(1){
-    color:#3FBC53;
-
-  }
-  .enroll span:nth-of-type(2){
-    margin: 0 2%;
-    color: #C1C1C1;
-
-  }
-  footer{
-    width: 60%;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    display: flex;
-    justify-content: space-around;
-    font-weight: normal;
-    font-size: .26rem;
-    margin-left: 20%;
-    color: #747474;
-  }
-  footer img{
-    width: .34rem;
-    height: .34rem;
-
-  }
-  .unlogin{
-    position: absolute;
-    left: 50%;
-    margin-left: -2.5rem;
-    top: 50%;
-    margin-top: -3rem;
-    width: 3rem;
-    height: 2rem;
-    padding: 1rem;
-    background-color: #F9F9F9;
-    border-radius: .4rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    font-size: .26rem;
-  }
-
+.enroll span:nth-of-type(1) {
+  color: #3fbc53;
+}
+.enroll span:nth-of-type(2) {
+  margin: 0 2%;
+  color: #c1c1c1;
+}
+footer {
+  width: 60%;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  font-weight: normal;
+  font-size: 0.26rem;
+  margin-left: 20%;
+  color: #747474;
+}
+footer img {
+  width: 0.34rem;
+  height: 0.34rem;
+}
+.unlogin {
+  position: absolute;
+  left: 50%;
+  margin-left: -2.5rem;
+  top: 50%;
+  margin-top: -3rem;
+  width: 3rem;
+  height: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 0.26rem;
+}
 </style>

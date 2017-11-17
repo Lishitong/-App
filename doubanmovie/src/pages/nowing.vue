@@ -66,7 +66,6 @@ export default {
           for (let i = 0;i <this.msg.length;i ++) {
             if (this.msg[i].rating.average == 0) {
               this.flag = false;
-              console.log(this.flag);
               this.msg[i].rating.average = "未评";
               this.msg[i].shop = "预售"
             }else {
