@@ -82,7 +82,7 @@ export default {
           } else {
             this.obj = data.subjects;
             this.objDate =
-             data.subjects;
+             data.subjects.slice(0);
             this.flagLi = false;
           }
         }
