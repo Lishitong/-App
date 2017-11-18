@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import LOOK from '../components/wantToSeea'
 export default {
   props:['objdate'],
   data() {
@@ -62,6 +63,9 @@ export default {
         path:'/movxiangqing/' + item
       })
     }
+  },
+  components:{
+    LOOK
   }
 
 
