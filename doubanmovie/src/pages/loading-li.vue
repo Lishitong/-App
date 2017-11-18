@@ -67,6 +67,9 @@ export default {
         path:'/movxiangqing/' + item
       })
     }
+  },
+  components:{
+    LOOK
   }
 
 

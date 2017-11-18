@@ -95,11 +95,11 @@ export default {
         this.ok = false;
       }
 
-      let rex = /\/Mine/;
-      if (rex.test(this.$route.path)) {
-        this.show = false;
-        this.showIn = false;
-      }
+      // let rex = /\/Mine/;
+      // if (rex.test(this.$route.path)) {
+      //   this.show = false;
+      //   this.showIn = false;
+      // }
 
       let city = /\/Citys/;
       let local = /\/Local/;
