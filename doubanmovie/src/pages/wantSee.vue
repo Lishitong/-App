@@ -5,7 +5,7 @@
       <p  class="nofind">您还没有登录哦，豆儿等您！</p>
     </div>
     <div v-else class="loginin">
-      <span>0部</span>
+      <span>{{ count }}部</span>
       <span @click="timpeShow()">标签筛选</span>
       <wantlook :list="list"></wantlook>
     </div>
@@ -24,6 +24,7 @@ export default {
       showlogin: 1,
       timpe: 0,
       list:[],
+      count:0,
     };
   },
   methods: {
@@ -37,9 +38,8 @@ export default {
   created() {
     if (document.cookie.length > 0) {
       this.showlogin = 0;
-      console.log(document.cookie);
     }
-    console.log(this.$store.getters.IS_THINK);
+    this.count = this.$store.getters.IS_THINK.length;
     this.list = this.$store.getters.IS_THINK
   },
   components:{

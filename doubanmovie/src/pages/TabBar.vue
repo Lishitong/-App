@@ -84,8 +84,6 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      console.log(newValue);
-      console.log(oldValue);
       if (newValue.path == "/HotPlay") {
         this.showOn = false;
       } else if (newValue.path == "/FindMovie") {
@@ -97,11 +95,11 @@ export default {
         this.ok = false;
       }
 
-      let rex = /\/Mine/;
-      if (rex.test(this.$route.path)) {
-        this.show = false;
-        this.showIn = false;
-      }
+      // let rex = /\/Mine/;
+      // if (rex.test(this.$route.path)) {
+      //   this.show = false;
+      //   this.showIn = false;
+      // }
 
       let city = /\/Citys/;
       let local = /\/Local/;

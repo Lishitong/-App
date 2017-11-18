@@ -90,8 +90,8 @@ export default {
         (err, data) => {
           this.bol = true;
           this.title = data.title;
-          console.log(data);
-          console.log(start);
+          // console.log(data);
+          // console.log(start);
           for (let i = 0; i < data.subjects.length; i++) {
             this.dat.sub.splice(i, 1, data.subjects[i]);
             this.dat.rank.splice(i, 1, i + 1 + start);

@@ -34,7 +34,7 @@ export default {
   created() {
     if (document.cookie.length > 0) {
       this.showlogin = 0;
-      console.log(document.cookie);
+      // console.log(document.cookie);
     }
   }
 };

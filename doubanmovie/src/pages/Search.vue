@@ -93,7 +93,7 @@ export default {
           } else {
             // console.log(that);
             this.flag = true;
-            console.log(data.subjects);
+            // console.log(data.subjects);
             this.obj = data.subjects;
           }
         }
@@ -110,28 +110,36 @@ export default {
         this.flagimg = false;
       }
     },
-    enter() {
-      this.ying = false;
+    enter(){
+      var arr;
+      this.ying=false;
       this.flagimg = true;
       this.se();
       this.sear=true;
       let { historyItems } = localStorage;
       if (historyItems === undefined) {
         localStorage.historyItems = this.$refs.input1.value;
+        arr=localStorage.historyItems;
+        if (arr) {
+          this.value=arr.split('|');
+        }
       } else {
           historyItems = this.$refs.input1.value + '|' + historyItems.split('|').filter(e => e != this.$refs.input1.value).join('|');
           localStorage.historyItems = historyItems;
-          console.log(localStorage.historyItems);
-          var arr=localStorage.historyItems;
-          console.log(this.value.length);
-          if (this.value.length>8) {
-            var index=arr.lastIndexOf('|');
-            console.log(index);
-            arr=arr.substring(0,index);
-            console.log(arr);
-          }
+          // console.log(localStorage.historyItems);
           arr=localStorage.historyItems;
-          this.value=arr.split('|');
+          // console.log(this.value.length);
+          // if (this.value.length>=8) {
+          //   console.log('//');
+          //   var index=arr.lastIndexOf('|');
+          //   console.log(index);
+          //   arr=arr.substring(0,index);
+          //   console.log(arr);
+          // }
+          if (arr) {
+            this.value=arr.split('|');
+          }
+
       }
 
       var mm=localStorage.historyItems
@@ -160,7 +168,7 @@ export default {
       this.$refs.input1.value = "";
       this.flagHot = true;
       this.sear = false;
-      console.log(this.value);
+      // console.log(this.value);
     },
     back() {
       history.back();
@@ -168,8 +176,11 @@ export default {
   },
   created(mm){
     // var arr=localStorage.historyItems;
-    this.value=localStorage.historyItems.split('|');
-    console.log(this.value);
+    if (localStorage.historyItems) {
+      this.value=localStorage.historyItems.split('|');
+    }
+
+    // console.log(this.value);
   },
   updated(){
     // console.log(this.$refs.input1.value);

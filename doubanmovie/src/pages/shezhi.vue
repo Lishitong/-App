@@ -33,7 +33,7 @@
     <div class="wrap" v-if="bol">
       <div class="alertbox">
         <p>是否清除缓存</p>
-        <button type="button" name="button1" @click="clearCookie()">是</button>
+        <button type="button" name="button1" @click="clearCooki()">是</button>
         <button type="button" name="button2" @click="closeBox()">否</button>
       </div>
     </div>
@@ -50,61 +50,69 @@
 export default {
   data() {
     return {
-        bol:false,
-        foote:false,
-        closeLogin:false,
-        unlogin:false
-    }
-
+      bol: false,
+      foote: false,
+      closeLogin: false,
+      unlogin: false
+    };
   },
   methods: {
     shezhiback() {
-      history.back()
-  },
+      history.back();
+    },
 
-  setCookie(c_name,value,expiredays){
-    var exdate=new Date()
-    exdate.setDate(exdate.getDate()+expiredays)
-    document.cookie=c_name+ "=" +escape(value)+
-    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
-  },
-  clear(){
-    this.bol = true;
-  },
-  closeBox(){
-    this.bol = false
-  },
-  pingfen(){
-    this.unlogin=1;
-  },
+    setCookie(c_name, value, expiredays) {
+      var exdate = new Date();
+      exdate.setDate(exdate.getDate() + expiredays);
+      document.cookie =
+        c_name +
+        "=" +
+        escape(value) +
+        (expiredays == null ? "" : ";expires=" + exdate.toGMTString());
+    },
+    clearCookie() {
+      var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+      if (keys) {
+        for (var i = keys.length; i--; )
+          document.cookie = keys[i] + "=0;expires=" + new Date(0).toUTCString();
+      }
+    },
+    clear() {
+      this.bol = true;
+    },
+    closeBox() {
+      this.bol = false;
+    },
+    pingfen() {
+      this.unlogin = 1;
+    },
 
-  clearLog(){
-    console.log(this.Cookie)
-    this.setCookie('user','',-1)
-    this.setCookie('userId','',-1)
-    this.setCookie('pwd','',-1)
-    this.closeLogin =true;
-    setTimeout(()=>{
-      this.closeLogin =false;
-    },1500);
-    this.$router.push({path:'/Mine'})
-  },
-  clearCookie(){
-    this.setCookie('user','',-1)
-    this.setCookie('pwd','',-1)
-    this.bol = false;
-  },
-  suggest(suggest){
-    this.$router.push({path:'/'+suggest})
+    clearLog() {
+      this.clearCookie();
+      this.closeLogin = true;
+      this.$store.commit("isClearWantToSeeList");
+      setTimeout(() => {
+        this.closeLogin = false;
+      }, 1500);
+      this.$router.push({ path: "/Mine" });
+    },
+    clearCooki() {
+      this.clearCookie();
+      this.bol = false;
+      this.$store.commit("isClearWantToSeeList");
+      // this.$router.go(0);
+      this.foote = false;
+    },
+    suggest(suggest) {
+      this.$router.push({ path: "/" + suggest });
+    }
   },
   created() {
     if (document.cookie.length > 0) {
-      console.log(document.cookie);
       this.foote = true;
     }
-   }
   }
-}
+};
 </script>
 
 <style lang="css" scoped>
