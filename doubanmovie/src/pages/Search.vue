@@ -110,28 +110,36 @@ export default {
         this.flagimg = false;
       }
     },
-    enter() {
-      this.ying = false;
+    enter(){
+      var arr;
+      this.ying=false;
       this.flagimg = true;
       this.se();
       this.sear=true;
       let { historyItems } = localStorage;
       if (historyItems === undefined) {
         localStorage.historyItems = this.$refs.input1.value;
+        arr=localStorage.historyItems;
+        if (arr) {
+          this.value=arr.split('|');
+        }
       } else {
           historyItems = this.$refs.input1.value + '|' + historyItems.split('|').filter(e => e != this.$refs.input1.value).join('|');
           localStorage.historyItems = historyItems;
           console.log(localStorage.historyItems);
-          var arr=localStorage.historyItems;
-          console.log(this.value.length);
-          if (this.value.length>8) {
-            var index=arr.lastIndexOf('|');
-            console.log(index);
-            arr=arr.substring(0,index);
-            console.log(arr);
-          }
           arr=localStorage.historyItems;
-          this.value=arr.split('|');
+          console.log(this.value.length);
+          // if (this.value.length>=8) {
+          //   console.log('//');
+          //   var index=arr.lastIndexOf('|');
+          //   console.log(index);
+          //   arr=arr.substring(0,index);
+          //   console.log(arr);
+          // }
+          if (arr) {
+            this.value=arr.split('|');
+          }
+
       }
 
       var mm=localStorage.historyItems
@@ -168,7 +176,10 @@ export default {
   },
   created(mm){
     // var arr=localStorage.historyItems;
-    this.value=localStorage.historyItems.split('|');
+    if (localStorage.historyItems) {
+      this.value=localStorage.historyItems.split('|');
+    }
+
     console.log(this.value);
   },
   updated(){

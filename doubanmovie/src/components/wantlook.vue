@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .wantlook{
     padding-bottom: 1rem;
     h2{

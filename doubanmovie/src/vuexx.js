@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         isLogin: false,
-        wantToSeeList: []
+        wantToSeeList: [],
+        wantToSee: []
     },
     mutations: {
         inLogin(state, bol) {
@@ -14,6 +15,11 @@ const store = new Vuex.Store({
         },
         isWantToSee(state, think) {
             state.wantToSeeList.unshift(think);
+            state.wantToSee.unshift(think.id);
+        },
+        isClearWantToSeeList(state) {
+            state.wantToSeeList = [];
+            state.wantToSee = [];
         }
     },
     getters: {
@@ -22,6 +28,9 @@ const store = new Vuex.Store({
         },
         IS_THINK: state => {
             return state.wantToSeeList;
+        },
+        IS_LOOK: state => {
+            return state.wantToSee;
         }
     }
 

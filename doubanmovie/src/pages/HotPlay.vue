@@ -17,54 +17,59 @@ export default {
   name: "now",
   data() {
     return {
-      ok:true,
-      isLogin:false
-    }
+      ok: true,
+      isLogin: false
+    };
   },
   components: {
     swiper
   },
   watch: {
-    $route(newValue, oldValue) {
-      this.ok = false;
-    }
+
   },
-  methods:{
+  methods: {
     getCookie(c_name) {
       if (document.cookie.length > 0) {
-        var c_start = document.cookie.indexOf(c_name + "=")
+        var c_start = document.cookie.indexOf(c_name + "=");
         if (c_start != -1) {
-          c_start = c_start + c_name.length + 1
-          var c_end = document.cookie.indexOf(";", c_start)
-          if (c_end == -1) c_end = document.cookie.length
-          return unescape(document.cookie.substring(c_start, c_end))
+          c_start = c_start + c_name.length + 1;
+          var c_end = document.cookie.indexOf(";", c_start);
+          if (c_end == -1) c_end = document.cookie.length;
+          return unescape(document.cookie.substring(c_start, c_end));
         }
       }
-      return ""
+      return "";
     },
-    clearCookie(){
-      let keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+    clearCookie() {
+      var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
       if (keys) {
-        for (var i = keys.length; i--;){
-          document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString();
-        }
+        for (var i = keys.length; i--; )
+          document.cookie = keys[i] + "=0;expires=" + new Date(0).toUTCString();
       }
     }
   },
-  created(){
+  created() {
+
+    if (this.$route.path != "/HotPlay/nowing") {
+      this.ok = false;
+    } else {
+      this.ok = true;
+    }
+
     this.JSONP(
       "http://10.0.156.183:8888/login?user=" +
-        this.getCookie('user') +
+        this.getCookie("user") +
         "&pwd=" +
-        this.getCookie('pwd'),{name : 'callback'},
+        this.getCookie("pwd"),
+      { name: "callback" },
       (err, data) => {
         data = JSON.parse(data);
         if (data.status == 1) {
-          this.$store.commit('inLogin', true);
+          this.$store.commit("inLogin", true);
           return true;
-        }else{
+        } else {
           this.clearCookie();
-          this.$store.commit('inLogin', false);
+          this.$store.commit("inLogin", false);
         }
       }
     );
