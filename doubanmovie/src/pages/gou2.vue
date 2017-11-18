@@ -56,9 +56,11 @@ export default {
   },
   methods:{
     zan() {
-      this.$router.push({
-        path:'/login'
-      })
+      if(!this.$store.getters.IS_LOGIN) {
+        this.$router.push({
+          path: "/login"
+        });
+      }
     }
   }
 }

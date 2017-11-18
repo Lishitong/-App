@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="xiang1">
+  <div id="xiang3">
     <div class="xq-top">
       <h1 class="lastpage" @click="back"></h1>
       <h1 class="zhuanfa">确定</h1>
@@ -82,10 +82,10 @@ export default {
 </script>
 
 <style lang="css">
-#xiang1{
+#xiang3{
   width: 100%;
 }
-#xiang1 .xq-top{
+#xiang3 .xq-top{
   background: #fff;
   position: fixed !important;
   top: 0 !important;
@@ -97,13 +97,13 @@ export default {
   align-items: center;
   position: relative;
 }
-#xiang1 .lastpage,#xiang1 .zhuanfa {
+#xiang3 .lastpage,#xiang3 .zhuanfa {
   width: .3rem;
   height: .3rem;
   background: url(../../static/del.png) no-repeat top/100% 100%;
   margin-left: .1rem;
 }
-#xiang1 .zhuanfa {
+#xiang3 .zhuanfa {
   width: 1rem;
   height: .6rem;
   text-align: center;
@@ -114,7 +114,7 @@ export default {
   font-size: .25rem;
   font-weight: 900;
 }
-#xiang1 .tit {
+#xiang3 .tit {
   margin-top: .8rem;
   width: 100%;
   height: 1rem;
@@ -125,23 +125,23 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-#xiang1 .kanm {
+#xiang3 .kanm {
   width: 100%;
 }
-#xiang1 .kanm h1 {
+#xiang3 .kanm h1 {
   width: 100%;
   height: .8rem;
   line-height: .8rem;
   text-align: center;
   color: gray;
 }
-#xiang1 .kanm p {
+#xiang3 .kanm p {
   width: 100%;
   height: 1rem;
   line-height: 1rem;
   text-align: center;
 }
-#xiang1 .kanm p span {
+#xiang3 .kanm p span {
   display: inline-block;
   width: 1.2rem;
   height: .6rem;
@@ -150,25 +150,25 @@ export default {
   border-radius: 1rem;
   margin-right: .2rem;
 }
-#xiang1 .tex {
+#xiang3 .tex {
   margin: 0 auto;
   margin-top: .5rem;
   width: 90%;
   height: 2rem;
 }
-#xiang1 #tex2 {
+#xiang3 #tex2 {
   width: 100%;
   height: 2rem;
   line-height: .8rem;
   color: gray;
 }
-#xiang1 .tex p {
+#xiang3 .tex p {
   width: 100%;
   height: .8rem;
   line-height: .8rem;
   text-align: center;
 }
-#xiang1  #bott1 {
+#xiang3  #bott1 {
   width: 100%;
   height: 1.5rem;
   position: fixed;
@@ -196,24 +196,24 @@ export default {
   line-height: .7rem;
   text-align: center;
 }
-#xiang1 .stars {
+#xiang3 .stars {
   height: .4rem;
   line-height: .4rem;
   width:2rem;
   position: relative;
   display: inline-block;
 }
-#xiang1 .starsbox{
+#xiang3 .starsbox{
   overflow: hidden;
   position:absolute;
   height: .35rem;
 }
-#xiang1 .stars img{
+#xiang3 .stars img{
   width: 2rem;
   position:absolute;
   height: .4rem;
 }
-#xiang1 .s {
+#xiang3 .s {
   width: 100%;
   display: flex;
   justify-content: center;
