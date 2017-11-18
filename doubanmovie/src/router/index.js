@@ -15,6 +15,10 @@ const Loading = () =>
     import ( /* webpackChunkName: "HotPlay" */ '../pages/loading.vue')
 const movxiangqing = () =>
     import ( /* webpackChunkName: "movxiangqing" */ '../components/movxiangqing.vue')
+const xiang = () =>
+    import ( /* webpackChunkName: "movxiangqing" */ '../components/xiang.vue')
+const xiang1 = () =>
+    import ( /* webpackChunkName: "movxiangqing" */ '../components/xiang1.vue')
 const ping = () =>
     import ( /* webpackChunkName: "movxiangqing" */ '../components/ping.vue')
 const lun = () =>
@@ -93,6 +97,8 @@ const routes = [{
             { path: '/movxiangqing/lun/:id', component: lun }
         ]
     },
+    { path: '/xiang', component: xiang },
+    { path: '/xiang1', component: xiang1 },
     { path: '/goupiao', component: goupiao },
     { path: '/per/:id', component: per },
     { path: '/pingpage/:id', component: pingpage },

@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    props:['dataLi', "isLook"],
+    props:['dataLi'],
     name:"wantToSeea",
     data(){
       return {
