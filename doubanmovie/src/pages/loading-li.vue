@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import LOOK from '../components/wantToSeea'
 export default {
   props:['objdate'],
   data() {
@@ -46,8 +47,12 @@ export default {
       flagClass1:false,
       flagClass2:false,
       flagClass3:false,
-      flagClass4:false
+      flagClass4:false,
+
     }
+  },
+  components:{
+    LOOK
   },
   methods:{
     getImage(url) {
