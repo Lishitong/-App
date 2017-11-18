@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="xq" :class="{'au':au}">
+    <div id="movexiangqingye" class="xq" :class="{'au':au}">
         <div class="xq-box">
           <div class="xq-top">
             <h1 class="lastpage" @click="back"></h1>
@@ -263,18 +263,18 @@ export default {
 };
 </script>
 <style lang="css">
-.xq-box {
+#movexiangqingye .xq-box {
   width: 100%;
   height: 7rem;
   font-size: 0.2rem;
 }
-.xq-box > img {
+#movexiangqingye .xq-box > img {
   margin-top: 1rem;
   margin-left: 25%;
   width: 50%;
   height: 5rem;
 }
-.xq-top {
+#movexiangqingye .xq-top {
   position: fixed !important;
   top: 0 !important;
   z-index: 6 !important;
@@ -285,18 +285,18 @@ export default {
   align-items: center;
   position: relative;
 }
-.baomihua {
+#movexiangqingye .baomihua {
   font-size: 0.3rem;
   font-weight: 900;
   color: #fff;
 }
-.baomihua img {
+#movexiangqingye .baomihua img {
   width: 0.4rem;
   height: 0.4rem;
   margin-top: -0.1rem;
   margin-right: 0.1rem;
 }
-.fire {
+#movexiangqingye .fire {
   width: 40%;
   height: 0.5rem;
   line-height: 0.5rem;
@@ -321,24 +321,24 @@ export default {
     top: 0.16rem;
   }
 }
-.fire img {
+#movexiangqingye .fire img {
   width: 0.3rem;
   height: 0.3rem;
   margin-top: -0.1rem;
 }
-.lastpage,
-.zhuanfa {
+#movexiangqingye .lastpage,
+#movexiangqingye .zhuanfa {
   width: 0.5rem;
   height: 0.4rem;
   background: url(../../static/img/lastpage.png) no-repeat top/100% 100%;
   margin-left: 0.1rem;
 }
-.zhuanfa {
+#movexiangqingye .zhuanfa {
   width: 0.4rem;
   background: url(../../static/img/zhuanfa.png) no-repeat top/100% 100%;
   margin-right: 0.2rem;
 }
-.xq-text {
+#movexiangqingye .xq-text {
   width: 50%;
   margin-top: 0.3rem;
   margin-left: 0.2rem;
