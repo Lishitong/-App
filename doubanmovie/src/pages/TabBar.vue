@@ -84,8 +84,6 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      console.log(newValue);
-      console.log(oldValue);
       if (newValue.path == "/HotPlay") {
         this.showOn = false;
       } else if (newValue.path == "/FindMovie") {

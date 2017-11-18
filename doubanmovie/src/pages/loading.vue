@@ -44,7 +44,7 @@ export default {
       flagClass2: false,
       flagClass3: false,
       flagClass4: false
-      };
+    };
   },
   components: {
     loadingli,

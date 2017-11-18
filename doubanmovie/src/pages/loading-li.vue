@@ -23,9 +23,9 @@
 
           </div>
         </div>
-        <div class="text-right">
+        <div class="text-right" >
           <p>{{ item.collect_count }}人看过</p>
-          <LOOK :dataLi = "item"></LOOK>
+          <LOOK :data-li = "item"></LOOK>
         </div>
       </div>
     </div>
@@ -60,6 +60,7 @@ export default {
       }
     },
     push(item) {
+      this.id = item;
       this.$router.push({
         path:'/movxiangqing/' + item
       })
@@ -141,4 +142,5 @@ export default {
   color : #ccc;
   border-color: #ccc;
 }
+
 </style>

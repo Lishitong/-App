@@ -1,17 +1,18 @@
 <template>
-   <div class="btn" @click.stop="change()" :class="{'haveLook' : wantToSee }">
-     {{ wantToSee ? "已想看" : "想看" }}
-   </div>
+       <div class="btn" @click.stop="isClick && change()" :class="{'haveLook' : wantToSee}">
+         {{ wantToSee ? "已想看" : "想看" }}
+       </div>
 </template>
 
 <script>
   export default {
-    props:['dataLi'],
+    props:['dataLi', "isLook"],
     name:"wantToSeea",
     data(){
       return {
         wantToSee:false,
-        dataList: {}
+        dataList: {},
+        isClick:true
       }
     },
     methods: {
@@ -21,13 +22,14 @@
         }
       },
       change(){
-      console.log(this.$store.getters.IS_LOGIN)
         if (!this.$store.getters.IS_LOGIN) {
           this.$router.push({
           path:'/login'
           })
         }else{
+          this.isClick = false;
           console.log('已登录')
+          let id = this.dataLi.id;
           let title = this.dataLi.title;
           let date = this.dataLi.mainland_pubdate;
           let directors = [];
@@ -42,6 +44,7 @@
             casts.push(cast.name);
           }
           this.dataList = {
+            id : id,
             title : title,
             date : date,
             directors : directors,
@@ -52,6 +55,13 @@
           }
           this.wantToSee = true;
           this.$store.commit('isWantToSee', this.dataList);
+        }
+      }
+    },
+    created () {
+      for(let index of this.$store.getters.IS_LOOK){
+        if (index == this.dataLi.id) {
+          this.wantToSee = true;
         }
       }
     }
