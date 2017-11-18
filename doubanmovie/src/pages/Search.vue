@@ -93,7 +93,7 @@ export default {
           } else {
             // console.log(that);
             this.flag = true;
-            console.log(data.subjects);
+            // console.log(data.subjects);
             this.obj = data.subjects;
           }
         }
@@ -126,9 +126,9 @@ export default {
       } else {
           historyItems = this.$refs.input1.value + '|' + historyItems.split('|').filter(e => e != this.$refs.input1.value).join('|');
           localStorage.historyItems = historyItems;
-          console.log(localStorage.historyItems);
+          // console.log(localStorage.historyItems);
           arr=localStorage.historyItems;
-          console.log(this.value.length);
+          // console.log(this.value.length);
           // if (this.value.length>=8) {
           //   console.log('//');
           //   var index=arr.lastIndexOf('|');
@@ -168,7 +168,7 @@ export default {
       this.$refs.input1.value = "";
       this.flagHot = true;
       this.sear = false;
-      console.log(this.value);
+      // console.log(this.value);
     },
     back() {
       history.back();
@@ -180,7 +180,7 @@ export default {
       this.value=localStorage.historyItems.split('|');
     }
 
-    console.log(this.value);
+    // console.log(this.value);
   },
   updated(){
     // console.log(this.$refs.input1.value);

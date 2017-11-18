@@ -49,7 +49,6 @@ export default {
       nowmonth:'',
       nowmonth1:'',
       nowmonth2:''
-
     }
   },
   components: {
@@ -90,7 +89,7 @@ export default {
     },
     compareArr(){
       // if (this.flaghot==true) {
-      console.log('22');
+      // console.log('22');
       function compare(property){
           return function(a,b){
             var value1 = a[property];
@@ -107,11 +106,11 @@ export default {
       this.flagClass4=false;
       this.obj='';
       setTimeout(()=>{
-        console.log('33');
+        // console.log('33');
         this.flagLi=false;
         this.obj=this.objDate.slice(0);
         if (this.flaghot==true) {
-          console.log('aa');
+          // console.log('aa');
           this.compareArr()
         }
       },600);
@@ -159,13 +158,13 @@ export default {
           let pubdates = one[i].pubdates[0];
           if (pubdates.substring(5, 7) == "12") {
             this.objStr.push(one[i]);
-            console.log('>');
-            console.log(this.flaghot);
+            // console.log('>');
+            // console.log(this.flaghot);
           }
         }
         this.obj=this.objStr;
         if (this.flaghot==true) {
-          console.log('??');
+          // console.log('??');
           this.compareArr()
         }
       },600);

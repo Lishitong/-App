@@ -54,7 +54,7 @@ export default {
           if (err) {
             // console.error(err.message);
           } else {
-            console.log(data);
+            // console.log(data);
             var a = data.subjects;
             // this.a=data.subjects;
 

@@ -28,7 +28,7 @@
           })
         }else{
           this.isClick = false;
-          console.log('已登录')
+          // console.log('已登录')
           let id = this.dataLi.id;
           let title = this.dataLi.title;
           let date = this.dataLi.mainland_pubdate;

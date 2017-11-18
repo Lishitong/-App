@@ -88,9 +88,9 @@ export default {
     },
 
     clearLog() {
-      console.log(this.Cookie);
       this.clearCookie();
       this.closeLogin = true;
+      this.$store.commit("isClearWantToSeeList");
       setTimeout(() => {
         this.closeLogin = false;
       }, 1500);
@@ -100,7 +100,8 @@ export default {
       this.clearCookie();
       this.bol = false;
       this.$store.commit("isClearWantToSeeList");
-      this.$router.go(0);
+      // this.$router.go(0);
+      this.foote = false;
     },
     suggest(suggest) {
       this.$router.push({ path: "/" + suggest });

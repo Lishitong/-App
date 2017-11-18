@@ -54,16 +54,16 @@ export default {
       var that;
       if (this.flag == false) {
         this.flag = true;
-        console.log(this.flag);
+        // console.log(this.flag);
         that = this;
         document.body.onclick = function() {
           if (that.flag == true) {
             that.flag = false;
-            console.log(that.flag);
+            // console.log(that.flag);
           }
           return false;
         };
-        console.log(this.flag);
+        // console.log(this.flag);
       }
     },
     deleteFn(el, e) {

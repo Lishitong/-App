@@ -55,7 +55,7 @@ export default {
          this.msg = "请输入正确的手机号或者邮箱";
 
        }
-       console.log(1323)
+      //  console.log(1323)
     },
 
     inputN(){
@@ -107,7 +107,7 @@ export default {
               this.$refs.loginPassWord.value + '&userId=' + this.$refs.loginUser.value,{name : 'callback'},
             (err, data) => {
               data = JSON.parse(data);
-              console.log(data)
+              // console.log(data)
               if (data.status == 0) {
                 console.log("注册失败");
               } else {
@@ -126,7 +126,7 @@ export default {
           "../../../static/nopass.png" &&
           this.$refs.loginPassWord.type == "password")
       ) {
-        console.log(this.$refs.seePassword.src);
+        // console.log(this.$refs.seePassword.src);
         this.$refs.seePassword.src = "../../../static/seepass.png";
         this.show = false;
       } else {
