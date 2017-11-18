@@ -23,7 +23,7 @@ export default {
     return {
       showlogin: 1,
       timpe: 0,
-      list:[]
+      list:[],
     };
   },
   methods: {
