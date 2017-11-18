@@ -5,7 +5,7 @@
       <li v-for="(aa, bb) in message" :key="bb">
       <interestedLiCon :item="aa"></interestedLiCon>
       </li>
-      <div v-if="flagJudge" class="judge">
+      <div v-if="flagJudge" class="judge" :style="{background:'url('+getImage(message[0].images.large)+')'}">
         <div class="delete" v-show="flag" @click.stop="deleteFn()" >
           不感兴趣
         </div>
@@ -16,7 +16,7 @@
           <p>漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影漫威的英雄电影电影</p>
           <h6>雪 评论《雷神3》</h6>
         </div>
-        <img :src="pp" alt="">
+        <img :src="getImage(message[0].images.large)" alt="">
 
       </div>
     </ul>
@@ -45,6 +45,11 @@ export default {
   },
   updated() {},
   methods: {
+    getImage(url) {
+      if (url !== undefined) {
+        return url.replace("https://", "https://images.weserv.nl/?url=");
+      }
+    },
     show() {
       var that;
       if (this.flag == false) {
