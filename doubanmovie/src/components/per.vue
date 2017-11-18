@@ -150,7 +150,7 @@ export default {
               this.photos.push(data.photos[i].image);
             }
             this.num = this.photos.length;
-            console.log(this.msg);
+            // console.log(this.msg);
           }
         }
       );

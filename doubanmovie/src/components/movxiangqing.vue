@@ -197,7 +197,7 @@ export default {
           if (err) {
             console.error(err);
           } else {
-            console.log(data);
+            // console.log(data);
             this.msg = data;
             this.images = data.images;
             this.countries = data.countries;
@@ -218,8 +218,8 @@ export default {
             } else {
               this.fireT = false;
             }
-            console.log("movexiangqingye打印");
-            console.log(this.msg);
+            // console.log("movexiangqingye打印");
+            // console.log(this.msg);
             // 传值
             databus.$emit("alldata", this.msg);
           }

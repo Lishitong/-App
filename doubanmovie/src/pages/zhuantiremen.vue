@@ -74,7 +74,7 @@ export default {
           this.bol = false;
           this.data.length += data.subjects.length;
           let i = this.data.start;
-          console.log(this.data.id);
+          // console.log(this.data.id);
           for (; i < this.data.start + 5; i++) {
             if (i < data.total) {
               this.data.id[i] = data.subjects[i - this.data.start].id;

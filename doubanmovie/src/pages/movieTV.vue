@@ -48,7 +48,7 @@ export default {
   },
   created(){
     if (this.getCookie('userId')) {
-      console.log(this.getCookie('userId'))
+      // console.log(this.getCookie('userId'))
       this.user = this.getCookie('userId')
     }
   }

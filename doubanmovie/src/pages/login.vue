@@ -42,7 +42,7 @@
 export default {
   data() {
     return {
-      l:false,
+      l: false,
       shows: false,
       logindb: false,
       welcome: true,
@@ -52,7 +52,6 @@ export default {
     };
   },
   methods: {
-
     back() {
       history.back();
     },
@@ -78,26 +77,24 @@ export default {
       return "";
     },
     loginOn(Mine) {
-      console.log(this.$refs);
+      // console.log(this.$refs);
       let rm = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[678])[0-9]{8}$|^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-      let mima = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Za-z0-9]).*$/
+      let mima = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Za-z0-9]).*$/;
 
-      if(this.$refs.loginUserName.value == "" && this.$refs.loginPassWord.value == ""){
+      if (
+        this.$refs.loginUserName.value == "" &&
+        this.$refs.loginPassWord.value == ""
+      ) {
         this.msg = "请输入用户名和密码";
-      }
-      else if (this.$refs.loginUserName.value == "") {
+      } else if (this.$refs.loginUserName.value == "") {
         this.msg = "请输入账号";
-      }
-      else if (this.$refs.loginPassWord.value == "") {
+      } else if (this.$refs.loginPassWord.value == "") {
         this.msg = "请输入密码";
-      }
-      else if (!rm.test(this.$refs.loginUserName.value)) {
+      } else if (!rm.test(this.$refs.loginUserName.value)) {
         this.msg = "请输入正确的用户名";
-      }
-      else if(!mima.test(this.$refs.loginPassWord.value)){
+      } else if (!mima.test(this.$refs.loginPassWord.value)) {
         this.msg = "请输入正确的密码";
-      }
-      else {
+      } else {
         this.JSONP(
           "http://10.0.156.183:8888/login?user=" +
             this.$refs.loginUserName.value +
@@ -111,7 +108,7 @@ export default {
               this.setCookie("pwd", this.$refs.loginPassWord.value, 30);
               this.setCookie("userId", data.userId, 30);
               this.msg = "登录成功";
-              this.l=true;
+              this.l = true;
               setTimeout(() => {
                 this.$router.push({
                   path: "/Mine",
@@ -295,9 +292,9 @@ footer img {
   flex-wrap: wrap;
   justify-content: space-around;
   font-size: 0.26rem;
-  border: 1px solid #c2c2c2; 
+  border: 1px solid #c2c2c2;
 }
-.l{
-  background:#41b883;
+.l {
+  background: #41b883;
 }
 </style>
