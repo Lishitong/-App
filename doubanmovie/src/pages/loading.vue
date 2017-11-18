@@ -109,7 +109,7 @@ export default {
       setTimeout(()=>{
         console.log('33');
         this.flagLi=false;
-        this.obj=this.objDate;
+        this.obj=this.objDate.slice(0);
         if (this.flaghot==true) {
           console.log('aa');
           this.compareArr()
@@ -122,7 +122,7 @@ export default {
       this.flagClass2 = true;
       this.flagClass3 = false;
       this.flagClass4 = false;
-      let one = this.objDate;
+      let one = this.objDate.slice(0);
       this.objStr = [];
       this.obj = "";
       setTimeout(() => {
@@ -149,7 +149,7 @@ export default {
       this.flagClass2 = false;
       this.flagClass3 = true;
       this.flagClass4 = false;
-      let one = this.objDate;
+      let one = this.objDate.slice(0);
       this.objStr = [];
       this.obj = "";
       setTimeout(() => {
@@ -176,7 +176,7 @@ export default {
       this.flagClass2 = false;
       this.flagClass3 = false;
       this.flagClass4 = true;
-      let one = this.objDate;
+      let one = this.objDate.slice(0);
       this.objStr = [];
       this.obj = "";
       setTimeout(() => {
