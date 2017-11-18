@@ -39,7 +39,6 @@
     </div>
     <div class="">
         <p class="unlogin" v-if="unlogin">该APP用户体验满意度为100%,无需评分,谢谢！</p>
-
     </div>
 
   </div>
@@ -53,7 +52,7 @@ export default {
       bol: false,
       foote: false,
       closeLogin: false,
-      unlogin: false
+      unlogin: false,
     };
   },
   methods: {
@@ -84,9 +83,14 @@ export default {
       this.bol = false;
     },
     pingfen() {
-      this.unlogin = 1;
+      this.unlogin = true;
+      setTimeout(() => {
+        this.unlogin = false;
+      }, 1500);
     },
-
+    aboutdb (aboutdb) {
+      this.$router.push({path : '/' + aboutdb})
+    },
     clearLog() {
       this.clearCookie();
       this.closeLogin = true;
@@ -97,11 +101,11 @@ export default {
       this.$router.push({ path: "/Mine" });
     },
     clearCooki() {
-      this.clearCookie();
+      // this.clearCookie();
       this.bol = false;
-      this.$store.commit("isClearWantToSeeList");
+      // this.$store.commit("isClearWantToSeeList");
       // this.$router.go(0);
-      this.foote = false;
+      // this.foote = false;
     },
     suggest(suggest) {
       this.$router.push({ path: "/" + suggest });

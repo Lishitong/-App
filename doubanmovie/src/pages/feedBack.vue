@@ -8,7 +8,7 @@
     <main>
       <p>问题类型:帮助与反馈</p>
       <div class="button">
-        <div v-for="(list,index) in navLists" :key="index" :class="{ red:changeRed == index}" @click="reds(index)"> {{list.img}}{{list.text}}</div>
+        <div v-for="(list,index) in navLists" :key="index" @click="reds(index)" :class="{ red:changeRed == index}" > {{list.img}}{{list.text}}</div>
       </div>
       <textarea @click="textareaClick()" ref="textC" class="textarea"  name="name" rows="8" cols="80">输入您的反馈详情</textarea>
 

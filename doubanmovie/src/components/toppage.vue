@@ -48,7 +48,7 @@ export default {
     width: 100%;
     overflow: hidden;
   }
-  p {
+  p{
     float: left;
     width: 70%;
     height: 0.4rem;

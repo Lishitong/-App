@@ -101,7 +101,7 @@ export default {
         setTimeout(() => {
           this.$router.push({ path: "/login" });
         }, 2000);
-        this.JSONP("http://10.0.156.183:8888/register?user=" +
+        this.JSONP("http://192.168.43.134:8888/register?user=" +
               this.$refs.loginUserName.value +
               "&pwd=" +
               this.$refs.loginPassWord.value + '&userId=' + this.$refs.loginUser.value,{name : 'callback'},
