@@ -57,7 +57,7 @@ export default {
     }
 
     this.JSONP(
-      "http://10.0.156.183:8888/login?user=" +
+      "http://192.168.43.134:8888/login?user=" +
         this.getCookie("user") +
         "&pwd=" +
         this.getCookie("pwd"),
