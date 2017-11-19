@@ -23,8 +23,8 @@ export default {
     return {
       showlogin: 1,
       timpe: 0,
-      list:[],
       count:0,
+      list:[]
     };
   },
   methods: {
