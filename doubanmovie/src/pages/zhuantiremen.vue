@@ -74,7 +74,7 @@ export default {
           // 把bol改为false
           this.bol = false;
           this.data.length += data.subjects.length;
-          让循环变量等于start，这样才能在原有的数据后边拼接数据
+          // 让循环变量等于start，这样才能在原有的数据后边拼接数据
           let i = this.data.start;
           // console.log(this.data.id);
           // 一次请求5个数据，所以i应该小于start加5
