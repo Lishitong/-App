@@ -5,6 +5,9 @@ import JSONP from 'jsonp'
 // 引入axios模块
 import axios from 'axios'
 // 引入懒加载模块
+// 图片懒加载  在终端 npm install vue-lazyload --save
+// 使用方法：把图片的src属性改为v-lazy即可
+// 有很多配置参数，在网上可以搜到
 import VueLazyload from 'vue-lazyload'
 import router from './router'
 // swiper
