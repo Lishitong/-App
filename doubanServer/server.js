@@ -42,6 +42,10 @@ server_douban.get('/register', (req, res) => {
         let _newObj = "{\"data\" : " + _userObj + "}"
         _fs.writeFile('./user.json', _newObj, {
             flwg: 'w'
+        },err=>{
+            console.log(err)
+            return res.jsonp('{"status":0,"msg":"注册失败"}')
+            
         })
         return res.jsonp('{"status":1,"msg":"注册成功"}')
     })
